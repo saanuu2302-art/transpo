@@ -249,7 +249,7 @@ export const translations = {
     },
     owner: {
         dashboard: {
-            title: 'Owner Dashboard',
+            title: 'Machine Owner Dashboard',
             description: 'Manage your machines and view booking requests.',
             machinesStatus: 'Machines Status',
             totalMachines: 'Total Machines',
@@ -537,7 +537,7 @@ export const translations = {
     },
     owner: {
         dashboard: {
-            title: 'ಮಾಲೀಕರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+            title: 'ಯಂತ್ರ ಮಾಲೀಕರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
             description: 'ನಿಮ್ಮ ಯಂತ್ರಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ಬುಕಿಂಗ್ ವಿನಂತಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ.',
             machinesStatus: 'ಯಂತ್ರಗಳ ಸ್ಥಿತಿ',
             totalMachines: 'ಒಟ್ಟು ಯಂತ್ರಗಳು',
