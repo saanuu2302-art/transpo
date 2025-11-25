@@ -24,27 +24,28 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
+import { useState } from 'react';
 
-function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
+function VehicleCard({
+  vehicle,
+  isNearest,
+  onBook,
+}: {
+  vehicle: Vehicle;
+  isNearest: boolean;
+  onBook: (vehicle: Vehicle) => void;
+}) {
   const { language } = useLanguage();
-  const { toast } = useToast();
   const t = translations[language].vehicleBooking;
-  const tConfirm = translations[language].confirmation;
-
-  const handleBooking = () => {
-    toast({
-      title: tConfirm.success.title,
-      description: `${
-        language === 'en' ? vehicle.name : vehicle.kannadaName
-      } ${tConfirm.success.description}`,
-    });
-  };
 
   return (
-    <Card className="flex flex-col overflow-hidden transition-all hover:shadow-lg">
+    <Card
+      className={`flex flex-col overflow-hidden transition-all hover:shadow-lg ${
+        isNearest ? 'border-primary ring-2 ring-primary' : ''
+      }`}
+    >
       <div className="relative aspect-video">
         {vehicle.image && (
           <Image
@@ -55,6 +56,14 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
             data-ai-hint={vehicle.image.imageHint}
           />
         )}
+        {isNearest && (
+          <Badge
+            variant="default"
+            className="absolute right-2 top-2"
+          >
+            {t.nearest}
+          </Badge>
+        )}
       </div>
       <CardHeader>
         <div className="flex items-center justify-between">
@@ -62,7 +71,7 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
             {language === 'en' ? vehicle.name : vehicle.kannadaName}
           </CardTitle>
           <Badge variant="secondary" className="flex items-center gap-1">
-            <Star className="h-4 w-4 text-accent fill-accent" />
+            <Star className="h-4 w-4 fill-accent text-accent" />
             {vehicle.rating}
           </Badge>
         </div>
@@ -70,29 +79,9 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
       </CardHeader>
       <CardContent className="flex-grow"></CardContent>
       <CardFooter>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button className="w-full">
-              {t.bookNow} <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>{tConfirm.title}</AlertDialogTitle>
-              <AlertDialogDescription>
-                {tConfirm.description(
-                  language === 'en' ? vehicle.name : vehicle.kannadaName
-                )}
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>{tConfirm.cancel}</AlertDialogCancel>
-              <AlertDialogAction onClick={handleBooking}>
-                {tConfirm.confirm}
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <Button className="w-full" onClick={() => onBook(vehicle)}>
+          {t.bookNow} <ArrowRight className="ml-2 h-4 w-4" />
+        </Button>
       </CardFooter>
     </Card>
   );
@@ -101,6 +90,98 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
 export default function VehicleBookingPage() {
   const { language } = useLanguage();
   const t = translations[language].vehicleBooking;
+  const tConfirm = translations[language].confirmation;
+  const { toast } = useToast();
+  const [nearestVehicle, setNearestVehicle] = useState<Vehicle | null>(null);
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const getDistance = (
+    lat1: number,
+    lon1: number,
+    lat2: number,
+    lon2: number
+  ) => {
+    const R = 6371; // Radius of the earth in km
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLon = ((lon2 - lon1) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const d = R * c; // Distance in km
+    return d;
+  };
+
+  const findNearestVehicle = (currentLat: number, currentLon: number) => {
+    let closestVehicle: Vehicle | null = null;
+    let minDistance = Infinity;
+
+    vehicles.forEach((vehicle) => {
+      if (vehicle.lat && vehicle.lng) {
+        const distance = getDistance(
+          currentLat,
+          currentLon,
+          vehicle.lat,
+          vehicle.lng
+        );
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestVehicle = vehicle;
+        }
+      }
+    });
+
+    setNearestVehicle(closestVehicle);
+    return closestVehicle;
+  };
+
+  const handleBookButtonClick = () => {
+    if (!navigator.geolocation) {
+      toast({
+        variant: 'destructive',
+        title: t.locationError.title,
+        description: t.locationError.notSupported,
+      });
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const nearest = findNearestVehicle(latitude, longitude);
+        if (nearest) {
+          setSelectedVehicle(nearest);
+          setIsDialogOpen(true);
+        }
+      },
+      () => {
+        toast({
+          variant: 'destructive',
+          title: t.locationError.title,
+          description: t.locationError.permissionDenied,
+        });
+      }
+    );
+  };
+  
+  const handleBookingConfirm = () => {
+     if (!selectedVehicle) return;
+    toast({
+      title: tConfirm.success.title,
+      description: `${
+        language === 'en'
+          ? selectedVehicle.name
+          : selectedVehicle.kannadaName
+      } ${tConfirm.success.description}`,
+    });
+    setIsDialogOpen(false);
+    setSelectedVehicle(null);
+  };
+
 
   return (
     <div className="flex flex-col gap-6">
@@ -115,9 +196,37 @@ export default function VehicleBookingPage() {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {vehicles.map((vehicle) => (
-          <VehicleCard key={vehicle.id} vehicle={vehicle} />
+          <VehicleCard
+            key={vehicle.id}
+            vehicle={vehicle}
+            isNearest={nearestVehicle?.id === vehicle.id}
+            onBook={handleBookButtonClick}
+          />
         ))}
       </div>
+      
+       <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <AlertDialogContent>
+          {selectedVehicle && (
+            <>
+              <AlertDialogHeader>
+                <AlertDialogTitle>{tConfirm.title}</AlertDialogTitle>
+                <AlertDialogDescription>
+                  {tConfirm.description(
+                    language === 'en' ? selectedVehicle.name : selectedVehicle.kannadaName
+                  )}
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel onClick={() => setSelectedVehicle(null)}>{tConfirm.cancel}</AlertDialogCancel>
+                <AlertDialogAction onClick={handleBookingConfirm}>
+                  {tConfirm.confirm}
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </>
+          )}
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
