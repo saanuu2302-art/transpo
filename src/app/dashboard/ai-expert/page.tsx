@@ -57,8 +57,7 @@ export default function AiExpertPage() {
     }
   }, [messages]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSendMessage = () => {
     if (!input.trim() || isPending) return;
 
     setMessages((prev) => [
@@ -68,6 +67,11 @@ export default function AiExpertPage() {
 
     formAction(input.trim());
     setInput('');
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSendMessage();
   };
 
   return (
@@ -120,7 +124,7 @@ export default function AiExpertPage() {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
-                  handleSubmit(e.currentTarget.form as HTMLFormElement);
+                  handleSendMessage();
                 }
               }}
               disabled={isPending}
