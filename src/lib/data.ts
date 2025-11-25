@@ -273,6 +273,51 @@ export const adminMachineryBookings = [
     }
 ]
 
+export const adminMarketplaceProducts = [
+  {
+    id: 'P001',
+    productName: 'Organic Mangoes',
+    kannadaProductName: 'ಸಾವಯವ ಮಾವುಗಳು',
+    sellerName: 'Srinivas',
+    kannadaSellerName: 'ಶ್ರೀನಿವಾಸ್',
+    price: '₹200 / kg',
+    kannadaPrice: '₹೨೦೦ / ಕೆಜಿ',
+    stockStatus: 'In Stock',
+    kannadaStockStatus: 'ಸ್ಟಾಕ್‌ನಲ್ಲಿದೆ',
+    approvalStatus: 'Approved',
+    kannadaApprovalStatus: 'ಅನುಮೋದಿಸಲಾಗಿದೆ',
+    imageUrl: 'https://picsum.photos/seed/mango/200'
+  },
+  {
+    id: 'P002',
+    productName: 'Fresh Sugarcane',
+    kannadaProductName: 'ತಾಜಾ ಕಬ್ಬು',
+    sellerName: 'Gopal',
+    kannadaSellerName: 'ಗೋಪಾಲ್',
+    price: '₹500 / quintal',
+    kannadaPrice: '₹೫೦೦ / ಕ್ವಿಂಟಲ್',
+    stockStatus: 'Low Stock',
+    kannadaStockStatus: 'ಕಡಿಮೆ ಸ್ಟಾಕ್',
+    approvalStatus: 'Pending',
+    kannadaApprovalStatus: 'ಬಾಕಿಯಿದೆ',
+    imageUrl: 'https://picsum.photos/seed/sugarcane/200'
+  },
+   {
+    id: 'P003',
+    productName: 'Brown Rice',
+    kannadaProductName: 'ಕಂದು ಅಕ್ಕಿ',
+    sellerName: 'Lakshmi',
+    kannadaSellerName: 'ಲಕ್ಷ್ಮಿ',
+    price: '₹80 / kg',
+    kannadaPrice: '₹೮೦ / ಕೆಜಿ',
+    stockStatus: 'In Stock',
+    kannadaStockStatus: 'ಸ್ಟಾಕ್‌ನಲ್ಲಿದೆ',
+    approvalStatus: 'Approved',
+    kannadaApprovalStatus: 'ಅನುಮೋದಿಸಲಾಗಿದೆ',
+    imageUrl: 'https://picsum.photos/seed/rice/200'
+  }
+];
+
 export type Vehicle = typeof vehicles[0];
 export type Machine = typeof machines[0];
 export type Booking = {
@@ -290,3 +335,4 @@ export type OwnerMachine = typeof ownerMachines[0];
 export type OwnerRequest = typeof ownerRequests[0];
 export type AdminVehicleBooking = typeof adminVehicleBookings[0];
 export type AdminMachineryBooking = typeof adminMachineryBookings[0];
+export type AdminMarketplaceProduct = typeof adminMarketplaceProducts[0];
