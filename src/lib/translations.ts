@@ -284,6 +284,11 @@ export const translations = {
         profile: {
             title: 'Owner Profile',
             description: 'Update your personal and business information.',
+            editProfile: 'Edit Profile',
+            totalMachines: 'Total Machines',
+            machinesRegistered: 'Machines registered',
+            totalEarnings: 'Total Earnings',
+            lifetimeEarnings: 'Lifetime earnings'
         }
     }
   },
@@ -537,7 +542,7 @@ export const translations = {
     },
     owner: {
         dashboard: {
-            title: 'ಯಂತ್ರ ಮಾಲೀಕರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+            title: 'Machine Owner Dashboard',
             description: 'ನಿಮ್ಮ ಯಂತ್ರಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ಬುಕಿಂಗ್ ವಿನಂತಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ.',
             machinesStatus: 'ಯಂತ್ರಗಳ ಸ್ಥಿತಿ',
             totalMachines: 'ಒಟ್ಟು ಯಂತ್ರಗಳು',
@@ -572,6 +577,11 @@ export const translations = {
         profile: {
             title: 'ಮಾಲೀಕರ ಪ್ರೊಫೈಲ್',
             description: 'ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮತ್ತು ವ್ಯವಹಾರ ಮಾಹಿತಿಯನ್ನು ನವೀಕರಿಸಿ.',
+            editProfile: 'ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ',
+            totalMachines: 'ಒಟ್ಟು ಯಂತ್ರಗಳು',
+            machinesRegistered: 'ನೋಂದಾಯಿತ ಯಂತ್ರಗಳು',
+            totalEarnings: 'ಒಟ್ಟು ಗಳಿಕೆಗಳು',
+            lifetimeEarnings: 'ಜೀವಮಾನದ ಗಳಿಕೆಗಳು'
         }
     }
   },
