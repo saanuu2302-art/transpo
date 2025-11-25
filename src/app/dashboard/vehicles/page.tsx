@@ -26,7 +26,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function VehicleCard({
   vehicle,
@@ -92,9 +92,14 @@ export default function VehicleBookingPage() {
   const t = translations[language].vehicleBooking;
   const tConfirm = translations[language].confirmation;
   const { toast } = useToast();
-  const [nearestVehicle, setNearestVehicle] = useState<Vehicle | null>(null);
+  const [nearestVehicleId, setNearestVehicleId] = useState<string | null>(null);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  // Using useEffect to avoid hydration errors with navigator
+  useEffect(() => {
+    // This effect runs only on the client
+  }, []);
 
   const getDistance = (
     lat1: number,
@@ -116,30 +121,7 @@ export default function VehicleBookingPage() {
     return d;
   };
 
-  const findNearestVehicle = (currentLat: number, currentLon: number) => {
-    let closestVehicle: Vehicle | null = null;
-    let minDistance = Infinity;
-
-    vehicles.forEach((vehicle) => {
-      if (vehicle.lat && vehicle.lng) {
-        const distance = getDistance(
-          currentLat,
-          currentLon,
-          vehicle.lat,
-          vehicle.lng
-        );
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestVehicle = vehicle;
-        }
-      }
-    });
-
-    setNearestVehicle(closestVehicle);
-    return closestVehicle;
-  };
-
-  const handleBookButtonClick = () => {
+  const handleBookNow = (clickedVehicle: Vehicle) => {
     if (!navigator.geolocation) {
       toast({
         variant: 'destructive',
@@ -152,11 +134,30 @@ export default function VehicleBookingPage() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        const nearest = findNearestVehicle(latitude, longitude);
-        if (nearest) {
-          setSelectedVehicle(nearest);
-          setIsDialogOpen(true);
-        }
+        
+        let closestVehicle: Vehicle | null = null;
+        let minDistance = Infinity;
+
+        // Find the nearest vehicle of the same type as the one clicked
+        vehicles
+          .filter(v => v.name === clickedVehicle.name)
+          .forEach((vehicle) => {
+            if (vehicle.lat && vehicle.lng) {
+              const distance = getDistance(latitude, longitude, vehicle.lat, vehicle.lng);
+              if (distance < minDistance) {
+                minDistance = distance;
+                closestVehicle = vehicle;
+              }
+            }
+        });
+        
+        // If no vehicle of the same type is found (which shouldn't happen with current data),
+        // fallback to the clicked vehicle. In a real app, you might search for any vehicle.
+        const vehicleToBook = closestVehicle || clickedVehicle;
+
+        setNearestVehicleId(vehicleToBook.id);
+        setSelectedVehicle(vehicleToBook);
+        setIsDialogOpen(true);
       },
       () => {
         toast({
@@ -180,6 +181,8 @@ export default function VehicleBookingPage() {
     });
     setIsDialogOpen(false);
     setSelectedVehicle(null);
+    // Optionally reset nearest vehicle highlight after booking
+    // setNearestVehicleId(null);
   };
 
 
@@ -199,8 +202,8 @@ export default function VehicleBookingPage() {
           <VehicleCard
             key={vehicle.id}
             vehicle={vehicle}
-            isNearest={nearestVehicle?.id === vehicle.id}
-            onBook={handleBookButtonClick}
+            isNearest={nearestVehicleId === vehicle.id}
+            onBook={handleBookNow}
           />
         ))}
       </div>
@@ -218,7 +221,10 @@ export default function VehicleBookingPage() {
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel onClick={() => setSelectedVehicle(null)}>{tConfirm.cancel}</AlertDialogCancel>
+                <AlertDialogCancel onClick={() => {
+                  setIsDialogOpen(false);
+                  setSelectedVehicle(null);
+                }}>{tConfirm.cancel}</AlertDialogCancel>
                 <AlertDialogAction onClick={handleBookingConfirm}>
                   {tConfirm.confirm}
                 </AlertDialogAction>
