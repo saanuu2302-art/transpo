@@ -108,6 +108,16 @@ export const translations = {
             location: 'Location',
             updateProfile: 'Update Profile'
         }
+    },
+    confirmation: {
+      title: 'Confirm Booking',
+      description: (item: string) => `Are you sure you want to book the ${item}?`,
+      cancel: 'Cancel',
+      confirm: 'Confirm',
+      success: {
+          title: 'Booking Successful!',
+          description: 'has been booked.'
+      }
     }
   },
   kn: {
@@ -219,6 +229,16 @@ export const translations = {
             location: 'ಸ್ಥಳ',
             updateProfile: 'ಪ್ರೊಫೈಲ್ ನವೀಕರಿಸಿ'
         }
-    }
+    },
+    confirmation: {
+        title: 'ಬುಕಿಂಗ್ ಖಚಿತಪಡಿಸಿ',
+        description: (item: string) => `ನೀವು ಖಚಿತವಾಗಿ ${item} ಅನ್ನು ಬುಕ್ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?`,
+        cancel: 'ರದ್ದುಮಾಡಿ',
+        confirm: 'ಖಚಿತಪಡಿಸಿ',
+        success: {
+            title: 'ಬುಕಿಂಗ್ ಯಶಸ್ವಿಯಾಗಿದೆ!',
+            description: 'ಅನ್ನು ಬುಕ್ ಮಾಡಲಾಗಿದೆ.'
+        }
+      }
   },
 };

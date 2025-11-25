@@ -34,10 +34,32 @@ import {
 } from '@/components/ui/table';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { useToast } from '@/hooks/use-toast';
 
 function MachineCard({ machine }: { machine: Machine }) {
   const { language } = useLanguage();
+  const { toast } = useToast();
   const t = translations[language].machineBooking;
+  const tConfirm = translations[language].confirmation;
+
+  const handleBooking = () => {
+    toast({
+      title: tConfirm.success.title,
+      description: `${language === 'en' ? machine.name : machine.kannadaName} ${tConfirm.success.description}`,
+    });
+  };
+
   return (
     <Card className="flex flex-col overflow-hidden transition-all hover:shadow-lg">
       <div className="relative aspect-video">
@@ -73,9 +95,27 @@ function MachineCard({ machine }: { machine: Machine }) {
         </p>
       </CardContent>
       <CardFooter>
-        <Button className="w-full" disabled={!machine.availability}>
-          {t.bookNow} <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button className="w-full" disabled={!machine.availability}>
+              {t.bookNow} <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{tConfirm.title}</AlertDialogTitle>
+              <AlertDialogDescription>
+                {tConfirm.description(language === 'en' ? machine.name : machine.kannadaName)}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>{tConfirm.cancel}</AlertDialogCancel>
+              <AlertDialogAction onClick={handleBooking}>
+                {tConfirm.confirm}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </CardFooter>
     </Card>
   );
@@ -136,19 +176,13 @@ export default function MachineBookingPage() {
         <h1 className="font-headline text-3xl font-bold text-foreground">
           {t.title}
         </h1>
-        <p className="text-muted-foreground">
-          {t.description}
-        </p>
+        <p className="text-muted-foreground">{t.description}</p>
       </div>
 
       <Tabs defaultValue="booking" className="w-full">
         <TabsList>
-          <TabsTrigger value="booking">
-            {t.tabs.bookMachine}
-          </TabsTrigger>
-          <TabsTrigger value="history">
-            {t.tabs.bookingHistory}
-          </TabsTrigger>
+          <TabsTrigger value="booking">{t.tabs.bookMachine}</TabsTrigger>
+          <TabsTrigger value="history">{t.tabs.bookingHistory}</TabsTrigger>
         </TabsList>
         <TabsContent value="booking" className="mt-6">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

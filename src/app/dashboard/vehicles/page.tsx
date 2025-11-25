@@ -15,11 +15,32 @@ import { vehicles, type Vehicle } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { useToast } from '@/hooks/use-toast';
 
 function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
   const { language } = useLanguage();
+  const { toast } = useToast();
   const t = translations[language].vehicleBooking;
-  
+  const tConfirm = translations[language].confirmation;
+
+  const handleBooking = () => {
+    toast({
+      title: tConfirm.success.title,
+      description: `${language === 'en' ? vehicle.name : vehicle.kannadaName} ${tConfirm.success.description}`,
+    });
+  };
+
   return (
     <Card className="flex flex-col overflow-hidden transition-all hover:shadow-lg">
       <div className="relative aspect-video">
@@ -47,9 +68,27 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
       </CardHeader>
       <CardContent className="flex-grow"></CardContent>
       <CardFooter>
-        <Button className="w-full">
-          {t.bookNow} <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button className="w-full">
+              {t.bookNow} <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{tConfirm.title}</AlertDialogTitle>
+              <AlertDialogDescription>
+                {tConfirm.description(language === 'en' ? vehicle.name : vehicle.kannadaName)}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>{tConfirm.cancel}</AlertDialogCancel>
+              <AlertDialogAction onClick={handleBooking}>
+                {tConfirm.confirm}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </CardFooter>
     </Card>
   );
@@ -65,9 +104,7 @@ export default function VehicleBookingPage() {
         <h1 className="font-headline text-3xl font-bold text-foreground">
           {t.title}
         </h1>
-        <p className="text-muted-foreground">
-          {t.description}
-        </p>
+        <p className="text-muted-foreground">{t.description}</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
