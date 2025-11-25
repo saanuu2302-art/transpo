@@ -2,12 +2,12 @@
 
 import { farmingAssistant } from '@/ai/flows/ai-farming-assistant';
 
-export async function getAiFarmingResponse(query: string) {
+export async function getAiFarmingResponse(query: string, language: 'en' | 'kn') {
   try {
     if (!query) {
       return { error: 'Query is required.' };
     }
-    const response = await farmingAssistant({ query });
+    const response = await farmingAssistant({ query, language });
     return response;
   } catch (error) {
     console.error(error);

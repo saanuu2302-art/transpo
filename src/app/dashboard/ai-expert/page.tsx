@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useActionState } from 'react';
-import { Send, Mic, Loader2 } from 'lucide-react';
+import { Send, Mic, Loader2, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -10,19 +10,47 @@ import { ChatMessage, type Message } from '@/components/chat-message';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
+const translations = {
+  en: {
+    title: 'AI Expert',
+    description: 'Ask any farming-related question.',
+    switchLanguage: 'ಕನ್ನಡಕ್ಕೆ ಬದಲಿಸಿ',
+    initialMessage: 'Hello! How can I help you with your farming today?',
+    placeholder: 'Type your question here...',
+    thinking: 'Thinking...',
+    errorTitle: 'Error',
+  },
+  kn: {
+    title: 'AI ತಜ್ಞ',
+    description: 'ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಪ್ರಶ್ನೆಯನ್ನು ಕೇಳಿ.',
+    switchLanguage: 'Switch to English',
+    initialMessage: 'ನಮಸ್ಕಾರ! ಇಂದು ನಿಮ್ಮ ಕೃಷಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
+    placeholder: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ...',
+    thinking: 'ಯೋಚಿಸುತ್ತಿದೆ...',
+    errorTitle: 'ದೋಷ',
+  },
+};
+
 export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-  const [state, formAction, isPending] = useActionState(getAiFarmingResponse, undefined);
+  const [language, setLanguage] = useState<'en' | 'kn'>('en');
+  
+  const [state, formAction, isPending] = useActionState(async (_prevState: any, query: string) => {
+    return getAiFarmingResponse(query, language);
+  }, undefined);
+
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  
+  const t = translations[language];
 
   useEffect(() => {
     if (state) {
       if (state.error) {
         toast({
           variant: 'destructive',
-          title: 'Error / ದೋಷ',
+          title: t.errorTitle,
           description: state.error,
         });
       } else if (state.textResponse) {
@@ -37,7 +65,7 @@ export default function AiExpertPage() {
         ]);
       }
     }
-  }, [state, toast]);
+  }, [state, toast, t.errorTitle]);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -61,22 +89,25 @@ export default function AiExpertPage() {
     setInput('');
   };
 
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'en' ? 'kn' : 'en');
+  };
+
   return (
     <div className="flex flex-col gap-6 h-[calc(100vh-10rem)]">
       <div>
         <h1 className="font-headline text-3xl font-bold text-foreground">
-          AI Expert / AI ತಜ್ಞ
+          {t.title}
         </h1>
         <p className="text-muted-foreground">
-          Ask any farming-related question. / ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಪ್ರಶ್ನೆಯನ್ನು
-          ಕೇಳಿ.
+          {t.description}
         </p>
       </div>
 
       <Card className="flex flex-1 flex-col">
         <CardHeader>
            <div className="flex justify-end">
-                <Button variant="outline" size="sm">Switch Language - English / ಕನ್ನಡ</Button>
+                <Button variant="outline" size="sm" onClick={toggleLanguage}>{t.switchLanguage}</Button>
             </div>
         </CardHeader>
         <CardContent className="flex-1 overflow-hidden">
@@ -86,7 +117,7 @@ export default function AiExpertPage() {
                 message={{
                   id: 'initial',
                   sender: 'ai',
-                  text: 'Hello! How can I help you with your farming today? / ನಮಸ್ಕಾರ! ಇಂದು ನಿಮ್ಮ ಕೃಷಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
+                  text: t.initialMessage,
                 }}
               />
               {messages.map((message) => (
@@ -99,7 +130,7 @@ export default function AiExpertPage() {
                     </div>
                     <div className="max-w-md rounded-lg p-3 rounded-tl-none bg-card flex items-center gap-2">
                         <Loader2 className="h-4 w-4 animate-spin" />
-                        <p className="text-sm text-muted-foreground">Thinking... / ಯೋಚಿಸುತ್ತಿದೆ...</p>
+                        <p className="text-sm text-muted-foreground">{t.thinking}</p>
                     </div>
                 </div>
               )}
@@ -111,7 +142,7 @@ export default function AiExpertPage() {
             <Textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your question here... / ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ..."
+              placeholder={t.placeholder}
               className="min-h-0 flex-1 resize-none"
               rows={1}
               onKeyDown={(e) => {
