@@ -44,10 +44,8 @@ export default function OwnerProfilePage() {
               <CardDescription>owner@example.com</CardDescription>
             </CardHeader>
             <CardContent>
-                <Link href="/owner/profile/edit" legacyBehavior>
-                  <a className="w-full">
+                <Link href="/owner/profile/edit" className="w-full">
                     <Button variant="outline" className="w-full">{t.editProfile}</Button>
-                  </a>
                 </Link>
             </CardContent>
           </Card>
