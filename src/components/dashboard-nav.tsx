@@ -10,16 +10,13 @@ import {
   Tractor,
   User,
 } from 'lucide-react';
-
 import { cn } from '@/lib/utils';
-import {
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-} from '@/components/ui/sidebar';
-import { Button } from './ui/button';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
+import {
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu';
+import { Button } from './ui/button';
 
 export function DashboardNav() {
   const pathname = usePathname();
@@ -55,32 +52,28 @@ export function DashboardNav() {
   ];
 
   return (
-    <>
-      <SidebarMenu>
-        {links.map((link) => (
-          <SidebarMenuItem key={link.href}>
-            <Link href={link.href} className="w-full">
-              <SidebarMenuButton
-                isActive={pathname === link.href}
-                tooltip={{ children: language === 'en' ? link.label.split(' / ')[0] : link.label.split(' / ')[1] }}
-              >
-                <link.icon />
-                <span>{link.label}</span>
-              </SidebarMenuButton>
-            </Link>
-          </SidebarMenuItem>
-        ))}
-      </SidebarMenu>
-      <div className="mt-auto p-2">
-         <Link href="/login" className="w-full">
+    <div className="w-56">
+      {links.map((link) => (
+        <DropdownMenuItem key={link.href} asChild>
+          <Link
+            href={link.href}
+            className={cn('flex items-center gap-2', pathname === link.href && 'bg-accent')}
+          >
+            <link.icon className="h-4 w-4" />
+            <span>{link.label}</span>
+          </Link>
+        </DropdownMenuItem>
+      ))}
+      <DropdownMenuItem asChild>
+        <Link href="/login" className="w-full">
             <Button variant="ghost" className="w-full justify-start gap-2 px-2">
-                <LogOut />
-                <span className="group-data-[collapsible=icon]:hidden">
+                <LogOut className="h-4 w-4"/>
+                <span>
                     {t.logout}
                 </span>
             </Button>
          </Link>
-      </div>
-    </>
+      </DropdownMenuItem>
+    </div>
   );
 }
