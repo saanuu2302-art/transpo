@@ -16,8 +16,10 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useRouter } from 'next/navigation';
 
 export default function AdminDriversPage() {
+  const router = useRouter();
   const { language } = useLanguage();
   const t = translations[language].admin.drivers;
 
@@ -64,7 +66,7 @@ export default function AdminDriversPage() {
                   </TableCell>
                   <TableCell>{driver.trips}</TableCell>
                   <TableCell>
-                    <Button variant="outline" size="sm">{t.viewEdit}</Button>
+                    <Button variant="outline" size="sm" onClick={() => router.push(`/admin/drivers/${driver.id}`)}>{t.viewEdit}</Button>
                   </TableCell>
                 </TableRow>
               ))}
