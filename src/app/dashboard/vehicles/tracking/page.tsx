@@ -46,9 +46,9 @@ export default function VehicleTrackingPage() {
   const handleStopTrip = () => {
     toast({
       title: "Trip Ended",
-      description: "The trip has been successfully ended.",
+      description: "The trip has been successfully ended. Please complete the payment.",
     });
-    router.push('/dashboard');
+    router.push(`/dashboard/vehicles/payment?vehicleId=${vehicleId}`);
   }
 
   return (

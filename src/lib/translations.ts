@@ -149,6 +149,18 @@ aiExpert: 'AI Expert',
       minutes: 'mins',
       stopTrip: 'Stop Trip',
       verificationCode: 'Verification Code'
+    },
+    payment: {
+        title: 'Complete Your Payment',
+        description: 'Choose your preferred payment method.',
+        total: 'Total Amount',
+        cash: 'Pay with Cash',
+        upi: 'Pay with UPI',
+        card: 'Pay with Credit/Debit Card',
+        success: {
+            title: 'Payment Successful',
+            description: (method: string) => `Paid successfully using ${method}.`,
+        },
     }
   },
   kn: {
@@ -301,6 +313,18 @@ aiExpert: 'AI Expert',
       minutes: 'ನಿಮಿಷಗಳು',
       stopTrip: 'ಪ್ರಯಾಣ ನಿಲ್ಲಿಸಿ',
       verificationCode: 'ಪರಿಶೀಲನೆ ಕೋಡ್'
+    },
+    payment: {
+        title: 'ನಿಮ್ಮ ಪಾವತಿಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ',
+        description: 'ನಿಮ್ಮ ಆದ್ಯತೆಯ ಪಾವತಿ ವಿಧಾನವನ್ನು ಆರಿಸಿ.',
+        total: 'ಒಟ್ಟು ಮೊತ್ತ',
+        cash: 'ನಗದಿನೊಂದಿಗೆ ಪಾವತಿಸಿ',
+        upi: 'ಯುಪಿಐನೊಂದಿಗೆ ಪಾವತಿಸಿ',
+        card: 'ಕ್ರೆಡಿಟ್/ಡೆಬಿಟ್ ಕಾರ್ಡ್‌ನೊಂದಿಗೆ ಪಾವತಿಸಿ',
+        success: {
+            title: 'ಪಾವತಿ ಯಶಸ್ವಿಯಾಗಿದೆ',
+            description: (method: string) => `${method} ಬಳಸಿ ಯಶಸ್ವಿಯಾಗಿ ಪಾವತಿಸಲಾಗಿದೆ.`,
+        },
     }
   },
 };
