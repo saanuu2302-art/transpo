@@ -17,13 +17,14 @@ import { translations } from '@/lib/translations';
 import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Image from 'next/image';
 
 export default function DriverProfilePage() {
   const { language } = useLanguage();
   const t = translations[language].driver.profile;
   const { toast } = useToast();
-  const avatarImage = PlaceHolderImages.find(
-    (img) => img.id === 'farmer-avatar'
+  const vehicleImage = PlaceHolderImages.find(
+    (img) => img.id === 'minitruck-vehicle'
   );
 
   const handleUpdate = () => {
@@ -79,11 +80,12 @@ export default function DriverProfilePage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="relative aspect-video w-full overflow-hidden rounded-md">
-              {avatarImage && (
-                <AvatarImage
-                  src={avatarImage.imageUrl}
-                  alt={avatarImage.description}
+              {vehicleImage && (
+                <Image
+                  src={vehicleImage.imageUrl}
+                  alt={vehicleImage.description}
                   className="object-cover"
+                  fill
                 />
               )}
             </div>
