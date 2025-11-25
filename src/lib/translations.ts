@@ -358,6 +358,29 @@ export const translations = {
         price: 'Rental Price',
         approvalStatus: 'Approval Status',
         viewDetails: 'View Details'
+      },
+      vehicleBookings: {
+        title: 'Vehicle Bookings',
+        bookingId: 'Booking ID',
+        farmer: 'Farmer',
+        driver: 'Driver',
+        pickup: 'Pickup',
+        dropoff: 'Dropoff',
+        fare: 'Fare',
+        status: 'Status'
+      },
+      machineryBookings: {
+        title: 'Machinery Bookings',
+        bookingId: 'Booking ID',
+        farmer: 'Farmer',
+        owner: 'Owner',
+        machine: 'Machine',
+        duration: 'Duration',
+        cost: 'Cost',
+        status: 'Status',
+        actions: 'Actions',
+        approve: 'Approve',
+        reject: 'Reject'
       }
     }
   },
@@ -720,6 +743,29 @@ export const translations = {
         price: 'ಬಾಡಿಗೆ ಬೆಲೆ',
         approvalStatus: 'ಅನುಮೋದನೆ ಸ್ಥಿತಿ',
         viewDetails: 'ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ'
+      },
+      vehicleBookings: {
+        title: 'ವಾಹನ ಬುಕಿಂಗ್‌ಗಳು',
+        bookingId: 'ಬುಕಿಂಗ್ ಐಡಿ',
+        farmer: 'ರೈತ',
+        driver: 'ಚಾಲಕ',
+        pickup: 'ಪಿಕ್ಅಪ್',
+        dropoff: 'ಡ್ರಾಪ್ಆಫ್',
+        fare: 'ಶುಲ್ಕ',
+        status: 'ಸ್ಥಿತಿ'
+      },
+      machineryBookings: {
+        title: 'ಯಂತ್ರೋಪಕರಣಗಳ ಬುಕಿಂಗ್‌ಗಳು',
+        bookingId: 'ಬುಕಿಂಗ್ ಐಡಿ',
+        farmer: 'ರೈತ',
+        owner: 'ಮಾಲೀಕರು',
+        machine: 'ಯಂತ್ರ',
+        duration: 'ಅವಧಿ',
+        cost: 'ವೆಚ್ಚ',
+        status: 'ಸ್ಥಿತಿ',
+        actions: 'ಕ್ರಿಯೆಗಳು',
+        approve: 'ಅನುಮೋದಿಸಿ',
+        reject: 'ತಿರಸ್ಕರಿಸಿ'
       }
     }
   },

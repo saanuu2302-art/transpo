@@ -207,6 +207,72 @@ export const ownerRequests = [
     }
 ];
 
+export const adminVehicleBookings = [
+  {
+    id: 'VB001',
+    farmer: 'Srinivas',
+    driver: 'Ravi Kumar',
+    pickup: 'Mandya Farm',
+    dropoff: 'Mysuru Market',
+    fare: '₹1500',
+    status: 'Completed',
+    kannadaStatus: 'ಪೂರ್ಣಗೊಂಡಿದೆ'
+  },
+  {
+    id: 'VB002',
+    farmer: 'Lakshmi',
+    driver: 'Anand Reddy',
+    pickup: 'Channapatna',
+    dropoff: 'Bengaluru KR Market',
+    fare: '₹2500',
+    status: 'Pending',
+    kannadaStatus: 'ಬಾಕಿಯಿದೆ'
+  },
+  {
+    id: 'VB003',
+    farmer: 'Gopal',
+    driver: 'Santosh',
+    pickup: 'Nanjangud',
+    dropoff: 'Ooty Market',
+    fare: '₹3000',
+    status: 'Cancelled',
+    kannadaStatus: 'ರದ್ದುಪಡಿಸಲಾಗಿದೆ'
+  },
+];
+
+export const adminMachineryBookings = [
+    {
+        id: 'MB001',
+        farmer: 'Srinivas',
+        owner: 'Ramesh',
+        machine: 'Tractor',
+        duration: '4 hours',
+        cost: '₹4800',
+        status: 'Completed',
+        kannadaStatus: 'ಪೂರ್ಣಗೊಂಡಿದೆ'
+    },
+    {
+        id: 'MB002',
+        farmer: 'Lakshmi',
+        owner: 'Suresh',
+        machine: 'Tiller',
+        duration: '2 hours',
+        cost: '₹1000',
+        status: 'Pending',
+        kannadaStatus: 'ಬಾಕಿಯಿದೆ'
+    },
+    {
+        id: 'MB003',
+        farmer: 'Gopal',
+        owner: 'Ganesh',
+        machine: 'Sprayer',
+        duration: '3 hours',
+        cost: '₹900',
+        status: 'Pending',
+        kannadaStatus: 'ಬಾಕಿಯಿದೆ'
+    }
+]
+
 export type Vehicle = typeof vehicles[0];
 export type Machine = typeof machines[0];
 export type Booking = {
@@ -222,3 +288,5 @@ export type DriverTask = typeof driverTasks[0];
 export type DriverEarnings = typeof driverEarnings;
 export type OwnerMachine = typeof ownerMachines[0];
 export type OwnerRequest = typeof ownerRequests[0];
+export type AdminVehicleBooking = typeof adminVehicleBookings[0];
+export type AdminMachineryBooking = typeof adminMachineryBookings[0];
