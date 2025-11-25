@@ -14,7 +14,6 @@ import { translations } from '@/lib/translations';
 
 type AiFarmingPayload = {
   query: string;
-  language: 'en' | 'kn';
 }
 
 export default function AiExpertPage() {
@@ -71,7 +70,7 @@ export default function AiExpertPage() {
       { id: `user-${Date.now()}`, sender: 'user', text: query },
     ]);
 
-    formAction({ query, language });
+    formAction({ query });
     setInput('');
   }
 

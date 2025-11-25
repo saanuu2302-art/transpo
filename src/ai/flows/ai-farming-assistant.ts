@@ -14,7 +14,6 @@ import wav from 'wav';
 
 const FarmingAssistantInputSchema = z.object({
   query: z.string().describe('The farming question asked by the farmer.'),
-  language: z.enum(['en', 'kn']).describe('The language for the response (English or Kannada).'),
 });
 export type FarmingAssistantInput = z.infer<typeof FarmingAssistantInputSchema>;
 
@@ -58,8 +57,8 @@ async function toWav(
 const farmingAssistantPrompt = ai.definePrompt({
   name: 'farmingAssistantPrompt',
   input: {schema: FarmingAssistantInputSchema},
-  prompt: `You are an expert AI farming assistant. A farmer will ask a question, and you will provide a helpful answer.
-Respond in the following language: {{{language}}}.
+  prompt: `You are an expert AI farming assistant. A farmer will ask a question in either English or Kannada, and you will provide a helpful answer.
+You must detect the language of the user's question and respond in that same language.
 
 Question: {{{query}}}`,
 });
