@@ -2,7 +2,13 @@
 
 import { farmingAssistant } from '@/ai/flows/ai-farming-assistant';
 
-export async function getAiFarmingResponse(query: string, language: 'en' | 'kn') {
+type AiFarmingPayload = {
+  query: string;
+  language: 'en' | 'kn';
+}
+
+export async function getAiFarmingResponse(payload: AiFarmingPayload) {
+  const { query, language } = payload;
   try {
     if (!query) {
       return { error: 'Query is required.' };

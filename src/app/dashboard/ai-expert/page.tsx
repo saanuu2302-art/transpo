@@ -12,13 +12,18 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 
+type AiFarmingPayload = {
+  query: string;
+  language: 'en' | 'kn';
+}
+
 export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-  const { language, toggleLanguage } = useLanguage();
+  const { language } = useLanguage();
   
-  const [state, formAction, isPending] = useActionState(async (_prevState: any, query: string) => {
-    return getAiFarmingResponse(query, language);
+  const [state, formAction, isPending] = useActionState(async (_prevState: any, payload: AiFarmingPayload) => {
+    return getAiFarmingResponse(payload);
   }, undefined);
 
   const { toast } = useToast();
@@ -59,13 +64,14 @@ export default function AiExpertPage() {
 
   const handleSendMessage = () => {
     if (!input.trim() || isPending) return;
+    const query = input.trim();
 
     setMessages((prev) => [
       ...prev,
-      { id: `user-${Date.now()}`, sender: 'user', text: input.trim() },
+      { id: `user-${Date.now()}`, sender: 'user', text: query },
     ]);
 
-    formAction(input.trim());
+    formAction({ query, language });
     setInput('');
   }
 
