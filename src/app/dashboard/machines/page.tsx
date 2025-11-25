@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { ArrowRight, CheckCircle, XCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import {
   Card,
   CardContent,
@@ -34,30 +35,14 @@ import {
 } from '@/components/ui/table';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { useToast } from '@/hooks/use-toast';
 
 function MachineCard({ machine }: { machine: Machine }) {
   const { language } = useLanguage();
-  const { toast } = useToast();
   const t = translations[language].machineBooking;
-  const tConfirm = translations[language].confirmation;
+  const router = useRouter();
 
-  const handleBooking = () => {
-    toast({
-      title: tConfirm.success.title,
-      description: `${language === 'en' ? machine.name : machine.kannadaName} ${tConfirm.success.description}`,
-    });
+  const handleBookNow = () => {
+    router.push(`/dashboard/machines/${machine.id}`);
   };
 
   return (
@@ -95,27 +80,13 @@ function MachineCard({ machine }: { machine: Machine }) {
         </p>
       </CardContent>
       <CardFooter>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button className="w-full" disabled={!machine.availability}>
-              {t.bookNow} <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>{tConfirm.title}</AlertDialogTitle>
-              <AlertDialogDescription>
-                {tConfirm.description(language === 'en' ? machine.name : machine.kannadaName)}
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>{tConfirm.cancel}</AlertDialogCancel>
-              <AlertDialogAction onClick={handleBooking}>
-                {tConfirm.confirm}
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <Button
+          className="w-full"
+          disabled={!machine.availability}
+          onClick={handleBookNow}
+        >
+          {t.bookNow} <ArrowRight className="ml-2 h-4 w-4" />
+        </Button>
       </CardFooter>
     </Card>
   );
