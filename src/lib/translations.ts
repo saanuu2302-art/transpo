@@ -187,6 +187,13 @@ export const translations = {
         dashboard: {
             title: 'Driver Dashboard',
             description: 'Check your current status and availability.',
+            available: 'Available',
+            unavailable: 'Unavailable',
+            currentTask: 'Current Task',
+            currentTaskDescription: 'Details of your next assigned trip.',
+            noCurrentTask: 'No current task assigned.',
+            startTrip: 'Start Trip',
+            viewAllTasks: 'View All Tasks',
         },
         tasks: {
             title: 'My Tasks',
@@ -421,6 +428,13 @@ export const translations = {
         dashboard: {
             title: 'ಚಾಲಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
             description: 'ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಿತಿ ಮತ್ತು ಲಭ್ಯತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ.',
+            available: 'ಲಭ್ಯವಿದೆ',
+            unavailable: 'ಲಭ್ಯವಿಲ್ಲ',
+            currentTask: 'ಪ್ರಸ್ತುತ ಕಾರ್ಯ',
+            currentTaskDescription: 'ನಿಮ್ಮ ಮುಂದಿನ ನಿಯೋಜಿತ ಟ್ರಿಪ್‌ನ ವಿವರಗಳು.',
+            noCurrentTask: 'ಯಾವುದೇ ಪ್ರಸ್ತುತ ಕಾರ್ಯ ನಿಯೋಜಿಸಲಾಗಿಲ್ಲ.',
+            startTrip: 'ಪ್ರಯಾಣ ಪ್ರಾರಂಭಿಸಿ',
+            viewAllTasks: 'ಎಲ್ಲಾ ಕಾರ್ಯಗಳನ್ನು ವೀಕ್ಷಿಸಿ',
         },
         tasks: {
             title: 'ನನ್ನ ಕಾರ್ಯಗಳು',
