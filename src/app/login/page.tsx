@@ -24,6 +24,8 @@ import {
 import { Logo } from '@/components/icons';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -31,15 +33,15 @@ export default function LoginPage() {
     (img) => img.id === 'farm-background'
   );
   const [isSignUp, setIsSignUp] = useState(false);
+  const { language, toggleLanguage } = useLanguage();
+  const t = translations[language].login;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle login or sign up logic
-    // For now, we'll just redirect to the dashboard
     router.push('/dashboard');
   };
 
-  const toggleMode = (e: React.MouseEvent) => {
+  const handleToggleMode = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsSignUp(!isSignUp);
   };
@@ -57,6 +59,9 @@ export default function LoginPage() {
         />
       )}
       <div className="absolute inset-0 bg-background/50" />
+       <div className="absolute top-4 right-4 z-20">
+          <Button variant="outline" size="sm" onClick={toggleLanguage}>{translations[language].language.switchLanguage}</Button>
+        </div>
       <Card className="relative z-10 w-full max-w-sm border-2 bg-card/80 backdrop-blur-sm">
         <form onSubmit={handleSubmit}>
           <CardHeader className="text-center">
@@ -66,23 +71,19 @@ export default function LoginPage() {
             {isSignUp ? (
                 <>
                     <CardTitle className="font-headline text-2xl">
-                        Create Account / ಖಾತೆ ತೆರೆಯಿರಿ
+                        {t.signUp.title}
                     </CardTitle>
                     <CardDescription>
-                        Enter your details to get started
-                        <br />
-                        ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ
+                        {t.signUp.description}
                     </CardDescription>
                 </>
             ) : (
                 <>
                     <CardTitle className="font-headline text-2xl">
-                        Welcome Back / ಮತ್ತೆ ಸ್ವಾಗತ
+                        {t.signIn.title}
                     </CardTitle>
                     <CardDescription>
-                        Sign in to access your dashboard
-                        <br />
-                        ನಿಮ್ಮ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಪ್ರವೇಶಿಸಲು ಸೈನ್ ಇನ್ ಮಾಡಿ
+                        {t.signIn.description}
                     </CardDescription>
                 </>
             )}
@@ -90,17 +91,17 @@ export default function LoginPage() {
           <CardContent className="space-y-4">
              {isSignUp && (
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name / ಪೂರ್ಣ ಹೆಸರು</Label>
+                <Label htmlFor="name">{t.fullName}</Label>
                 <Input
                   id="name"
                   type="text"
-                  placeholder="Your Name"
+                  placeholder={t.yourNamePlaceholder}
                   required
                 />
               </div>
             )}
             <div className="space-y-2">
-              <Label htmlFor="email">Email / ಇಮೇಲ್</Label>
+              <Label htmlFor="email">{t.email}</Label>
               <Input
                 id="email"
                 type="email"
@@ -109,32 +110,32 @@ export default function LoginPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password / ಪಾಸ್ವರ್ಡ್</Label>
+              <Label htmlFor="password">{t.password}</Label>
               <Input id="password" type="password" required />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="user-type">User Type / ಬಳಕೆದಾರರ ಪ್ರಕಾರ</Label>
+              <Label htmlFor="user-type">{t.userType.label}</Label>
               <Select defaultValue="farmer">
                 <SelectTrigger id="user-type">
-                  <SelectValue placeholder="Select user type" />
+                  <SelectValue placeholder={t.userType.placeholder} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="farmer">Farmer / ರೈತ</SelectItem>
-                  <SelectItem value="owner">Machine Owner / ಯಂತ್ರ ಮಾಲೀಕ</SelectItem>
-                  <SelectItem value="driver">Driver / ಚಾಲಕ</SelectItem>
+                  <SelectItem value="farmer">{t.userType.farmer}</SelectItem>
+                  <SelectItem value="owner">{t.userType.machineOwner}</SelectItem>
+                  <SelectItem value="driver">{t.userType.driver}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
             <Button type="submit" className="w-full">
-              {isSignUp ? 'Sign Up / ಸೈನ್ ಅಪ್ ಮಾಡಿ' : 'Sign In / ಸೈನ್ ಇನ್ ಮಾಡಿ'} <ArrowRight />
+              {isSignUp ? t.signUp.button : t.signIn.button} <ArrowRight />
             </Button>
             <p className="text-xs text-muted-foreground">
-              {isSignUp ? 'Already have an account? / ಈಗಾಗಲೇ ಖಾತೆ ಇದೆಯೆ?' : 'No account? / ಖಾತೆ ಇಲ್ವೇ?'}
+              {isSignUp ? t.signUp.prompt : t.signIn.prompt}
               {' '}
-              <a href="#" onClick={toggleMode} className="text-primary hover:underline">
-                 {isSignUp ? 'Sign In / ಸೈನ್ ಇನ್ ಮಾಡಿ' : 'Sign Up / ಸೈನ್ ಅಪ್ ಮಾಡಿ'}
+              <a href="#" onClick={handleToggleMode} className="text-primary hover:underline">
+                 {isSignUp ? t.signUp.switch : t.signIn.switch}
               </a>
             </p>
           </CardFooter>

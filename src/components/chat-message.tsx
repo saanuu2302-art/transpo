@@ -1,9 +1,11 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Bot, PlayCircle, User } from 'lucide-react';
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
 
 export type Message = {
   id: string;
@@ -14,6 +16,8 @@ export type Message = {
 
 export function ChatMessage({ message }: { message: Message }) {
   const isAi = message.sender === 'ai';
+  const { language } = useLanguage();
+  const t = translations[language].chat;
 
   const handlePlayAudio = () => {
     if (message.voiceResponse) {
@@ -56,7 +60,7 @@ export function ChatMessage({ message }: { message: Message }) {
             )}
           >
             <PlayCircle className="h-5 w-5" />
-            Play Audio / ಆಡಿಯೋ ಪ್ಲೇ ಮಾಡಿ
+            {t.playAudio}
           </Button>
         )}
       </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Star, ArrowRight } from 'lucide-react';
 import {
@@ -11,8 +13,13 @@ import {
 import { Button } from '@/components/ui/button';
 import { vehicles, type Vehicle } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
 
 function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
+  const { language } = useLanguage();
+  const t = translations[language].vehicleBooking;
+  
   return (
     <Card className="flex flex-col overflow-hidden transition-all hover:shadow-lg">
       <div className="relative aspect-video">
@@ -29,7 +36,7 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="font-headline text-xl">
-            {vehicle.name} / {vehicle.kannadaName}
+            {language === 'en' ? vehicle.name : vehicle.kannadaName}
           </CardTitle>
           <Badge variant="secondary" className="flex items-center gap-1">
             <Star className="h-4 w-4 text-accent fill-accent" />
@@ -41,7 +48,7 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
       <CardContent className="flex-grow"></CardContent>
       <CardFooter>
         <Button className="w-full">
-          Book Now / ಈಗ ಬುಕ್ ಮಾಡಿ <ArrowRight className="ml-2 h-4 w-4" />
+          {t.bookNow} <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </CardFooter>
     </Card>
@@ -49,15 +56,17 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
 }
 
 export default function VehicleBookingPage() {
+  const { language } = useLanguage();
+  const t = translations[language].vehicleBooking;
+
   return (
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="font-headline text-3xl font-bold text-foreground">
-          Vehicle Booking / ವಾಹನ ಬುಕಿಂಗ್
+          {t.title}
         </h1>
         <p className="text-muted-foreground">
-          Book a vehicle to transport your crops. / ನಿಮ್ಮ ಬೆಳೆಯನ್ನು ಸಾಗಿಸಲು
-          ವಾಹನವನ್ನು ಬುಕ್ ಮಾಡಿ.
+          {t.description}
         </p>
       </div>
 

@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -11,6 +13,9 @@ import {
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { DashboardNav } from '@/components/dashboard-nav';
 import { Logo } from '@/components/icons';
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
+import { Button } from '@/components/ui/button';
 
 export default function DashboardLayout({
   children,
@@ -23,6 +28,8 @@ export default function DashboardLayout({
   const avatarImage = PlaceHolderImages.find(
     (img) => img.id === 'farmer-avatar'
   );
+  const { language, toggleLanguage } = useLanguage();
+  const t = translations[language];
 
   return (
     <SidebarProvider>
@@ -56,6 +63,7 @@ export default function DashboardLayout({
                 <SidebarTrigger />
               </div>
               <div className="flex flex-1 items-center justify-end gap-4">
+                 <Button variant="outline" size="sm" onClick={toggleLanguage}>{t.language.switchLanguage}</Button>
                 <Avatar>
                   {avatarImage && (
                     <AvatarImage

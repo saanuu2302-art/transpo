@@ -9,32 +9,13 @@ import { getAiFarmingResponse } from '@/app/actions';
 import { ChatMessage, type Message } from '@/components/chat-message';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-
-const translations = {
-  en: {
-    title: 'AI Expert',
-    description: 'Ask any farming-related question.',
-    switchLanguage: 'ಕನ್ನಡಕ್ಕೆ ಬದಲಿಸಿ',
-    initialMessage: 'Hello! How can I help you with your farming today?',
-    placeholder: 'Type your question here...',
-    thinking: 'Thinking...',
-    errorTitle: 'Error',
-  },
-  kn: {
-    title: 'AI ತಜ್ಞ',
-    description: 'ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಪ್ರಶ್ನೆಯನ್ನು ಕೇಳಿ.',
-    switchLanguage: 'Switch to English',
-    initialMessage: 'ನಮಸ್ಕಾರ! ಇಂದು ನಿಮ್ಮ ಕೃಷಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
-    placeholder: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ...',
-    thinking: 'ಯೋಚಿಸುತ್ತಿದೆ...',
-    errorTitle: 'ದೋಷ',
-  },
-};
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
 
 export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-  const [language, setLanguage] = useState<'en' | 'kn'>('en');
+  const { language, toggleLanguage } = useLanguage();
   
   const [state, formAction, isPending] = useActionState(async (_prevState: any, query: string) => {
     return getAiFarmingResponse(query, language);
@@ -43,7 +24,7 @@ export default function AiExpertPage() {
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   
-  const t = translations[language];
+  const t = translations[language].aiExpert;
 
   useEffect(() => {
     if (state) {
@@ -89,10 +70,6 @@ export default function AiExpertPage() {
     setInput('');
   };
 
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === 'en' ? 'kn' : 'en');
-  };
-
   return (
     <div className="flex flex-col gap-6 h-[calc(100vh-10rem)]">
       <div>
@@ -105,12 +82,7 @@ export default function AiExpertPage() {
       </div>
 
       <Card className="flex flex-1 flex-col">
-        <CardHeader>
-           <div className="flex justify-end">
-                <Button variant="outline" size="sm" onClick={toggleLanguage}>{t.switchLanguage}</Button>
-            </div>
-        </CardHeader>
-        <CardContent className="flex-1 overflow-hidden">
+        <CardContent className="flex-1 overflow-hidden pt-6">
           <ScrollArea className="h-full" ref={scrollAreaRef}>
             <div className="space-y-6 pr-4">
               <ChatMessage

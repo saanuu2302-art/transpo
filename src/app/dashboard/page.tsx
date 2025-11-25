@@ -1,3 +1,5 @@
+'use client';
+
 import { ArrowRight, Bot, Car, Tractor } from 'lucide-react';
 import Link from 'next/link';
 import {
@@ -8,44 +10,42 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-
-const featureCards = [
-  {
-    title: 'Vehicle Booking',
-    kannadaTitle: 'ವಾಹನ ಬುಕಿಂಗ್',
-    description: 'Transport your crops with ease.',
-    kannadaDescription: 'ನಿಮ್ಮ ಬೆಳೆಯನ್ನು ಸುಲಭವಾಗಿ ಸಾಗಿಸಿ.',
-    href: '/dashboard/vehicles',
-    icon: Car,
-  },
-  {
-    title: 'Machine Booking',
-    kannadaTitle: 'ಯಂತ್ರ ಬುಕಿಂಗ್',
-    description: 'Rent the best farming equipment.',
-    kannadaDescription: 'ಅತ್ಯುತ್ತಮ ಕೃಷಿ ಉಪಕರಣಗಳನ್ನು ಬಾಡಿಗೆಗೆ ಪಡೆಯಿರಿ.',
-    href: '/dashboard/machines',
-    icon: Tractor,
-  },
-  {
-    title: 'AI Expert',
-    kannadaTitle: 'AI ತಜ್ಞ',
-    description: 'Get instant farming advice.',
-    kannadaDescription: 'ತక్షణ ಕೃಷಿ ಸಲಹೆ ಪಡೆಯಿರಿ.',
-    href: '/dashboard/ai-expert',
-    icon: Bot,
-  },
-];
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
 
 export default function DashboardPage() {
+  const { language } = useLanguage();
+  const t = translations[language].dashboard;
+
+  const featureCards = [
+    {
+      title: t.features.vehicleBooking.title,
+      description: t.features.vehicleBooking.description,
+      href: '/dashboard/vehicles',
+      icon: Car,
+    },
+    {
+      title: t.features.machineBooking.title,
+      description: t.features.machineBooking.description,
+      href: '/dashboard/machines',
+      icon: Tractor,
+    },
+    {
+      title: t.features.aiExpert.title,
+      description: t.features.aiExpert.description,
+      href: '/dashboard/ai-expert',
+      icon: Bot,
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="font-headline text-3xl font-bold text-foreground">
-          Farmer Dashboard / ರೈತರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್
+          {t.title}
         </h1>
         <p className="text-muted-foreground">
-          Manage your farm operations efficiently. / ನಿಮ್ಮ ಕೃಷಿ ಕಾರ್ಯಾಚರಣೆಗಳನ್ನು
-          ದಕ್ಷತೆಯಿಂದ ನಿರ್ವಹಿಸಿ.
+          {t.description}
         </p>
       </div>
 
@@ -59,10 +59,10 @@ export default function DashboardPage() {
               <div className="flex items-start justify-between">
                 <div>
                   <CardTitle className="font-headline text-xl">
-                    {feature.title} / {feature.kannadaTitle}
+                    {feature.title}
                   </CardTitle>
                   <CardDescription>
-                    {feature.description} / {feature.kannadaDescription}
+                    {feature.description}
                   </CardDescription>
                 </div>
                 <feature.icon className="h-8 w-8 text-primary" />
@@ -71,7 +71,7 @@ export default function DashboardPage() {
             <CardContent className="mt-auto">
               <Link href={feature.href}>
                 <Button variant="outline" className="w-full">
-                  Access / ಪ್ರವೇಶಿಸಿ <ArrowRight className="ml-2 h-4 w-4" />
+                  {t.access} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
             </CardContent>
@@ -82,12 +82,12 @@ export default function DashboardPage() {
       <Card>
         <CardHeader>
           <CardTitle className="font-headline text-xl">
-            Recent Activity / ಇತ್ತೀಚಿನ ಚಟುವಟಿಕೆ
+            {t.recentActivity.title}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">
-            No recent activity to show. / ತೋರಿಸಲು ಯಾವುದೇ ಇತ್ತೀಚಿನ ಚಟುವಟಿಕೆ ಇಲ್ಲ.
+            {t.recentActivity.noActivity}
           </p>
         </CardContent>
       </Card>

@@ -18,37 +18,41 @@ import {
   SidebarMenuButton,
 } from '@/components/ui/sidebar';
 import { Button } from './ui/button';
-
-const links = [
-  {
-    href: '/dashboard',
-    label: 'Dashboard / ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
-    icon: LayoutGrid,
-  },
-  {
-    href: '/dashboard/vehicles',
-    label: 'Vehicle Booking / ವಾಹನ ಬುಕಿಂಗ್',
-    icon: Car,
-  },
-  {
-    href: '/dashboard/machines',
-    label: 'Machine Booking / ಯಂತ್ರ ಬುಕಿಂಗ್',
-    icon: Tractor,
-  },
-  {
-    href: '/dashboard/ai-expert',
-    label: 'AI Expert / AI ತಜ್ಞ',
-    icon: Bot,
-  },
-  {
-    href: '/dashboard/profile',
-    label: 'Profile / ಪ್ರೊಫೈಲ್',
-    icon: User,
-  },
-];
+import { useLanguage } from '@/context/language-context';
+import { translations } from '@/lib/translations';
 
 export function DashboardNav() {
   const pathname = usePathname();
+  const { language } = useLanguage();
+  const t = translations[language].nav;
+
+  const links = [
+    {
+      href: '/dashboard',
+      label: t.dashboard,
+      icon: LayoutGrid,
+    },
+    {
+      href: '/dashboard/vehicles',
+      label: t.vehicleBooking,
+      icon: Car,
+    },
+    {
+      href: '/dashboard/machines',
+      label: t.machineBooking,
+      icon: Tractor,
+    },
+    {
+      href: '/dashboard/ai-expert',
+      label: t.aiExpert,
+      icon: Bot,
+    },
+    {
+      href: '/dashboard/profile',
+      label: t.profile,
+      icon: User,
+    },
+  ];
 
   return (
     <>
@@ -58,7 +62,7 @@ export function DashboardNav() {
             <Link href={link.href} className="w-full">
               <SidebarMenuButton
                 isActive={pathname === link.href}
-                tooltip={{ children: link.label.split(' / ')[0] }}
+                tooltip={{ children: language === 'en' ? link.label.split(' / ')[0] : link.label.split(' / ')[1] }}
               >
                 <link.icon />
                 <span>{link.label}</span>
@@ -72,7 +76,7 @@ export function DashboardNav() {
             <Button variant="ghost" className="w-full justify-start gap-2 px-2">
                 <LogOut />
                 <span className="group-data-[collapsible=icon]:hidden">
-                    Logout / ಲಾಗೌಟ್
+                    {t.logout}
                 </span>
             </Button>
          </Link>
