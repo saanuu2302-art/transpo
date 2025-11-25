@@ -14,6 +14,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tractor, IndianRupee } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function OwnerProfilePage() {
   const { language } = useLanguage();
@@ -43,7 +44,11 @@ export default function OwnerProfilePage() {
               <CardDescription>owner@example.com</CardDescription>
             </CardHeader>
             <CardContent>
-                <Button variant="outline" className="w-full">{t.editProfile}</Button>
+                <Link href="/owner/profile/edit" legacyBehavior>
+                  <a className="w-full">
+                    <Button variant="outline" className="w-full">{t.editProfile}</Button>
+                  </a>
+                </Link>
             </CardContent>
           </Card>
         </div>

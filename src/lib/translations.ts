@@ -288,7 +288,13 @@ export const translations = {
             totalMachines: 'Total Machines',
             machinesRegistered: 'Machines registered',
             totalEarnings: 'Total Earnings',
-            lifetimeEarnings: 'Lifetime earnings'
+            lifetimeEarnings: 'Lifetime earnings',
+            backToProfile: 'Back to Profile',
+            editDescription: 'Update your name and account details.',
+            changePhoto: 'Change Photo',
+            ownerName: 'Owner Name',
+            emailAddress: 'Email Address',
+            saveChanges: 'Save Changes'
         }
     }
   },
@@ -542,7 +548,7 @@ export const translations = {
     },
     owner: {
         dashboard: {
-            title: 'Machine Owner Dashboard',
+            title: 'ಯಂತ್ರ ಮಾಲೀಕರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
             description: 'ನಿಮ್ಮ ಯಂತ್ರಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ಬುಕಿಂಗ್ ವಿನಂತಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ.',
             machinesStatus: 'ಯಂತ್ರಗಳ ಸ್ಥಿತಿ',
             totalMachines: 'ಒಟ್ಟು ಯಂತ್ರಗಳು',
@@ -581,7 +587,13 @@ export const translations = {
             totalMachines: 'ಒಟ್ಟು ಯಂತ್ರಗಳು',
             machinesRegistered: 'ನೋಂದಾಯಿತ ಯಂತ್ರಗಳು',
             totalEarnings: 'ಒಟ್ಟು ಗಳಿಕೆಗಳು',
-            lifetimeEarnings: 'ಜೀವಮಾನದ ಗಳಿಕೆಗಳು'
+            lifetimeEarnings: 'ಜೀವಮಾನದ ಗಳಿಕೆಗಳು',
+            backToProfile: 'ಪ್ರೊಫೈಲ್‌ಗೆ ಹಿಂತಿರುಗಿ',
+            editDescription: 'ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಖಾತೆ ವಿವರಗಳನ್ನು ನವೀಕರಿಸಿ.',
+            changePhoto: 'ಫೋಟೋ ಬದಲಾಯಿಸಿ',
+            ownerName: 'ಮಾಲೀಕರ ಹೆಸರು',
+            emailAddress: 'ಇಮೇಲ್ ವಿಳಾಸ',
+            saveChanges: 'ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ'
         }
     }
   },
