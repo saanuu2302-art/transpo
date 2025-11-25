@@ -15,9 +15,8 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, User, Tag, Map, CreditCard, Warehouse, Pin, Leaf } from 'lucide-react';
+import { ArrowLeft, User, Tag, Map, Warehouse, Pin, Leaf } from 'lucide-react';
 import Image from 'next/image';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
@@ -207,24 +206,6 @@ export default function VehicleDetailPage() {
                       <p className="text-xs text-muted-foreground">{tConfirm.details.trackingPlaceholder}</p>
                     </div>
                   </div>
-                </div>
-                <div className="rounded-lg border p-4">
-                    <div className="flex items-start gap-4">
-                        <CreditCard className="h-5 w-5 text-muted-foreground mt-1" />
-                        <div>
-                            <p className="font-semibold">{tConfirm.details.payment}</p>
-                             <RadioGroup defaultValue="cod" className="mt-2 space-y-2">
-                                <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="cod" id="cod" />
-                                <Label htmlFor="cod">{tConfirm.details.cod}</Label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="upi" id="upi" />
-                                <Label htmlFor="upi">{tConfirm.details.upi}</Label>
-                                </div>
-                            </RadioGroup>
-                        </div>
-                    </div>
                 </div>
               </div>
 
