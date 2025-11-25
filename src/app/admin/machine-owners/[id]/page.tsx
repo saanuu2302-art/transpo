@@ -120,7 +120,7 @@ export default function MachineOwnerDetailPage() {
                   No booking history available.
                 </p>
               </div>
-            </AdCardContent>
+            </CardContent>
           </Card>
         </div>
       </div>
