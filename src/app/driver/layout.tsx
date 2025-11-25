@@ -42,7 +42,7 @@ export default function DriverLayout({
   const links = [
     {
       href: '/driver/dashboard',
-      label: t.status,
+      label: t.dashboard,
       icon: CircleGauge,
     },
     {

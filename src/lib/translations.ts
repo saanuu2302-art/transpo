@@ -38,7 +38,7 @@ export const translations = {
       profile: 'Profile',
       logout: 'Logout',
       driver: {
-        status: 'Status',
+        dashboard: 'Dashboard',
         tasks: 'Tasks',
         earnings: 'Earnings',
         profile: 'Profile',
@@ -223,7 +223,7 @@ export const translations = {
       profile: 'ಪ್ರೊಫೈಲ್',
       logout: 'ಲಾಗೌಟ್',
       driver: {
-        status: 'ಸ್ಥಿತಿ',
+        dashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
         tasks: 'ಕಾರ್ಯಗಳು',
         earnings: 'ಗಳಿಕೆಗಳು',
         profile: 'ಪ್ರೊಫೈಲ್',
