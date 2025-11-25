@@ -34,7 +34,7 @@ export const translations = {
       dashboard: 'Dashboard',
       vehicleBooking: 'Vehicle Booking',
       machineBooking: 'Machine Booking',
-      aiExpert: 'AI Expert',
+aiExpert: 'AI Expert',
       profile: 'Profile',
       logout: 'Logout',
     },
@@ -124,7 +124,16 @@ export const translations = {
       success: {
           title: 'Booking Successful!',
           description: 'has been booked.'
-      }
+      },
+      details: {
+        owner: 'Owner',
+        price: 'Price',
+        liveTracking: 'Live Tracking',
+        trackingPlaceholder: 'Map will be shown here',
+        payment: 'Payment Method',
+        cod: 'Cash on Delivery',
+        upi: 'UPI / Online',
+      },
     }
   },
   kn: {
@@ -252,7 +261,16 @@ export const translations = {
         success: {
             title: 'ಬುಕಿಂಗ್ ಯಶಸ್ವಿಯಾಗಿದೆ!',
             description: 'ಅನ್ನು ಬುಕ್ ಮಾಡಲಾಗಿದೆ.'
-        }
+        },
+        details: {
+            owner: 'ಮಾಲೀಕರು',
+            price: 'ಬೆಲೆ',
+            liveTracking: 'ಲೈವ್ ಟ್ರ್ಯಾಕಿಂಗ್',
+            trackingPlaceholder: 'ನಕ್ಷೆಯನ್ನು ಇಲ್ಲಿ ತೋರಿಸಲಾಗುತ್ತದೆ',
+            payment: 'ಪಾವತಿ ವಿಧಾನ',
+            cod: 'ಕ್ಯಾಶ್ ಆನ್ ಡೆಲಿವರಿ',
+            upi: 'ಯುಪಿಐ / ಆನ್‌ಲೈನ್',
+        },
       }
   },
 };

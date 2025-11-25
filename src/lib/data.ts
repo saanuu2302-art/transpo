@@ -15,6 +15,7 @@ export const vehicles = [
     rating: 4.2,
     lat: 12.55,
     lng: 76.9,
+    owner: 'Ravi Kumar',
   },
   {
     id: '2',
@@ -25,6 +26,7 @@ export const vehicles = [
     rating: 4.8,
     lat: 12.52,
     lng: 76.89,
+    owner: 'Anand Reddy',
   },
   {
     id: '3',
@@ -35,6 +37,7 @@ export const vehicles = [
     rating: 4.6,
     lat: 12.5,
     lng: 76.88,
+    owner: 'Prakash Gowda',
   },
   {
     id: '4',
@@ -45,6 +48,7 @@ export const vehicles = [
     rating: 4.3,
     lat: 12.53,
     lng: 76.91,
+    owner: 'Santosh',
   },
 ];
 

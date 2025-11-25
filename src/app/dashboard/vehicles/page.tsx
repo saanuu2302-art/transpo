@@ -1,7 +1,8 @@
+
 'use client';
 
 import Image from 'next/image';
-import { Star, ArrowRight } from 'lucide-react';
+import { Star, ArrowRight, User, Tag, Map, CreditCard } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -27,6 +28,8 @@ import {
 } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { useState, useEffect } from 'react';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 function VehicleCard({
   vehicle,
@@ -151,8 +154,6 @@ export default function VehicleBookingPage() {
             }
         });
         
-        // If no vehicle of the same type is found (which shouldn't happen with current data),
-        // fallback to the clicked vehicle. In a real app, you might search for any vehicle.
         const vehicleToBook = closestVehicle || clickedVehicle;
 
         setNearestVehicleId(vehicleToBook.id);
@@ -181,8 +182,6 @@ export default function VehicleBookingPage() {
     });
     setIsDialogOpen(false);
     setSelectedVehicle(null);
-    // Optionally reset nearest vehicle highlight after booking
-    // setNearestVehicleId(null);
   };
 
 
@@ -209,17 +208,64 @@ export default function VehicleBookingPage() {
       </div>
       
        <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className="sm:max-w-md">
           {selectedVehicle && (
             <>
               <AlertDialogHeader>
-                <AlertDialogTitle>{tConfirm.title}</AlertDialogTitle>
+                <AlertDialogTitle className="font-headline text-2xl">{tConfirm.title}</AlertDialogTitle>
                 <AlertDialogDescription>
                   {tConfirm.description(
                     language === 'en' ? selectedVehicle.name : selectedVehicle.kannadaName
                   )}
                 </AlertDialogDescription>
               </AlertDialogHeader>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <User className="h-5 w-5 text-muted-foreground" />
+                  <div>
+                    <p className="font-semibold">{tConfirm.details.owner}</p>
+                    <p className="text-sm text-muted-foreground">{selectedVehicle.owner}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <Tag className="h-5 w-5 text-muted-foreground" />
+                  <div>
+                    <p className="font-semibold">{tConfirm.details.price}</p>
+                    <p className="text-sm text-muted-foreground">{selectedVehicle.cost}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <Map className="h-5 w-5 text-muted-foreground mt-1" />
+                  <div>
+                    <p className="font-semibold">{tConfirm.details.liveTracking}</p>
+                    <div className="mt-2 h-24 w-full rounded-md bg-muted flex items-center justify-center">
+                      <p className="text-xs text-muted-foreground">{tConfirm.details.trackingPlaceholder}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <CreditCard className="h-5 w-5 text-muted-foreground mt-1" />
+                  <div>
+                    <p className="font-semibold">{tConfirm.details.payment}</p>
+                    <RadioGroup defaultValue="cod" className="mt-2 space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="cod" id="cod" />
+                          <Label htmlFor="cod">{tConfirm.details.cod}</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="upi" id="upi" />
+                          <Label htmlFor="upi">{tConfirm.details.upi}</Label>
+                        </div>
+                      </RadioGroup>
+                  </div>
+                </div>
+              </div>
+
+
               <AlertDialogFooter>
                 <AlertDialogCancel onClick={() => {
                   setIsDialogOpen(false);
