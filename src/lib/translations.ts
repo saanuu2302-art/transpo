@@ -96,11 +96,16 @@ aiExpert: 'AI Expert',
     },
     aiExpert: {
       title: 'AI Expert',
-      description: 'Ask any farming-related question.',
+      description: 'Ask any farming-related question in English or Kannada.',
       initialMessage: 'Hello! How can I help you with your farming today?',
-      placeholder: 'Type your question here...',
+      placeholder: 'Type your question or use the voice input...',
       thinking: 'Thinking...',
       errorTitle: 'Error',
+      speechError: {
+        title: 'Speech Recognition Error',
+        notSupported: 'Speech recognition is not supported in your browser.',
+        micBlocked: 'Microphone access is blocked. Please enable it in your browser settings.',
+      }
     },
     chat: {
         playAudio: 'Play Audio'
@@ -267,11 +272,16 @@ aiExpert: 'AI Expert',
     },
     aiExpert: {
       title: 'AI ತಜ್ಞ',
-      description: 'ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಪ್ರಶ್ನೆಯನ್ನು ಕೇಳಿ.',
+      description: 'ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಪ್ರಶ್ನೆಯನ್ನು ಇಂಗ್ಲಿಷ್ ಅಥವಾ ಕನ್ನಡದಲ್ಲಿ ಕೇಳಿ.',
       initialMessage: 'ನಮಸ್ಕಾರ! ಇಂದು ನಿಮ್ಮ ಕೃಷಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
-      placeholder: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ...',
+      placeholder: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ ಅಥವಾ ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಬಳಸಿ...',
       thinking: 'ಯೋಚಿಸುತ್ತಿದೆ...',
       errorTitle: 'ದೋಷ',
+      speechError: {
+        title: 'ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ ದೋಷ',
+        notSupported: 'ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.',
+        micBlocked: 'ಮೈಕ್ರೊಫೋನ್ ಪ್ರವೇಶವನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಬ್ರೌಸರ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.',
+      }
     },
     chat: {
         playAudio: 'ಆಡಿಯೋ ಪ್ಲೇ ಮಾಡಿ'

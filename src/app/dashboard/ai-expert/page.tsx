@@ -8,27 +8,106 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { getAiFarmingResponse } from '@/app/actions';
 import { ChatMessage, type Message } from '@/components/chat-message';
 import { useToast } from '@/hooks/use-toast';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from '@/components/ui/card';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
+import { cn } from '@/lib/utils';
 
 type AiFarmingPayload = {
   query: string;
-}
+};
 
 export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const { language } = useLanguage();
-  
-  const [state, formAction, isPending] = useActionState(async (_prevState: any, payload: AiFarmingPayload) => {
-    return getAiFarmingResponse(payload);
-  }, undefined);
+
+  const [state, formAction, isPending] = useActionState(
+    async (_prevState: any, payload: AiFarmingPayload) => {
+      return getAiFarmingResponse(payload);
+    },
+    undefined
+  );
 
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  
+
   const t = translations[language].aiExpert;
+
+  const [isRecording, setIsRecording] = useState(false);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = language === 'kn' ? 'kn-IN' : 'en-US';
+
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          setInput(transcript);
+        };
+
+        recognition.onerror = (event) => {
+          console.error('Speech recognition error:', event.error);
+          toast({
+            variant: 'destructive',
+            title: t.speechError.title,
+            description: event.error,
+          });
+        };
+        
+        recognition.onend = () => {
+          setIsRecording(false);
+        };
+
+        recognitionRef.current = recognition;
+      } else {
+        toast({
+          variant: 'destructive',
+          title: t.speechError.title,
+          description: t.speechError.notSupported,
+        });
+      }
+    }
+  }, [language, t.speechError, toast]);
+  
+   useEffect(() => {
+    if (recognitionRef.current) {
+      recognitionRef.current.lang = language === 'kn' ? 'kn-IN' : 'en-US';
+    }
+  }, [language]);
+
+  const handleVoiceInput = () => {
+    const recognition = recognitionRef.current;
+    if (!recognition) return;
+
+    if (isRecording) {
+      recognition.stop();
+      setIsRecording(false);
+    } else {
+      try {
+        recognition.start();
+        setIsRecording(true);
+      } catch (error) {
+        console.error("Could not start recognition:", error);
+         toast({
+            variant: 'destructive',
+            title: t.speechError.title,
+            description: t.speechError.micBlocked,
+          });
+      }
+    }
+  };
 
   useEffect(() => {
     if (state) {
@@ -72,7 +151,7 @@ export default function AiExpertPage() {
 
     formAction({ query });
     setInput('');
-  }
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -85,9 +164,7 @@ export default function AiExpertPage() {
         <h1 className="font-headline text-3xl font-bold text-foreground">
           {t.title}
         </h1>
-        <p className="text-muted-foreground">
-          {t.description}
-        </p>
+        <p className="text-muted-foreground">{t.description}</p>
       </div>
 
       <Card className="flex flex-1 flex-col">
@@ -105,21 +182,26 @@ export default function AiExpertPage() {
                 <ChatMessage key={message.id} message={message} />
               ))}
               {isPending && (
-                 <div className="flex items-start gap-4 justify-start">
-                    <div className="h-8 w-8 border rounded-full flex items-center justify-center bg-card">
-                        <Bot className="h-5 w-5" />
-                    </div>
-                    <div className="max-w-md rounded-lg p-3 rounded-tl-none bg-card flex items-center gap-2">
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                        <p className="text-sm text-muted-foreground">{t.thinking}</p>
-                    </div>
+                <div className="flex items-start gap-4 justify-start">
+                  <div className="h-8 w-8 border rounded-full flex items-center justify-center bg-card">
+                    <Bot className="h-5 w-5" />
+                  </div>
+                  <div className="max-w-md rounded-lg p-3 rounded-tl-none bg-card flex items-center gap-2">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <p className="text-sm text-muted-foreground">
+                      {t.thinking}
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
           </ScrollArea>
         </CardContent>
         <CardFooter className="border-t pt-4">
-          <form onSubmit={handleSubmit} className="flex w-full items-center gap-2">
+          <form
+            onSubmit={handleSubmit}
+            className="flex w-full items-center gap-2"
+          >
             <Textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -134,11 +216,26 @@ export default function AiExpertPage() {
               }}
               disabled={isPending}
             />
-            <Button type="button" variant="outline" size="icon" disabled={isPending}>
-              <Mic className="h-5 w-5" />
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              disabled={isPending}
+              onClick={handleVoiceInput}
+            >
+              <Mic
+                className={cn(
+                  'h-5 w-5',
+                  isRecording && 'text-red-500 animate-pulse'
+                )}
+              />
               <span className="sr-only">Voice Input</span>
             </Button>
-            <Button type="submit" size="icon" disabled={!input.trim() || isPending}>
+            <Button
+              type="submit"
+              size="icon"
+              disabled={!input.trim() || isPending}
+            >
               <Send className="h-5 w-5" />
               <span className="sr-only">Send</span>
             </Button>
