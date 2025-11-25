@@ -39,9 +39,9 @@ export const translations = {
       logout: 'Logout',
       driver: {
         dashboard: 'Dashboard',
-        tasks: 'Tasks',
-        earnings: 'Earnings',
-        profile: 'Profile',
+        tasks: 'My Tasks',
+        earnings: 'My Earnings',
+        profile: 'My Profile',
         logout: 'Logout'
       }
     },
@@ -103,7 +103,7 @@ export const translations = {
     },
     aiExpert: {
       title: 'AI Expert',
-      description: 'Ask any farming-related question in English or Kannada.',
+      description: 'Ask any farming-related question in English or Kannada. The AI will respond in the language of your query.',
       initialMessage: 'Hello! How can I help you with your farming today?',
       placeholder: 'Type your question or use the voice input...',
       thinking: 'Thinking...',
@@ -182,6 +182,55 @@ export const translations = {
             title: 'Payment Successful',
             description: (method: string) => `Paid successfully using ${method}.`,
         },
+    },
+    driver: {
+        dashboard: {
+            title: 'Driver Dashboard',
+            description: 'Check your current status and availability.',
+        },
+        tasks: {
+            title: 'My Tasks',
+            description: 'View and manage incoming ride requests.',
+            noTasks: 'No new ride requests available.',
+            pickup: 'Pickup',
+            destination: 'Destination',
+            fare: 'Fare',
+            cropType: 'Crop Type',
+            accept: 'Accept',
+            reject: 'Reject',
+            tripDetails: 'Trip Details',
+            farmer: 'Farmer',
+            startTrip: 'Start Trip',
+            endTrip: 'End Trip',
+            tripEnded: 'Trip Ended',
+            tripEndedDescription: 'The trip has been successfully completed.',
+        },
+        earnings: {
+            title: 'My Earnings',
+            description: 'Track your earnings and payment history.',
+            totalEarnings: 'Total Earnings',
+            withdraw: 'Withdraw',
+            recentTransactions: 'Recent Transactions',
+        },
+        profile: {
+            title: 'Driver Profile',
+            description: 'View and manage your profile and vehicle details.',
+            personal: {
+                title: 'Personal Details',
+                description: 'Your personal information.',
+                name: 'Full Name',
+                phone: 'Phone Number',
+                license: 'Driving License No.',
+            },
+            vehicle: {
+                title: 'Vehicle Details',
+                description: 'Your vehicle information.',
+                model: 'Vehicle Model',
+                registration: 'Vehicle Registration No.',
+                type: 'Vehicle Type',
+            },
+            update: 'Update Profile',
+        }
     }
   },
   kn: {
@@ -224,9 +273,9 @@ export const translations = {
       logout: 'ಲಾಗೌಟ್',
       driver: {
         dashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
-        tasks: 'ಕಾರ್ಯಗಳು',
-        earnings: 'ಗಳಿಕೆಗಳು',
-        profile: 'ಪ್ರೊಫೈಲ್',
+        tasks: 'ನನ್ನ ಕಾರ್ಯಗಳು',
+        earnings: 'ನನ್ನ ಗಳಿಕೆಗಳು',
+        profile: 'ನನ್ನ ಪ್ರೊಫೈಲ್',
         logout: 'ಲಾಗೌಟ್'
       }
     },
@@ -288,7 +337,7 @@ export const translations = {
     },
     aiExpert: {
       title: 'AI ತಜ್ಞ',
-      description: 'ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಪ್ರಶ್ನೆಯನ್ನು ಇಂಗ್ಲಿಷ್ ಅಥವಾ ಕನ್ನಡದಲ್ಲಿ ಕೇಳಿ.',
+      description: 'ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಪ್ರಶ್ನೆಯನ್ನು ಇಂಗ್ಲಿಷ್ ಅಥವಾ ಕನ್ನಡದಲ್ಲಿ ಕೇಳಿ. AI ನಿಮ್ಮ ಪ್ರಶ್ನೆಯ ಭಾಷೆಯಲ್ಲಿ ಉತ್ತರಿಸುತ್ತದೆ.',
       initialMessage: 'ನಮಸ್ಕಾರ! ಇಂದು ನಿಮ್ಮ ಕೃಷಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
       placeholder: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ ಅಥವಾ ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಬಳಸಿ...',
       thinking: 'ಯೋಚಿಸುತ್ತಿದೆ...',
@@ -367,6 +416,55 @@ export const translations = {
             title: 'ಪಾವತಿ ಯಶಸ್ವಿಯಾಗಿದೆ',
             description: (method: string) => `${method} ಬಳಸಿ ಯಶಸ್ವಿಯಾಗಿ ಪಾವತಿಸಲಾಗಿದೆ.`,
         },
+    },
+    driver: {
+        dashboard: {
+            title: 'ಚಾಲಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+            description: 'ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಿತಿ ಮತ್ತು ಲಭ್ಯತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ.',
+        },
+        tasks: {
+            title: 'ನನ್ನ ಕಾರ್ಯಗಳು',
+            description: 'ಒಳಬರುವ ರೈಡ್ ವಿನಂತಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ ಮತ್ತು ನಿರ್ವಹಿಸಿ.',
+            noTasks: 'ಯಾವುದೇ ಹೊಸ ರೈಡ್ ವಿನಂತಿಗಳು ಲಭ್ಯವಿಲ್ಲ.',
+            pickup: 'ಪಿಕ್ಅಪ್',
+            destination: 'ಗಮ್ಯಸ್ಥಾನ',
+            fare: 'ಶುಲ್ಕ',
+            cropType: 'ಬೆಳೆ ಪ್ರಕಾರ',
+            accept: 'ಸ್ವೀಕರಿಸಿ',
+            reject: 'ತಿರಸ್ಕರಿಸಿ',
+            tripDetails: 'ಟ್ರಿಪ್ ವಿವರಗಳು',
+            farmer: 'ರೈತ',
+            startTrip: 'ಟ್ರಿಪ್ ಪ್ರಾರಂಭಿಸಿ',
+            endTrip: 'ಟ್ರಿಪ್ ಮುಗಿಸಿ',
+            tripEnded: 'ಟ್ರಿಪ್ ಮುಗಿದಿದೆ',
+            tripEndedDescription: 'ಟ್ರಿಪ್ ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ.',
+        },
+        earnings: {
+            title: 'ನನ್ನ ಗಳಿಕೆಗಳು',
+            description: 'ನಿಮ್ಮ ಗಳಿಕೆಗಳು ಮತ್ತು ಪಾವತಿ ಇತಿಹಾಸವನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ.',
+            totalEarnings: 'ಒಟ್ಟು ಗಳಿಕೆಗಳು',
+            withdraw: 'ಹಿಂಪಡೆಯಿರಿ',
+            recentTransactions: 'ಇತ್ತೀಚಿನ ವಹಿವಾಟುಗಳು',
+        },
+        profile: {
+            title: 'ಚಾಲಕ ಪ್ರೊಫೈಲ್',
+            description: 'ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮತ್ತು ವಾಹನದ ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ ಮತ್ತು ನಿರ್ವಹಿಸಿ.',
+            personal: {
+                title: 'ವೈಯಕ್ತಿಕ ವಿವರಗಳು',
+                description: 'ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ.',
+                name: 'ಪೂರ್ಣ ಹೆಸರು',
+                phone: 'ಫೋನ್ ಸಂಖ್ಯೆ',
+                license: 'ಚಾಲನಾ ಪರವಾನಗಿ ಸಂಖ್ಯೆ',
+            },
+            vehicle: {
+                title: 'ವಾಹನದ ವಿವರಗಳು',
+                description: 'ನಿಮ್ಮ ವಾಹನದ ಮಾಹಿತಿ.',
+                model: 'ವಾಹನ ಮಾದರಿ',
+                registration: 'ವಾಹನ ನೋಂದಣಿ ಸಂಖ್ಯೆ',
+                type: 'ವಾಹನದ ಪ್ರಕಾರ',
+            },
+            update: 'ಪ್ರೊಫೈಲ್ ನವೀಕರಿಸಿ',
+        }
     }
   },
 };

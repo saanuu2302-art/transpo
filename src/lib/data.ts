@@ -122,6 +122,45 @@ export const bookingHistory: Booking[] = [
   },
 ];
 
+export const driverTasks = [
+  {
+    id: 't1',
+    farmerName: 'Siddharth',
+    kannadaFarmerName: 'ಸಿದ್ಧಾರ್ಥ್',
+    pickup: 'Farm in Mandya',
+    kannadaPickup: 'ಮಂಡ್ಯದಲ್ಲಿರುವ ಫಾರ್ಮ್',
+    destination: 'Mandya Market',
+    kannadaDestination: 'ಮಂಡ್ಯ ಮಾರುಕಟ್ಟೆ',
+    fare: '₹ 800',
+    kannadaFare: '₹ ೮೦೦',
+    cropType: 'Sugarcane',
+    kannadaCropType: 'ಕಬ್ಬು',
+  },
+  {
+    id: 't2',
+    farmerName: 'Priya',
+    kannadaFarmerName: 'ಪ್ರಿಯಾ',
+    pickup: 'Field near Srirangapatna',
+    kannadaPickup: 'ಶ್ರೀರಂಗಪಟ್ಟಣದ ಸಮೀಪದ ಜಮೀನು',
+    destination: 'Mysore APMC Yard',
+    kannadaDestination: 'ಮೈಸೂರು ಎಪಿಎಂಸಿ ಯಾರ್ಡ್',
+    fare: '₹ 1200',
+    kannadaFare: '₹ ೧೨೦೦',
+    cropType: 'Rice',
+    kannadaCropType: 'ಭತ್ತ',
+  },
+];
+
+export const driverEarnings = {
+    total: 25600,
+    kannadaTotal: '೨೫೬೦೦',
+    transactions: [
+        { id: 'tx1', date: '2023-11-15', amount: 800, description: 'Trip to Mandya Market', kannadaDescription: 'ಮಂಡ್ಯ ಮಾರುಕಟ್ಟೆಗೆ ಟ್ರಿಪ್' },
+        { id: 'tx2', date: '2023-11-14', amount: 1200, description: 'Trip to Mysore APMC', kannadaDescription: 'ಮೈಸೂರು ಎಪಿಎಂಸಿಗೆ ಟ್ರಿಪ್' },
+        { id: 'tx3', date: '2023-11-12', amount: 950, description: 'Trip to Ramanagara', kannadaDescription: 'ರಾಮನಗರಕ್ಕೆ ಟ್ರಿಪ್' },
+    ]
+}
+
 export type Vehicle = typeof vehicles[0];
 export type Machine = typeof machines[0];
 export type Booking = {
@@ -133,3 +172,5 @@ export type Booking = {
     status: 'Completed' | 'Cancelled';
     kannadaStatus: 'ಪೂರ್ಣಗೊಂಡಿದೆ' | 'ರದ್ದುಪಡಿಸಲಾಗಿದೆ';
 };
+export type DriverTask = typeof driverTasks[0];
+export type DriverEarnings = typeof driverEarnings;
