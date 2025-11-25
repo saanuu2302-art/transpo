@@ -33,12 +33,17 @@ export default function LoginPage() {
     (img) => img.id === 'farm-background'
   );
   const [isSignUp, setIsSignUp] = useState(false);
+  const [userType, setUserType] = useState('farmer');
   const { language, toggleLanguage } = useLanguage();
   const t = translations[language].login;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/dashboard');
+    if (userType === 'driver') {
+      router.push('/driver/dashboard');
+    } else {
+      router.push('/dashboard');
+    }
   };
 
   const handleToggleMode = (e: React.MouseEvent) => {
@@ -115,7 +120,7 @@ export default function LoginPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="user-type">{t.userType.label}</Label>
-              <Select defaultValue="farmer">
+              <Select defaultValue="farmer" onValueChange={setUserType}>
                 <SelectTrigger id="user-type">
                   <SelectValue placeholder={t.userType.placeholder} />
                 </SelectTrigger>

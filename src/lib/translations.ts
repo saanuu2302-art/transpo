@@ -34,9 +34,16 @@ export const translations = {
       dashboard: 'Dashboard',
       vehicleBooking: 'Vehicle Booking',
       machineBooking: 'Machine Booking',
-aiExpert: 'AI Expert',
+      aiExpert: 'AI Expert',
       profile: 'Profile',
       logout: 'Logout',
+      driver: {
+        status: 'Status',
+        tasks: 'Tasks',
+        earnings: 'Earnings',
+        profile: 'Profile',
+        logout: 'Logout'
+      }
     },
     dashboard: {
       title: 'Farmer Dashboard',
@@ -215,6 +222,13 @@ aiExpert: 'AI Expert',
       aiExpert: 'AI ತಜ್ಞ',
       profile: 'ಪ್ರೊಫೈಲ್',
       logout: 'ಲಾಗೌಟ್',
+      driver: {
+        status: 'ಸ್ಥಿತಿ',
+        tasks: 'ಕಾರ್ಯಗಳು',
+        earnings: 'ಗಳಿಕೆಗಳು',
+        profile: 'ಪ್ರೊಫೈಲ್',
+        logout: 'ಲಾಗೌಟ್'
+      }
     },
     dashboard: {
       title: 'ರೈತರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
