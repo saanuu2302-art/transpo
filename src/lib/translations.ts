@@ -65,6 +65,13 @@ export const translations = {
       title: 'Vehicle Booking',
       description: 'Book a vehicle to transport your crops.',
       bookNow: 'Book Now',
+      findNearest: 'Find Nearest Vehicle',
+      nearest: 'Nearest',
+      locationError: {
+        title: 'Location Error',
+        notSupported: 'Geolocation is not supported by this browser.',
+        permissionDenied: 'Permission to access location was denied.',
+      },
     },
     machineBooking: {
       title: 'Machine Booking',
@@ -186,6 +193,13 @@ export const translations = {
       title: 'ವಾಹನ ಬುಕಿಂಗ್',
       description: 'ನಿಮ್ಮ ಬೆಳೆಯನ್ನು ಸಾಗಿಸಲು ವಾಹನವನ್ನು ಬುಕ್ ಮಾಡಿ.',
       bookNow: 'ಈಗ ಬುಕ್ ಮಾಡಿ',
+      findNearest: 'ಹತ್ತಿರದ ವಾಹನವನ್ನು ಹುಡುಕಿ',
+      nearest: 'ಹತ್ತಿರದ',
+      locationError: {
+        title: 'ಸ್ಥಳ ದೋಷ',
+        notSupported: 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಜಿಯೋಲೋಕೇಶನ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.',
+        permissionDenied: 'ಸ್ಥಳವನ್ನು ಪ್ರವೇಶಿಸಲು ಅನುಮತಿಯನ್ನು ನಿರಾಕರಿಸಲಾಗಿದೆ.',
+      },
     },
     machineBooking: {
       title: 'ಯಂತ್ರ ಬುಕಿಂಗ್',

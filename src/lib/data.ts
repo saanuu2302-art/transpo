@@ -13,6 +13,8 @@ export const vehicles = [
     image: getImage('tractor-vehicle'),
     cost: '1500 / trip',
     rating: 4.5,
+    lat: 12.52,
+    lng: 76.89,
   },
   {
     id: '2',
@@ -21,6 +23,8 @@ export const vehicles = [
     image: getImage('minitruck-vehicle'),
     cost: '800 / trip',
     rating: 4.2,
+    lat: 12.55,
+    lng: 76.90,
   },
   {
     id: '3',
@@ -29,6 +33,8 @@ export const vehicles = [
     image: getImage('bolero-vehicle'),
     cost: '950 / trip',
     rating: 4.7,
+    lat: 12.50,
+    lng: 76.88,
   },
   {
     id: '4',
@@ -37,6 +43,8 @@ export const vehicles = [
     image: getImage('tempo-vehicle'),
     cost: '700 / trip',
     rating: 4.0,
+    lat: 12.53,
+    lng: 76.91,
   },
 ];
 
