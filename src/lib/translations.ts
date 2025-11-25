@@ -121,7 +121,9 @@ aiExpert: 'AI Expert',
             phoneNumber: 'Phone Number',
             email: 'Email',
             location: 'Location',
-            updateProfile: 'Update Profile'
+            updateProfile: 'Update Profile',
+            updateSuccessTitle: 'Profile Updated',
+            updateSuccessDescription: 'Your profile information has been successfully updated.',
         }
     },
     confirmation: {
@@ -297,7 +299,9 @@ aiExpert: 'AI Expert',
             phoneNumber: 'ಫೋನ್ ಸಂಖ್ಯೆ',
             email: 'ಇಮೇಲ್',
             location: 'ಸ್ಥಳ',
-            updateProfile: 'ಪ್ರೊಫೈಲ್ ನವೀಕರಿಸಿ'
+            updateProfile: 'ಪ್ರೊಫೈಲ್ ನವೀಕರಿಸಿ',
+            updateSuccessTitle: 'ಪ್ರೊಫೈಲ್ ನವೀಕರಿಸಲಾಗಿದೆ',
+            updateSuccessDescription: 'ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ.',
         }
     },
     confirmation: {
