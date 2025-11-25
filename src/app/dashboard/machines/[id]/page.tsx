@@ -45,7 +45,7 @@ export default function MachineDetailPage() {
       title: t.confirmation.success.title,
       description: `${language === 'en' ? machine.name : machine.kannadaName} ${t.confirmation.success.description}`,
     });
-    router.push('/dashboard/machines');
+    router.push(`/dashboard/machines/payment?machineId=${id}`);
   };
   
   const tConfirm = t.confirmation;
