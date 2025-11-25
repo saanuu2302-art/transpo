@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Bot, Car, Tractor } from 'lucide-react';
+import { ArrowRight, Bot, Car, CheckCircle, Tractor, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import {
   Card,
@@ -12,6 +12,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
+import { bookingHistory, type Booking } from '@/lib/data';
+import { Badge } from '@/components/ui/badge';
 
 export default function DashboardPage() {
   const { language } = useLanguage();
@@ -38,15 +40,17 @@ export default function DashboardPage() {
     },
   ];
 
+  const recentActivities = [...bookingHistory]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 5);
+
   return (
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="font-headline text-3xl font-bold text-foreground">
           {t.title}
         </h1>
-        <p className="text-muted-foreground">
-          {t.description}
-        </p>
+        <p className="text-muted-foreground">{t.description}</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -61,9 +65,7 @@ export default function DashboardPage() {
                   <CardTitle className="font-headline text-xl">
                     {feature.title}
                   </CardTitle>
-                  <CardDescription>
-                    {feature.description}
-                  </CardDescription>
+                  <CardDescription>{feature.description}</CardDescription>
                 </div>
                 <feature.icon className="h-8 w-8 text-primary" />
               </div>
@@ -86,9 +88,44 @@ export default function DashboardPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">
-            {t.recentActivity.noActivity}
-          </p>
+          {recentActivities.length > 0 ? (
+            <div className="space-y-4">
+              {recentActivities.map((activity) => (
+                <div key={activity.id} className="flex items-center justify-between">
+                  <div>
+                    <p className="font-semibold">
+                      {language === 'en' ? activity.item : activity.kannadaItem}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {new Date(activity.date).toLocaleDateString(language === 'kn' ? 'kn-IN' : 'en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </p>
+                  </div>
+                  <Badge
+                    variant={
+                      activity.status === 'Completed' ? 'secondary' : 'destructive'
+                    }
+                  >
+                    {activity.status === 'Completed' ? (
+                      <CheckCircle className="mr-1 h-3 w-3" />
+                    ) : (
+                      <XCircle className="mr-1 h-3 w-3" />
+                    )}
+                    {language === 'en'
+                      ? activity.status
+                      : activity.kannadaStatus}
+                  </Badge>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-muted-foreground">
+              {t.recentActivity.noActivity}
+            </p>
+          )}
         </CardContent>
       </Card>
     </div>
