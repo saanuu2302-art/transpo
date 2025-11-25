@@ -5,9 +5,6 @@ import { translations } from '@/lib/translations';
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from '@/components/ui/card';
 import {
   Table,
@@ -18,8 +15,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 
 export default function AdminFarmersPage() {
+  const router = useRouter();
   const { language } = useLanguage();
   const t = translations[language].admin.farmers;
 
@@ -62,7 +61,7 @@ export default function AdminFarmersPage() {
                   <TableCell>{farmer.bookings}</TableCell>
                   <TableCell>{farmer.lastActive}</TableCell>
                   <TableCell>
-                    <Button variant="outline" size="sm">{t.viewDetails}</Button>
+                    <Button variant="outline" size="sm" onClick={() => router.push(`/admin/farmers/${farmer.id}`)}>{t.viewDetails}</Button>
                   </TableCell>
                 </TableRow>
               ))}
