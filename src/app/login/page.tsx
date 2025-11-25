@@ -23,16 +23,25 @@ import {
 } from '@/components/ui/select';
 import { Logo } from '@/components/icons';
 import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
 
 export default function LoginPage() {
   const router = useRouter();
   const backgroundImage = PlaceHolderImages.find(
     (img) => img.id === 'farm-background'
   );
+  const [isSignUp, setIsSignUp] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Here you would typically handle login or sign up logic
+    // For now, we'll just redirect to the dashboard
     router.push('/dashboard');
+  };
+
+  const toggleMode = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsSignUp(!isSignUp);
   };
 
   return (
@@ -49,21 +58,47 @@ export default function LoginPage() {
       )}
       <div className="absolute inset-0 bg-background/50" />
       <Card className="relative z-10 w-full max-w-sm border-2 bg-card/80 backdrop-blur-sm">
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
           <CardHeader className="text-center">
             <div className="mx-auto mb-4">
               <Logo className="h-10 w-auto" />
             </div>
-            <CardTitle className="font-headline text-2xl">
-              Welcome Back / ಮತ್ತೆ ಸ್ವಾಗತ
-            </CardTitle>
-            <CardDescription>
-              Sign in to access your dashboard
-              <br />
-              ನಿಮ್ಮ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಪ್ರವೇಶಿಸಲು ಸೈನ್ ಇನ್ ಮಾಡಿ
-            </CardDescription>
+            {isSignUp ? (
+                <>
+                    <CardTitle className="font-headline text-2xl">
+                        Create Account / ಖಾತೆ ತೆರೆಯಿರಿ
+                    </CardTitle>
+                    <CardDescription>
+                        Enter your details to get started
+                        <br />
+                        ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ
+                    </CardDescription>
+                </>
+            ) : (
+                <>
+                    <CardTitle className="font-headline text-2xl">
+                        Welcome Back / ಮತ್ತೆ ಸ್ವಾಗತ
+                    </CardTitle>
+                    <CardDescription>
+                        Sign in to access your dashboard
+                        <br />
+                        ನಿಮ್ಮ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಪ್ರವೇಶಿಸಲು ಸೈನ್ ಇನ್ ಮಾಡಿ
+                    </CardDescription>
+                </>
+            )}
           </CardHeader>
           <CardContent className="space-y-4">
+             {isSignUp && (
+              <div className="space-y-2">
+                <Label htmlFor="name">Full Name / ಪೂರ್ಣ ಹೆಸರು</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+            )}
             <div className="space-y-2">
               <Label htmlFor="email">Email / ಇಮೇಲ್</Label>
               <Input
@@ -93,12 +128,13 @@ export default function LoginPage() {
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
             <Button type="submit" className="w-full">
-              Sign In / ಸೈನ್ ಇನ್ ಮಾಡಿ <ArrowRight />
+              {isSignUp ? 'Sign Up / ಸೈನ್ ಅಪ್ ಮಾಡಿ' : 'Sign In / ಸೈನ್ ಇನ್ ಮಾಡಿ'} <ArrowRight />
             </Button>
             <p className="text-xs text-muted-foreground">
-              No account? / ಖಾತೆ ಇಲ್ವೇ?{' '}
-              <a href="#" className="text-primary hover:underline">
-                Sign Up / ಸೈನ್ ಅಪ್ ಮಾಡಿ
+              {isSignUp ? 'Already have an account? / ಈಗಾಗಲೇ ಖಾತೆ ಇದೆಯೆ?' : 'No account? / ಖಾತೆ ಇಲ್ವೇ?'}
+              {' '}
+              <a href="#" onClick={toggleMode} className="text-primary hover:underline">
+                 {isSignUp ? 'Sign In / ಸೈನ್ ಇನ್ ಮಾಡಿ' : 'Sign Up / ಸೈನ್ ಅಪ್ ಮಾಡಿ'}
               </a>
             </p>
           </CardFooter>
