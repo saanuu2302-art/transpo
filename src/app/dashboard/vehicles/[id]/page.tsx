@@ -15,13 +15,14 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, User, Tag, Map, CreditCard } from 'lucide-react';
+import { ArrowLeft, User, Tag, Map, CreditCard, Warehouse, Pin, Leaf } from 'lucide-react';
 import Image from 'next/image';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Input } from '@/components/ui/input';
 
 export default function VehicleDetailPage() {
   const params = useParams();
@@ -173,7 +174,41 @@ export default function VehicleDetailPage() {
                         </div>
                     </div>
                 </div>
-                 <div className="rounded-lg border p-4">
+                 <div className="rounded-lg border p-4 space-y-4">
+                    <div className="flex items-start gap-4">
+                        <Warehouse className="h-5 w-5 text-muted-foreground mt-1" />
+                        <div className="w-full space-y-1">
+                            <Label htmlFor="pickup-location" className='font-semibold'>{tConfirm.details.pickupLocation}</Label>
+                            <Input id="pickup-location" placeholder={tConfirm.details.pickupPlaceholder} />
+                        </div>
+                    </div>
+                     <div className="flex items-start gap-4">
+                        <Pin className="h-5 w-5 text-muted-foreground mt-1" />
+                        <div className="w-full space-y-1">
+                            <Label htmlFor="destination" className='font-semibold'>{tConfirm.details.destination}</Label>
+                            <Input id="destination" placeholder={tConfirm.details.destinationPlaceholder} />
+                        </div>
+                    </div>
+                     <div className="flex items-start gap-4">
+                        <Leaf className="h-5 w-5 text-muted-foreground mt-1" />
+                        <div className="w-full space-y-1">
+                            <Label htmlFor="crop-type" className='font-semibold'>{tConfirm.details.cropType}</Label>
+                            <Input id="crop-type" placeholder={tConfirm.details.cropPlaceholder} />
+                        </div>
+                    </div>
+                 </div>
+            </div>
+             <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <Map className="h-5 w-5 text-muted-foreground mt-1" />
+                  <div className='w-full'>
+                    <p className="font-semibold">{tConfirm.details.liveTracking}</p>
+                    <div className="mt-2 h-64 w-full rounded-md bg-muted flex items-center justify-center">
+                      <p className="text-xs text-muted-foreground">{tConfirm.details.trackingPlaceholder}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-lg border p-4">
                     <div className="flex items-start gap-4">
                         <CreditCard className="h-5 w-5 text-muted-foreground mt-1" />
                         <div>
@@ -191,17 +226,6 @@ export default function VehicleDetailPage() {
                         </div>
                     </div>
                 </div>
-            </div>
-             <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <Map className="h-5 w-5 text-muted-foreground mt-1" />
-                  <div className='w-full'>
-                    <p className="font-semibold">{tConfirm.details.liveTracking}</p>
-                    <div className="mt-2 h-96 w-full rounded-md bg-muted flex items-center justify-center">
-                      <p className="text-xs text-muted-foreground">{tConfirm.details.trackingPlaceholder}</p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
         </CardContent>
@@ -214,4 +238,3 @@ export default function VehicleDetailPage() {
     </div>
   );
 }
-
