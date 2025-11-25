@@ -1,3 +1,64 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "farm-background",
+      "description": "A blurred background image of a lush green farm field under a clear sky.",
+      "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYXJtJTIwZmllbGR8ZW58MHx8fHwxNzY0MDQzOTU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "farm field"
+    },
+    {
+      "id": "tractor-vehicle",
+      "description": "A modern tractor used for transportation.",
+      "imageUrl": "https://images.unsplash.com/photo-1652938109589-3700f25e5659?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0cmFjdG9yJTIwYWdyaWN1bHR1cmV8ZW58MHx8fHwxNzY0MDA2NDkyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tractor agriculture"
+    },
+    {
+      "id": "minitruck-vehicle",
+      "description": "A small mini-truck for transporting goods.",
+      "imageUrl": "https://images.unsplash.com/photo-1610647929723-a8922852cd44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwaWNrdXAlMjB0cnVja3xlbnwwfHx8fDE3NjQwOTA5NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pickup truck"
+    },
+    {
+      "id": "bolero-vehicle",
+      "description": "A Bolero pickup truck.",
+      "imageUrl": "https://images.unsplash.com/photo-1536759112546-26f4b9029fba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxvbGQlMjB0cnVja3xlbnwwfHx8fDE3NjQwOTI4NTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "old truck"
+    },
+    {
+      "id": "tempo-vehicle",
+      "description": "A three-wheeled tempo traveler.",
+      "imageUrl": "https://images.unsplash.com/photo-1520532240459-395dc4a823b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGVsaXZlcnklMjB2YW58ZW58MHx8fHwxNzY0MDIxNTE0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "delivery van"
+    },
+    {
+      "id": "tractor-machine",
+      "description": "A tractor as a farm machine.",
+      "imageUrl": "https://images.unsplash.com/photo-1526664781949-af414dc24053?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmYXJtJTIwdHJhY3RvcnxlbnwwfHx8fDE3NjQwNjcxMTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "farm tractor"
+    },
+    {
+      "id": "tiller-machine",
+      "description": "A power tiller or rototiller machine.",
+      "imageUrl": "https://images.unsplash.com/photo-1760527072562-6ab5bd3054dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxnYXJkZW5pbmclMjBlcXVpcG1lbnR8ZW58MHx8fHwxNzY0MDkyODU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gardening equipment"
+    },
+    {
+      "id": "harvester-machine",
+      "description": "A combine harvester in a field.",
+      "imageUrl": "https://images.unsplash.com/photo-1635174815612-fd9636f70146?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21iaW5lJTIwaGFydmVzdGVyfGVufDB8fHx8MTc2NDAxNjc5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "combine harvester"
+    },
+    {
+      "id": "sprayer-machine",
+      "description": "A pesticide sprayer machine.",
+      "imageUrl": "https://images.unsplash.com/photo-1596289414984-7b7ae58fbd3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmYXJtJTIwc3ByYXllcnxlbnwwfHx8fDE3NjQwNTAxNzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "farm sprayer"
+    },
+    {
+      "id": "farmer-avatar",
+      "description": "An avatar image for a farmer user.",
+      "imageUrl": "https://images.unsplash.com/photo-1666452165223-a369d541ff0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmYXJtZXIlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjQwNTM2NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "farmer portrait"
+    }
+  ]
 }
