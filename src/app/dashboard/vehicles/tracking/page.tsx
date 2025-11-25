@@ -43,10 +43,10 @@ export default function VehicleTrackingPage() {
     );
   }
 
-  const handleStopTrip = () => {
+  const handlePayment = () => {
     toast({
-      title: "Trip Ended",
-      description: "The trip has been successfully ended. Please complete the payment.",
+      title: "Trip Completed",
+      description: "Proceeding to payment.",
     });
     router.push(`/dashboard/vehicles/payment?vehicleId=${vehicleId}`);
   }
@@ -136,8 +136,8 @@ export default function VehicleTrackingPage() {
           </div>
         </CardContent>
         <CardFooter>
-            <Button variant="destructive" className="w-full md:w-auto" onClick={handleStopTrip}>
-                {t.tracking.stopTrip}
+            <Button className="w-full md:w-auto" onClick={handlePayment}>
+                {t.tracking.goToPayment}
             </Button>
         </CardFooter>
       </Card>

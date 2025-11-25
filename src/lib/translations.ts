@@ -147,7 +147,7 @@ aiExpert: 'AI Expert',
       enRoute: 'En Route',
       eta: 'ETA',
       minutes: 'mins',
-      stopTrip: 'Stop Trip',
+      goToPayment: 'Payment',
       verificationCode: 'Verification Code'
     },
     payment: {
@@ -311,7 +311,7 @@ aiExpert: 'AI Expert',
       enRoute: 'ದಾರಿಯಲ್ಲಿದೆ',
       eta: 'ಅಂದಾಜು ಸಮಯ',
       minutes: 'ನಿಮಿಷಗಳು',
-      stopTrip: 'ಪ್ರಯಾಣ ನಿಲ್ಲಿಸಿ',
+      goToPayment: 'ಪಾವತಿ',
       verificationCode: 'ಪರಿಶೀಲನೆ ಕೋಡ್'
     },
     payment: {
