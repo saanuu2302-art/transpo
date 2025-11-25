@@ -41,6 +41,8 @@ export default function LoginPage() {
     e.preventDefault();
     if (userType === 'driver') {
       router.push('/driver/dashboard');
+    } else if (userType === 'owner') {
+        router.push('/owner/dashboard');
     } else {
       router.push('/dashboard');
     }

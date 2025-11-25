@@ -159,7 +159,53 @@ export const driverEarnings = {
         { id: 'tx2', date: '2023-11-14', amount: 1200, description: 'Trip to Mysore APMC', kannadaDescription: 'ಮೈಸೂರು ಎಪಿಎಂಸಿಗೆ ಟ್ರಿಪ್' },
         { id: 'tx3', date: '2023-11-12', amount: 950, description: 'Trip to Ramanagara', kannadaDescription: 'ರಾಮನಗರಕ್ಕೆ ಟ್ರಿಪ್' },
     ]
-}
+};
+
+export const ownerMachines = [
+  {
+    id: 'm1',
+    name: 'Tractor',
+    kannadaName: 'ಟ್ರಾಕ್ಟರ್',
+    image: getImage('tractor-machine'),
+    cost: '1200 / hr',
+    availability: true,
+  },
+  {
+    id: 'm2',
+    name: 'Tiller',
+    kannadaName: 'ಟಿಲ್ಲರ್',
+    image: getImage('tiller-machine'),
+    cost: '500 / hr',
+    availability: true,
+  },
+  {
+    id: 'm3',
+    name: 'Harvester',
+    kannadaName: 'ಕೊಯ್ಲು ಯಂತ್ರ',
+    image: getImage('harvester-machine'),
+    cost: '2500 / hr',
+    availability: false,
+  },
+];
+
+export const ownerRequests = [
+    {
+        id: 'r1',
+        farmerName: 'Gopal',
+        kannadaFarmerName: 'ಗೋಪಾಲ್',
+        machineName: 'Tractor',
+        kannadaMachineName: 'ಟ್ರಾಕ್ಟರ್',
+        date: '2023-12-01',
+    },
+    {
+        id: 'r2',
+        farmerName: 'Lakshmi',
+        kannadaFarmerName: 'ಲಕ್ಷ್ಮಿ',
+        machineName: 'Tiller',
+        kannadaMachineName: 'ಟಿಲ್ಲರ್',
+        date: '2023-12-02',
+    }
+];
 
 export type Vehicle = typeof vehicles[0];
 export type Machine = typeof machines[0];
@@ -174,3 +220,5 @@ export type Booking = {
 };
 export type DriverTask = typeof driverTasks[0];
 export type DriverEarnings = typeof driverEarnings;
+export type OwnerMachine = typeof ownerMachines[0];
+export type OwnerRequest = typeof ownerRequests[0];

@@ -43,6 +43,14 @@ export const translations = {
         earnings: 'My Earnings',
         profile: 'My Profile',
         logout: 'Logout'
+      },
+      owner: {
+        dashboard: 'Dashboard',
+        machines: 'My Machines',
+        requests: 'Booking Requests',
+        transactions: 'Transactions',
+        profile: 'Profile',
+        logout: 'Logout'
       }
     },
     dashboard: {
@@ -238,6 +246,45 @@ export const translations = {
             },
             update: 'Update Profile',
         }
+    },
+    owner: {
+        dashboard: {
+            title: 'Owner Dashboard',
+            description: 'Manage your machines and view booking requests.',
+            machinesStatus: 'Machines Status',
+            totalMachines: 'Total Machines',
+            available: 'Available',
+            busy: 'Busy',
+            recentRequests: 'Recent Booking Requests',
+            noRequests: 'No new booking requests.',
+            viewAll: 'View All',
+        },
+        machines: {
+            title: 'My Machines',
+            description: 'Add new machines and manage their availability.',
+            addMachine: 'Add New Machine',
+            availability: 'Availability',
+            available: 'Available',
+            busy: 'Busy',
+        },
+        requests: {
+            title: 'Booking Requests',
+            description: 'Review and respond to rental requests from farmers.',
+            noRequests: 'No pending booking requests.',
+            farmer: 'Farmer',
+            date: 'Date',
+            approve: 'Approve',
+            reject: 'Reject',
+        },
+        transactions: {
+            title: 'Transactions',
+            description: 'View your transaction history.',
+            noTransactions: 'No transactions yet.',
+        },
+        profile: {
+            title: 'Owner Profile',
+            description: 'Update your personal and business information.',
+        }
     }
   },
   kn: {
@@ -283,6 +330,14 @@ export const translations = {
         tasks: 'ನನ್ನ ಕಾರ್ಯಗಳು',
         earnings: 'ನನ್ನ ಗಳಿಕೆಗಳು',
         profile: 'ನನ್ನ ಪ್ರೊಫೈಲ್',
+        logout: 'ಲಾಗೌಟ್'
+      },
+      owner: {
+        dashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+        machines: 'ನನ್ನ ಯಂತ್ರಗಳು',
+        requests: 'ಬುಕಿಂಗ್ ವಿನಂತಿಗಳು',
+        transactions: 'ವಹಿವಾಟುಗಳು',
+        profile: 'ಪ್ರೊಫೈಲ್',
         logout: 'ಲಾಗೌಟ್'
       }
     },
@@ -478,6 +533,45 @@ export const translations = {
                 type: 'ವಾಹನದ ಪ್ರಕಾರ',
             },
             update: 'ಪ್ರೊಫೈಲ್ ನವೀಕರಿಸಿ',
+        }
+    },
+    owner: {
+        dashboard: {
+            title: 'ಮಾಲೀಕರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+            description: 'ನಿಮ್ಮ ಯಂತ್ರಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ಬುಕಿಂಗ್ ವಿನಂತಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ.',
+            machinesStatus: 'ಯಂತ್ರಗಳ ಸ್ಥಿತಿ',
+            totalMachines: 'ಒಟ್ಟು ಯಂತ್ರಗಳು',
+            available: 'ಲಭ್ಯವಿದೆ',
+            busy: 'ಕಾರ್ಯನಿರತವಾಗಿದೆ',
+            recentRequests: 'ಇತ್ತೀಚಿನ ಬುಕಿಂಗ್ ವಿನಂತಿಗಳು',
+            noRequests: 'ಯಾವುದೇ ಹೊಸ ಬುಕಿಂಗ್ ವಿನಂತಿಗಳಿಲ್ಲ.',
+            viewAll: 'ಎಲ್ಲವನ್ನು ವೀಕ್ಷಿಸಿ',
+        },
+        machines: {
+            title: 'ನನ್ನ ಯಂತ್ರಗಳು',
+            description: 'ಹೊಸ ಯಂತ್ರಗಳನ್ನು ಸೇರಿಸಿ ಮತ್ತು ಅವುಗಳ ಲಭ್ಯತೆಯನ್ನು ನಿರ್ವಹಿಸಿ.',
+            addMachine: 'ಹೊಸ ಯಂತ್ರವನ್ನು ಸೇರಿಸಿ',
+            availability: 'ಲಭ್ಯತೆ',
+            available: 'ಲಭ್ಯವಿದೆ',
+            busy: 'ಕಾರ್ಯನಿರತವಾಗಿದೆ',
+        },
+        requests: {
+            title: 'ಬುಕಿಂಗ್ ವಿನಂತಿಗಳು',
+            description: 'ರೈತರಿಂದ ಬಂದ ಬಾಡಿಗೆ ವಿನಂತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪ್ರತಿಕ್ರಿಯಿಸಿ.',
+            noRequests: 'ಯಾವುದೇ ಬಾಕಿ ಉಳಿದಿರುವ ಬುಕಿಂಗ್ ವಿನಂತಿಗಳಿಲ್ಲ.',
+            farmer: 'ರೈತ',
+            date: 'ದಿನಾಂಕ',
+            approve: 'ಅನುಮೋದಿಸಿ',
+            reject: 'ತಿರಸ್ಕರಿಸಿ',
+        },
+        transactions: {
+            title: 'ವಹಿವಾಟುಗಳು',
+            description: 'ನಿಮ್ಮ ವಹಿವಾಟು ಇತಿಹಾಸವನ್ನು ವೀಕ್ಷಿಸಿ.',
+            noTransactions: 'ಇನ್ನೂ ಯಾವುದೇ ವಹಿವಾಟುಗಳಿಲ್ಲ.',
+        },
+        profile: {
+            title: 'ಮಾಲೀಕರ ಪ್ರೊಫೈಲ್',
+            description: 'ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮತ್ತು ವ್ಯವಹಾರ ಮಾಹಿತಿಯನ್ನು ನವೀಕರಿಸಿ.',
         }
     }
   },
