@@ -1,3 +1,4 @@
+
 import type { ImagePlaceholder } from './placeholder-images';
 import { PlaceHolderImages } from './placeholder-images';
 
@@ -91,7 +92,7 @@ export const machines = [
   },
 ];
 
-export const bookingHistory = [
+export const bookingHistory: Booking[] = [
   {
     id: 'h1',
     item: 'Tractor',
@@ -123,4 +124,12 @@ export const bookingHistory = [
 
 export type Vehicle = typeof vehicles[0];
 export type Machine = typeof machines[0];
-export type Booking = typeof bookingHistory[0];
+export type Booking = {
+    id: string;
+    item: string;
+    kannadaItem: string;
+    date: string;
+    cost: string;
+    status: 'Completed' | 'Cancelled';
+    kannadaStatus: 'ಪೂರ್ಣಗೊಂಡಿದೆ' | 'ರದ್ದುಪಡಿಸಲಾಗಿದೆ';
+};

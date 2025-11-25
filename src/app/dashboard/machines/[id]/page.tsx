@@ -1,8 +1,9 @@
 
+
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import { machines } from '@/lib/data';
+import { machines, bookingHistory } from '@/lib/data';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 import {
@@ -48,6 +49,26 @@ export default function MachineDetailPage() {
     router.push(`/dashboard/machines/payment?machineId=${id}`);
   };
   
+  const handleBookingCancel = () => {
+    const newBooking = {
+      id: `h${bookingHistory.length + 1}`,
+      item: machine.name,
+      kannadaItem: machine.kannadaName,
+      date: date ? format(date, 'yyyy-MM-dd') : format(new Date(), 'yyyy-MM-dd'),
+      cost: machine.cost.split(' ')[0], // Extracts amount from '1200 / hr'
+      status: 'Cancelled' as const,
+      kannadaStatus: 'ರದ್ದುಪಡಿಸಲಾಗಿದೆ' as const,
+    };
+    bookingHistory.push(newBooking);
+
+    toast({
+      variant: 'destructive',
+      title: 'Booking Cancelled',
+      description: `${language === 'en' ? machine.name : machine.kannadaName} booking has been cancelled.`,
+    });
+    router.push('/dashboard/machines');
+  };
+
   const tConfirm = t.confirmation;
   const machineName = language === 'en' ? machine.name : machine.kannadaName;
 
@@ -151,9 +172,12 @@ export default function MachineDetailPage() {
             </div>
 
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex gap-2">
             <Button onClick={handleBookingConfirm} className="w-full md:w-auto">
                 {tConfirm.confirm}
+            </Button>
+            <Button onClick={handleBookingCancel} variant="outline" className="w-full md:w-auto">
+                {tConfirm.cancel}
             </Button>
         </CardFooter>
       </Card>
