@@ -108,15 +108,12 @@ export default function VehicleDetailPage() {
 
   const handleBookingConfirm = () => {
     if (!nearestVehicle) return;
+    const pin = Math.floor(1000 + Math.random() * 9000).toString();
     toast({
       title: t.confirmation.success.title,
-      description: `${
-        language === 'en'
-          ? nearestVehicle.name
-          : nearestVehicle.kannadaName
-      } ${t.confirmation.success.description}`,
+      description: t.confirmation.success.pinDescription(pin),
     });
-    router.push(`/dashboard/vehicles/tracking?vehicleId=${nearestVehicle.id}`);
+    router.push(`/dashboard/vehicles/tracking?vehicleId=${nearestVehicle.id}&pin=${pin}`);
   };
 
   const tConfirm = t.confirmation;

@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, User, Star, Phone } from 'lucide-react';
+import { ArrowLeft, User, Star, Phone, KeyRound } from 'lucide-react';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
@@ -25,6 +25,7 @@ export default function VehicleTrackingPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const vehicleId = searchParams.get('vehicleId');
+  const pin = searchParams.get('pin');
   const vehicle = vehicles.find((v) => v.id === vehicleId);
 
   const { language } = useLanguage();
@@ -67,7 +68,7 @@ export default function VehicleTrackingPage() {
                 <p className="text-sm text-muted-foreground">{t.tracking.mapPlaceholder}</p>
             </div>
             <Card>
-                <CardContent className="p-4 flex items-center justify-between">
+                <CardContent className="p-4 grid grid-cols-2 items-center justify-between gap-4">
                     <div>
                         <p className="text-sm font-medium text-muted-foreground">{t.tracking.status}</p>
                         <p className="text-lg font-semibold text-primary">{t.tracking.enRoute}</p>
@@ -76,6 +77,18 @@ export default function VehicleTrackingPage() {
                         <p className="text-sm font-medium text-muted-foreground">{t.tracking.eta}</p>
                         <p className="text-lg font-semibold">15 {t.tracking.minutes}</p>
                     </div>
+                    {pin && (
+                        <div className="col-span-2">
+                            <Separator className='my-2'/>
+                            <div className="flex items-center gap-3">
+                                <KeyRound className="h-5 w-5 text-muted-foreground" />
+                                <div>
+                                    <p className="text-sm font-medium text-muted-foreground">{t.tracking.verificationCode}</p>
+                                    <p className="text-2xl font-bold tracking-widest text-primary">{pin}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </CardContent>
             </Card>
           </div>

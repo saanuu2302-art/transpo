@@ -123,16 +123,14 @@ aiExpert: 'AI Expert',
       confirm: 'Confirm',
       success: {
           title: 'Booking Successful!',
-          description: 'has been booked.'
+          description: 'has been booked.',
+          pinDescription: (pin: string) => `Your booking is confirmed! Your verification PIN is ${pin}.`,
       },
       details: {
         owner: 'Owner',
         price: 'Price',
         liveTracking: 'Live Tracking',
         trackingPlaceholder: 'Map will be shown here',
-        payment: 'Payment Method',
-        cod: 'Cash on Delivery',
-        upi: 'UPI / Online',
         pickupLocation: 'Pickup Location',
         pickupPlaceholder: 'Enter pickup address',
         destination: 'Destination',
@@ -149,7 +147,8 @@ aiExpert: 'AI Expert',
       enRoute: 'En Route',
       eta: 'ETA',
       minutes: 'mins',
-      stopTrip: 'Stop Trip'
+      stopTrip: 'Stop Trip',
+      verificationCode: 'Verification Code'
     }
   },
   kn: {
@@ -222,7 +221,7 @@ aiExpert: 'AI Expert',
       nearest: 'ಹತ್ತಿರದ',
       locationError: {
         title: 'ಸ್ಥಳ ದೋಷ',
-        notSupported: 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಜಿಯೋಲೋಕೇಶన్ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.',
+        notSupported: 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಜಿಯೋಲೋಕೇಶನ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.',
         permissionDenied: 'ಸ್ಥಳವನ್ನು ಪ್ರವೇಶಿಸಲು ಅನುಮತಿಯನ್ನು ನಿರಾಕರಿಸಲಾಗಿದೆ.',
       },
     },
@@ -276,16 +275,14 @@ aiExpert: 'AI Expert',
         confirm: 'ಖಚಿತಪಡಿಸಿ',
         success: {
             title: 'ಬುಕಿಂಗ್ ಯಶಸ್ವಿಯಾಗಿದೆ!',
-            description: 'ಅನ್ನು ಬುಕ್ ಮಾಡಲಾಗಿದೆ.'
+            description: 'ಅನ್ನು ಬುಕ್ ಮಾಡಲಾಗಿದೆ.',
+            pinDescription: (pin: string) => `ನಿಮ್ಮ ಬುಕಿಂಗ್ ಖಚಿತವಾಗಿದೆ! ನಿಮ್ಮ ಪರಿಶೀಲನಾ ಪಿನ್ ${pin} ಆಗಿದೆ.`,
         },
         details: {
             owner: 'ಮಾಲೀಕರು',
             price: 'ಬೆಲೆ',
             liveTracking: 'ಲೈವ್ ಟ್ರ್ಯಾಕಿಂಗ್',
             trackingPlaceholder: 'ನಕ್ಷೆಯನ್ನು ಇಲ್ಲಿ ತೋರಿಸಲಾಗುತ್ತದೆ',
-            payment: 'ಪಾವತಿ ವಿಧಾನ',
-            cod: 'ಕ್ಯಾಶ್ ಆನ್ ಡೆಲಿವರಿ',
-            upi: 'ಯುಪಿಐ / ಆನ್‌ಲೈನ್',
             pickupLocation: 'ಪಿಕ್ಅಪ್ ಸ್ಥಳ',
             pickupPlaceholder: 'ಪಿಕ್ಅಪ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ',
             destination: 'ಗಮ್ಯಸ್ಥಾನ',
@@ -302,7 +299,8 @@ aiExpert: 'AI Expert',
       enRoute: 'ದಾರಿಯಲ್ಲಿದೆ',
       eta: 'ಅಂದಾಜು ಸಮಯ',
       minutes: 'ನಿಮಿಷಗಳು',
-      stopTrip: 'ಪ್ರಯಾಣ ನಿಲ್ಲಿಸಿ'
+      stopTrip: 'ಪ್ರಯಾಣ ನಿಲ್ಲಿಸಿ',
+      verificationCode: 'ಪರಿಶೀಲನೆ ಕೋಡ್'
     }
   },
 };
