@@ -42,7 +42,9 @@ export default function LoginPage() {
     if (userType === 'driver') {
       router.push('/driver/dashboard');
     } else if (userType === 'owner') {
-        router.push('/owner/dashboard');
+      router.push('/owner/dashboard');
+    } else if (userType === 'admin') {
+      router.push('/admin/dashboard');
     } else {
       router.push('/dashboard');
     }
@@ -130,6 +132,7 @@ export default function LoginPage() {
                   <SelectItem value="farmer">{t.userType.farmer}</SelectItem>
                   <SelectItem value="owner">{t.userType.machineOwner}</SelectItem>
                   <SelectItem value="driver">{t.userType.driver}</SelectItem>
+                  <SelectItem value="admin">{t.userType.admin}</SelectItem>
                 </SelectContent>
               </Select>
             </div>

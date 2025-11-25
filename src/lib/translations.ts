@@ -28,6 +28,7 @@ export const translations = {
         farmer: 'Farmer',
         machineOwner: 'Machine Owner',
         driver: 'Driver',
+        admin: 'Admin',
       },
     },
     nav: {
@@ -50,6 +51,19 @@ export const translations = {
         requests: 'Booking Requests',
         transactions: 'Transactions',
         profile: 'Profile',
+        logout: 'Logout'
+      },
+       admin: {
+        dashboard: 'Dashboard',
+        farmers: 'Farmers',
+        drivers: 'Drivers',
+        machineOwners: 'Machine Owners',
+        vehicleBookings: 'Vehicle Bookings',
+        machineryBookings: 'Machinery Bookings',
+        marketplace: 'Marketplace',
+        aiExpertLogs: 'AI Expert Logs',
+        reports: 'Reports',
+        systemSettings: 'System Settings',
         logout: 'Logout'
       }
     },
@@ -296,6 +310,55 @@ export const translations = {
             emailAddress: 'Email Address',
             saveChanges: 'Save Changes'
         }
+    },
+    admin: {
+      dashboard: {
+        title: 'Admin Dashboard',
+        description: 'Full control and visibility over the Transpo system.',
+        totalFarmers: 'Total Farmers',
+        totalDrivers: 'Total Drivers',
+        totalMachineOwners: 'Total Machine Owners',
+        totalVehicleBookings: 'Total Vehicle Bookings',
+        totalMachineryBookings: 'Total Machinery Bookings',
+        aiExpertMessages: 'AI Expert Messages',
+        activeUsersToday: 'Active Users Today',
+        totalRevenue: 'Total Revenue'
+      },
+       farmers: {
+        title: 'Farmer Data',
+        description: 'Manage all farmer information.',
+        id: 'Farmer ID',
+        name: 'Name',
+        phone: 'Phone Number',
+        location: 'Location',
+        totalBookings: 'Total Bookings',
+        lastActive: 'Last Active',
+        viewDetails: 'View Details',
+      },
+      drivers: {
+        title: 'Driver Data',
+        description: 'Manage all driver information.',
+        id: 'Driver ID',
+        name: 'Name',
+        vehicleType: 'Vehicle Type',
+        phone: 'Phone',
+        rating: 'Rating',
+        status: 'Status',
+        completedTrips: 'Completed Trips',
+        viewEdit: 'View / Edit'
+      },
+      machineOwners: {
+        title: 'Machine Owner Data',
+        description: 'Manage all machine owner information.',
+        id: 'Owner ID',
+        name: 'Owner Name',
+        machineType: 'Machine Type',
+        machineImage: 'Machine Image',
+        availability: 'Availability',
+        price: 'Rental Price',
+        approvalStatus: 'Approval Status',
+        viewDetails: 'View Details'
+      }
     }
   },
   kn: {
@@ -327,6 +390,7 @@ export const translations = {
         farmer: 'ರೈತ',
         machineOwner: 'ಯಂತ್ರ ಮಾಲೀಕ',
         driver: 'ಚಾಲಕ',
+        admin: 'ನಿರ್ವಾಹಕ',
       },
     },
     nav: {
@@ -350,6 +414,19 @@ export const translations = {
         transactions: 'ವಹಿವಾಟುಗಳು',
         profile: 'ಪ್ರೊಫೈಲ್',
         logout: 'ಲಾಗೌಟ್'
+      },
+       admin: {
+        dashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+        farmers: 'ರೈತರು',
+        drivers: 'ಚಾಲಕರು',
+        machineOwners: 'ಯಂತ್ರ ಮಾಲೀಕರು',
+        vehicleBookings: 'ವಾಹನ ಬುಕಿಂಗ್‌ಗಳು',
+        machineryBookings: 'ಯಂತ್ರೋಪಕರಣ ಬುಕಿಂಗ್‌ಗಳು',
+        marketplace: 'ಮಾರುಕಟ್ಟೆ',
+        aiExpertLogs: 'AI ತಜ್ಞರ ದಾಖಲೆಗಳು',
+        reports: 'ವರದಿಗಳು',
+        systemSettings: 'ಸಿಸ್ಟಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು',
+        logout: 'ಲಾಗ್ ಔಟ್'
       }
     },
     dashboard: {
@@ -534,7 +611,7 @@ export const translations = {
                 description: 'ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ.',
                 name: 'ಪೂರ್ಣ ಹೆಸರು',
                 phone: 'ಫೋನ್ ಸಂಖ್ಯೆ',
-                license: 'ಚಾಲನಾ ಪರವಾನಗಿ ಸಂಖ್ಯೆ',
+                license: 'ಚಾಲನಾ ಪರವานಗಿ ಸಂಖ್ಯೆ',
             },
             vehicle: {
                 title: 'ವಾಹನದ ವಿವರಗಳು',
@@ -595,6 +672,55 @@ export const translations = {
             emailAddress: 'ಇಮೇಲ್ ವಿಳಾಸ',
             saveChanges: 'ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ'
         }
+    },
+    admin: {
+      dashboard: {
+        title: 'ನಿರ್ವಾಹಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
+        description: 'ಟ್ರಾನ್ಸ್‌ಪೋ ವ್ಯವಸ್ಥೆಯ ಮೇಲೆ ಸಂಪೂರ್ಣ ನಿಯಂತ್ರಣ ಮತ್ತು ಗೋಚರತೆ.',
+        totalFarmers: 'ಒಟ್ಟು ರೈತರು',
+        totalDrivers: 'ಒಟ್ಟು ಚಾಲಕರು',
+        totalMachineOwners: 'ಒಟ್ಟು ಯಂತ್ರ ಮಾಲೀಕರು',
+        totalVehicleBookings: 'ಒಟ್ಟು ವಾಹನ ಬುಕಿಂಗ್‌ಗಳು',
+        totalMachineryBookings: 'ಒಟ್ಟು ಯಂತ್ರೋಪಕರಣ ಬುಕಿಂಗ್‌ಗಳು',
+        aiExpertMessages: 'AI ತಜ್ಞರ ಸಂದೇಶಗಳು',
+        activeUsersToday: 'ಇಂದು ಸಕ್ರಿಯ ಬಳಕೆದಾರರು',
+        totalRevenue: 'ಒಟ್ಟು ಆದಾಯ'
+      },
+      farmers: {
+        title: 'ರೈತರ ಡೇಟಾ',
+        description: 'ಎಲ್ಲಾ ರೈತರ ಮಾಹಿತಿಯನ್ನು ನಿರ್ವಹಿಸಿ.',
+        id: 'ರೈತ ID',
+        name: 'ಹೆಸರು',
+        phone: 'ಫೋನ್ ಸಂಖ್ಯೆ',
+        location: 'ಸ್ಥಳ',
+        totalBookings: 'ಒಟ್ಟು ಬುಕಿಂಗ್‌ಗಳು',
+        lastActive: 'ಕೊನೆಯದಾಗಿ ಸಕ್ರಿಯ',
+        viewDetails: 'ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ',
+      },
+      drivers: {
+        title: 'ಚಾಲಕ ಡೇಟಾ',
+        description: 'ಎಲ್ಲಾ ಚಾಲಕ ಮಾಹಿತಿಯನ್ನು ನಿರ್ವಹಿಸಿ.',
+        id: 'ಚಾಲಕ ID',
+        name: 'ಹೆಸರು',
+        vehicleType: 'ವಾಹನ ಪ್ರಕಾರ',
+        phone: 'ಫೋನ್',
+        rating: 'ರೇಟಿಂಗ್',
+        status: 'ಸ್ಥಿತಿ',
+        completedTrips: 'ಪೂರ್ಣಗೊಂಡ ಟ್ರಿಪ್‌ಗಳು',
+        viewEdit: 'ವೀಕ್ಷಿಸಿ / ಸಂಪಾದಿಸಿ'
+      },
+      machineOwners: {
+        title: 'ಯಂತ್ರ ಮಾಲೀಕರ ಡೇಟಾ',
+        description: 'ಎಲ್ಲಾ ಯಂತ್ರ ಮಾಲೀಕರ ಮಾಹಿತಿಯನ್ನು ನಿರ್ವಹಿಸಿ.',
+        id: 'ಮಾಲೀಕ ID',
+        name: 'ಮಾಲೀಕರ ಹೆಸರು',
+        machineType: 'ಯಂತ್ರ ಪ್ರಕಾರ',
+        machineImage: 'ಯಂತ್ರ ಚಿತ್ರ',
+        availability: 'ಲಭ್ಯತೆ',
+        price: 'ಬಾಡಿಗೆ ಬೆಲೆ',
+        approvalStatus: 'ಅನುಮೋದನೆ ಸ್ಥಿತಿ',
+        viewDetails: 'ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ'
+      }
     }
   },
 };
