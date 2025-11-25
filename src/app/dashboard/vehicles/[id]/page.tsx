@@ -117,7 +117,7 @@ export default function VehicleDetailPage() {
           : nearestVehicle.kannadaName
       } ${t.confirmation.success.description}`,
     });
-    router.push('/dashboard/vehicles');
+    router.push(`/dashboard/vehicles/tracking?vehicleId=${nearestVehicle.id}`);
   };
 
   const tConfirm = t.confirmation;

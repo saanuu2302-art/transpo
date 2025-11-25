@@ -140,6 +140,16 @@ aiExpert: 'AI Expert',
         cropType: 'Type of Crop',
         cropPlaceholder: 'e.g., Rice, Wheat, Sugarcane',
       },
+    },
+    tracking: {
+      title: 'Live Tracking',
+      description: 'Your vehicle is on its way.',
+      mapPlaceholder: 'Live map will be shown here',
+      status: 'Status',
+      enRoute: 'En Route',
+      eta: 'ETA',
+      minutes: 'mins',
+      stopTrip: 'Stop Trip'
     }
   },
   kn: {
@@ -212,7 +222,7 @@ aiExpert: 'AI Expert',
       nearest: 'ಹತ್ತಿರದ',
       locationError: {
         title: 'ಸ್ಥಳ ದೋಷ',
-        notSupported: 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಜಿಯೋಲೋಕೇಶನ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.',
+        notSupported: 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಜಿಯೋಲೋಕೇಶన్ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.',
         permissionDenied: 'ಸ್ಥಳವನ್ನು ಪ್ರವೇಶಿಸಲು ಅನುಮತಿಯನ್ನು ನಿರಾಕರಿಸಲಾಗಿದೆ.',
       },
     },
@@ -283,6 +293,16 @@ aiExpert: 'AI Expert',
             cropType: 'ಬೆಳೆಯ ಪ್ರಕಾರ',
             cropPlaceholder: 'ಉದಾ., ಅಕ್ಕಿ, ಗೋಧಿ, ಕಬ್ಬು',
         },
-      }
+    },
+    tracking: {
+      title: 'ಲೈವ್ ಟ್ರ್ಯಾಕಿಂಗ್',
+      description: 'ನಿಮ್ಮ ವಾಹನ ದಾರಿಯಲ್ಲಿದೆ.',
+      mapPlaceholder: 'ಲೈವ್ ನಕ್ಷೆಯನ್ನು ಇಲ್ಲಿ ತೋರಿಸಲಾಗುತ್ತದೆ',
+      status: 'ಸ್ಥಿತಿ',
+      enRoute: 'ದಾರಿಯಲ್ಲಿದೆ',
+      eta: 'ಅಂದಾಜು ಸಮಯ',
+      minutes: 'ನಿಮಿಷಗಳು',
+      stopTrip: 'ಪ್ರಯಾಣ ನಿಲ್ಲಿಸಿ'
+    }
   },
 };
