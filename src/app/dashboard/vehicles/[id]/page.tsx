@@ -1,8 +1,6 @@
-
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import { vehicles } from '@/lib/data';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 import {
@@ -15,13 +13,17 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, User, Tag, Map, Warehouse, Pin, Leaf } from 'lucide-react';
+import { ArrowLeft, User, Tag, Map, Warehouse, Pin, Leaf, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { Label } from '@/components/ui/label';
 import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
+import { useDoc } from '@/firebase';
+import { useFirestore, useUser } from '@/firebase';
+import { doc, addDoc, collection } from 'firebase/firestore';
+import type { Vehicle } from '@/lib/data';
 
 export default function VehicleDetailPage() {
   const params = useParams();
@@ -30,94 +32,99 @@ export default function VehicleDetailPage() {
   const { language } = useLanguage();
   const { toast } = useToast();
   const t = translations[language];
-  const vehicle = vehicles.find((v) => v.id === id);
-
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const getDistance = (
-    lat1: number,
-    lon1: number,
-    lat2: number,
-    lon2: number
-  ) => {
-    const R = 6371; // Radius of the earth in km
-    const dLat = ((lat2 - lat1) * Math.PI) / 180;
-    const dLon = ((lon2 - lon1) * Math.PI) / 180;
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos((lat1 * Math.PI) / 180) *
-        Math.cos((lat2 * Math.PI) / 180) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const d = R * c; // Distance in km
-    return d;
-  };
+  const firestore = useFirestore();
+  const { user } = useUser();
   
-  const [nearestVehicle, setNearestVehicle] = useState(vehicle);
+  const vehicleRef = firestore && id ? doc(firestore, 'vehicles', Array.isArray(id) ? id[0] : id) : null;
+  const { data: vehicle, loading: vehicleLoading } = useDoc<Vehicle>(vehicleRef);
 
-  useEffect(() => {
-    if (!isClient || !vehicle) return;
+  const [pickup, setPickup] = useState('');
+  const [destination, setDestination] = useState('');
+  const [cropType, setCropType] = useState('');
+  const [isBooking, setIsBooking] = useState(false);
 
-    if (!navigator.geolocation) {
-      toast({
-        variant: 'destructive',
-        title: t.vehicleBooking.locationError.title,
-        description: t.vehicleBooking.locationError.notSupported,
-      });
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        
-        let closest: typeof vehicle | null = null;
-        let minDistance = Infinity;
-
-        vehicles
-          .filter(v => v.name === vehicle.name)
-          .forEach((v) => {
-            if (v.lat && v.lng) {
-              const distance = getDistance(latitude, longitude, v.lat, v.lng);
-              if (distance < minDistance) {
-                minDistance = distance;
-                closest = v;
-              }
-            }
-        });
-        
-        setNearestVehicle(closest || vehicle);
-      },
-      () => {
-        // Silently fail or show a less intrusive message
-        console.warn('Could not get location. Using selected vehicle details.');
-      }
+  if (vehicleLoading) {
+    return (
+        <div className="max-w-4xl mx-auto">
+            <Skeleton className="h-10 w-48 mb-4" />
+            <Card>
+                <CardHeader>
+                    <Skeleton className="h-8 w-1/2" />
+                    <Skeleton className="h-4 w-3/4" />
+                </CardHeader>
+                <CardContent className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                        <Skeleton className="aspect-video w-full" />
+                        <Skeleton className="h-24 w-full" />
+                        <Skeleton className="h-48 w-full" />
+                    </div>
+                    <div className="space-y-4">
+                        <Skeleton className="h-72 w-full" />
+                    </div>
+                </CardContent>
+                <CardFooter>
+                    <Skeleton className="h-10 w-32" />
+                </CardFooter>
+            </Card>
+        </div>
     );
-
-  }, [isClient, vehicle, t, toast]);
-
+  }
 
   if (!vehicle) {
     return <div>Vehicle not found</div>;
   }
 
-  const handleBookingConfirm = () => {
-    if (!nearestVehicle) return;
-    const pin = Math.floor(1000 + Math.random() * 9000).toString();
-    toast({
-      title: t.confirmation.success.title,
-      description: t.confirmation.success.pinDescription(pin),
-    });
-    router.push(`/dashboard/vehicles/tracking?vehicleId=${nearestVehicle.id}&pin=${pin}`);
+  const handleBookingConfirm = async () => {
+    if (!firestore || !user || !vehicle) return;
+    if (!pickup || !destination || !cropType) {
+      toast({
+        variant: 'destructive',
+        title: 'Missing Information',
+        description: 'Please fill out all booking details.',
+      });
+      return;
+    }
+    
+    setIsBooking(true);
+    try {
+      const pin = Math.floor(1000 + Math.random() * 9000).toString();
+      
+      const bookingData = {
+        userId: user.uid,
+        vehicleId: vehicle.id,
+        driverId: vehicle.driverId,
+        status: 'confirmed',
+        pickup,
+        destination,
+        cropType,
+        pin,
+        createdAt: new Date(),
+        fare: vehicle.cost,
+      };
+
+      const bookingRef = await addDoc(collection(firestore, 'bookings'), bookingData);
+
+      toast({
+        title: t.confirmation.success.title,
+        description: t.confirmation.success.pinDescription(pin),
+      });
+
+      router.push(`/dashboard/vehicles/tracking?bookingId=${bookingRef.id}`);
+
+    } catch (error) {
+      console.error("Booking failed:", error);
+      toast({
+        variant: 'destructive',
+        title: "Booking Failed",
+        description: "Could not complete your booking. Please try again.",
+      });
+    } finally {
+      setIsBooking(false);
+    }
   };
 
   const tConfirm = t.confirmation;
-  const currentVehicle = nearestVehicle || vehicle;
+  const currentVehicle = vehicle;
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -143,22 +150,17 @@ export default function VehicleDetailPage() {
                         <Image
                             src={currentVehicle.image.imageUrl}
                             alt={currentVehicle.image.description}
-                            layout="fill"
-                            objectFit="cover"
+                            fill
+                            style={{ objectFit: 'cover'}}
                         />
                     ) : <Skeleton className="h-full w-full" />}
-                    {currentVehicle.id === vehicle.id ? null : (
-                        <Badge variant="default" className="absolute right-2 top-2">
-                            {t.vehicleBooking.nearest}
-                        </Badge>
-                    )}
                  </div>
                  <div className="space-y-4 rounded-lg border p-4">
                      <div className="flex items-center gap-4">
                         <User className="h-5 w-5 text-muted-foreground" />
                         <div>
                             <p className="font-semibold">{tConfirm.details.owner}</p>
-                            <p className="text-sm text-muted-foreground">{currentVehicle.owner}</p>
+                            <p className="text-sm text-muted-foreground">{currentVehicle.ownerName}</p>
                         </div>
                     </div>
 
@@ -175,21 +177,21 @@ export default function VehicleDetailPage() {
                         <Warehouse className="h-5 w-5 text-muted-foreground mt-1" />
                         <div className="w-full space-y-1">
                             <Label htmlFor="pickup-location" className='font-semibold'>{tConfirm.details.pickupLocation}</Label>
-                            <Input id="pickup-location" placeholder={tConfirm.details.pickupPlaceholder} />
+                            <Input id="pickup-location" placeholder={tConfirm.details.pickupPlaceholder} value={pickup} onChange={(e) => setPickup(e.target.value)} />
                         </div>
                     </div>
                      <div className="flex items-start gap-4">
                         <Pin className="h-5 w-5 text-muted-foreground mt-1" />
                         <div className="w-full space-y-1">
                             <Label htmlFor="destination" className='font-semibold'>{tConfirm.details.destination}</Label>
-                            <Input id="destination" placeholder={tConfirm.details.destinationPlaceholder} />
+                            <Input id="destination" placeholder={tConfirm.details.destinationPlaceholder} value={destination} onChange={(e) => setDestination(e.target.value)} />
                         </div>
                     </div>
                      <div className="flex items-start gap-4">
                         <Leaf className="h-5 w-5 text-muted-foreground mt-1" />
                         <div className="w-full space-y-1">
                             <Label htmlFor="crop-type" className='font-semibold'>{tConfirm.details.cropType}</Label>
-                            <Input id="crop-type" placeholder={tConfirm.details.cropPlaceholder} />
+                            <Input id="crop-type" placeholder={tConfirm.details.cropPlaceholder} value={cropType} onChange={(e) => setCropType(e.target.value)} />
                         </div>
                     </div>
                  </div>
@@ -208,7 +210,8 @@ export default function VehicleDetailPage() {
 
         </CardContent>
         <CardFooter>
-            <Button onClick={handleBookingConfirm} className="w-full md:w-auto">
+            <Button onClick={handleBookingConfirm} className="w-full md:w-auto" disabled={isBooking}>
+                {isBooking && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {tConfirm.confirm}
             </Button>
         </CardFooter>

@@ -18,13 +18,58 @@
           "type": "string",
           "description": "The user's display name."
         },
+        "photoURL": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the user's profile picture."
+        },
         "role": {
           "type": "string",
           "description": "The role of the user in the system.",
           "enum": ["farmer", "driver", "owner", "admin"]
         }
       },
-      "required": ["uid", "email", "role"]
+      "required": ["uid", "email", "role", "displayName"]
+    },
+    "Vehicle": {
+        "title": "Vehicle",
+        "description": "Represents a vehicle that can be booked for transport.",
+        "type": "object",
+        "properties": {
+            "name": { "type": "string" },
+            "kannadaName": { "type": "string" },
+            "cost": { "type": "string" },
+            "rating": { "type": "number" },
+            "ownerName": { "type": "string" },
+            "driverId": { "type": "string" },
+            "lat": { "type": "number" },
+            "lng": { "type": "number" },
+            "image": {
+                "type": "object",
+                "properties": {
+                    "imageUrl": {"type": "string", "format": "uri"},
+                    "description": {"type": "string"},
+                    "imageHint": {"type": "string"}
+                }
+            }
+        }
+    },
+    "Booking": {
+        "title": "Booking",
+        "description": "Represents a booking made by a user for a vehicle.",
+        "type": "object",
+        "properties": {
+            "userId": {"type": "string"},
+            "vehicleId": {"type": "string"},
+            "driverId": {"type": "string"},
+            "status": {"type": "string", "enum": ["confirmed", "in-progress", "completed", "cancelled"]},
+            "pickup": {"type": "string"},
+            "destination": {"type": "string"},
+            "cropType": {"type": "string"},
+            "pin": {"type": "string"},
+            "createdAt": {"type": "string", "format": "date-time"},
+            "fare": {"type": "string"}
+        }
     }
   },
   "auth": {
@@ -36,6 +81,18 @@
         "$ref": "#/backend/entities/UserProfile"
       },
       "description": "Stores the profile information for each user, keyed by their Firebase Auth UID."
+    },
+    "/vehicles/{vehicleId}": {
+        "schema": {
+            "$ref": "#/backend/entities/Vehicle"
+        },
+        "description": "Stores all available vehicles for booking."
+    },
+    "/bookings/{bookingId}": {
+        "schema": {
+            "$ref": "#/backend/entities/Booking"
+        },
+        "description": "Stores all booking records."
     }
   }
 }

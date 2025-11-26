@@ -16,7 +16,8 @@ export const vehicles = [
     rating: 4.2,
     lat: 12.55,
     lng: 76.9,
-    owner: 'Ravi Kumar',
+    ownerName: 'Ravi Kumar',
+    driverId: 'sample-driver-id-1'
   },
   {
     id: '2',
@@ -27,7 +28,8 @@ export const vehicles = [
     rating: 4.8,
     lat: 12.52,
     lng: 76.89,
-    owner: 'Anand Reddy',
+    ownerName: 'Anand Reddy',
+    driverId: 'sample-driver-id-2'
   },
   {
     id: '3',
@@ -38,7 +40,8 @@ export const vehicles = [
     rating: 4.6,
     lat: 12.5,
     lng: 76.88,
-    owner: 'Prakash Gowda',
+    ownerName: 'Prakash Gowda',
+    driverId: 'sample-driver-id-3'
   },
   {
     id: '4',
@@ -49,7 +52,8 @@ export const vehicles = [
     rating: 4.3,
     lat: 12.53,
     lng: 76.91,
-    owner: 'Santosh',
+    ownerName: 'Santosh',
+    driverId: 'sample-driver-id-4'
   },
 ];
 
@@ -92,7 +96,7 @@ export const machines = [
   },
 ];
 
-export const bookingHistory: Booking[] = [
+export const bookingHistory: BookingHistoryItem[] = [
   {
     id: 'h1',
     item: 'Tractor',
@@ -318,9 +322,41 @@ export const adminMarketplaceProducts = [
   }
 ];
 
-export type Vehicle = typeof vehicles[0];
-export type Machine = typeof machines[0];
+// Firestore Document Types
+export type Vehicle = {
+    id: string;
+    name: string;
+    kannadaName: string;
+    cost: string;
+    rating: number;
+    ownerName: string;
+    driverId: string;
+    lat: number;
+    lng: number;
+    image: {
+        imageUrl: string;
+        description: string;
+        imageHint: string;
+    }
+};
+
 export type Booking = {
+    id: string;
+    userId: string;
+    vehicleId: string;
+    driverId: string;
+    status: 'confirmed' | 'in-progress' | 'completed' | 'cancelled';
+    pickup: string;
+    destination: string;
+    cropType: string;
+    pin: string;
+    createdAt: Date;
+    fare: string;
+};
+
+
+export type Machine = typeof machines[0];
+export type BookingHistoryItem = {
     id: string;
     item: string;
     kannadaItem: string;
