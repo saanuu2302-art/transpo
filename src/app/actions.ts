@@ -2,7 +2,7 @@
 
 import { farmingAssistant } from '@/ai/flows/ai-farming-assistant';
 
-export async function getAiFarmingResponse(formData: FormData) {
+export async function getAiFarmingResponse(prevState: any, formData: FormData) {
   const query = formData.get('query') as string;
   try {
     if (!query) {
