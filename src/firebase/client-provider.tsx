@@ -1,6 +1,7 @@
 'use client';
 import { ReactNode } from 'react';
-import { initializeFirebase, FirebaseProvider } from '@/firebase';
+import { initializeFirebase } from '@/firebase';
+import { FirebaseProvider } from '@/firebase/provider';
 
 const { firebaseApp, auth, firestore } = initializeFirebase();
 
