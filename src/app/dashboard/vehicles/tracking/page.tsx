@@ -144,7 +144,7 @@ function TrackingPageContent() {
                     </div>
                 </CardContent>
                  <CardFooter>
-                    <Button className="w-full" onClick={() => toast({ title: "Payment screen not implemented yet."})}>
+                    <Button className="w-full" onClick={() => router.push(`/dashboard/vehicles/payment?vehicleId=${vehicle.id}`)}>
                         {t.goToPayment}
                     </Button>
                 </CardFooter>
