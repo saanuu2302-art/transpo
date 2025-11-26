@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   Bot,
-  Car,
   LayoutGrid,
   LogOut,
   Tractor,
@@ -28,11 +27,6 @@ export function DashboardNav() {
       href: '/dashboard',
       label: t.dashboard,
       icon: LayoutGrid,
-    },
-    {
-      href: '/dashboard/vehicles',
-      label: t.vehicleBooking,
-      icon: Car,
     },
     {
       href: '/dashboard/machines',

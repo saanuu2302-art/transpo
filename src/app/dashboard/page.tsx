@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Bot, Car, CheckCircle, Tractor, XCircle } from 'lucide-react';
+import { ArrowRight, Bot, CheckCircle, Tractor, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import {
   Card,
@@ -20,12 +20,6 @@ export default function DashboardPage() {
   const t = translations[language].dashboard;
 
   const featureCards = [
-    {
-      title: t.features.vehicleBooking.title,
-      description: t.features.vehicleBooking.description,
-      href: '/dashboard/vehicles',
-      icon: Car,
-    },
     {
       title: t.features.machineBooking.title,
       description: t.features.machineBooking.description,

@@ -157,13 +157,13 @@ export const translations = {
     },
     confirmation: {
       title: 'Confirm Booking',
-      description: (item: string) => `Are you sure you want to book the ${item}?`,
+      description: (item: string) => `Are you sure you want to book the ${'\'\'\''}${item}${'\'\'\''}?`,
       cancel: 'Cancel',
       confirm: 'Confirm',
       success: {
           title: 'Booking Successful!',
           description: 'has been booked.',
-          pinDescription: (pin: string) => `Your booking is confirmed! Your verification PIN is ${pin}.`,
+          pinDescription: (pin: string) => `Your booking is confirmed! Your verification PIN is ${'\'\'\''}${pin}${'\'\'\''}.`,
       },
       details: {
         owner: 'Owner',
@@ -202,7 +202,7 @@ export const translations = {
         card: 'Pay with Credit/Debit Card',
         success: {
             title: 'Payment Successful',
-            description: (method: string) => `Paid successfully using ${method}.`,
+            description: (method: string) => `Paid successfully using ${'\'\'\''}${method}${'\'\'\''}.`,
         },
     },
     driver: {
@@ -610,13 +610,13 @@ export const translations = {
     },
     confirmation: {
         title: 'ಬುಕಿಂಗ್ ಖಚಿತಪಡಿಸಿ',
-        description: (item: string) => `ನೀವು ಖಚಿತವಾಗಿ ${item} ಅನ್ನು ಬುಕ್ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?`,
+        description: (item: string) => `ನೀವು ಖಚಿತವಾಗಿ ${'\'\'\''}${item}${'\'\'\''}-ಅನ್ನು ಬುಕ್ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?`,
         cancel: 'ರದ್ದುಮಾಡಿ',
         confirm: 'ಖಚಿತಪಡಿಸಿ',
         success: {
             title: 'ಬುಕಿಂಗ್ ಯಶಸ್ವಿಯಾಗಿದೆ!',
-            description: 'ಅನ್ನು ಬುಕ್ ಮಾಡಲಾಗಿದೆ.',
-            pinDescription: (pin: string) => `ನಿಮ್ಮ ಬುಕಿಂಗ್ ಖಚಿತವಾಗಿದೆ! ನಿಮ್ಮ ಪರಿಶೀಲನಾ ಪಿನ್ ${pin} ಆಗಿದೆ.`,
+            description: '-ಅನ್ನು ಬುಕ್ ಮಾಡಲಾಗಿದೆ.',
+            pinDescription: (pin: string) => `ನಿಮ್ಮ ಬುಕಿಂಗ್ ಖಚಿತವಾಗಿದೆ! ನಿಮ್ಮ ಪರಿಶೀಲನಾ ಪಿನ್ ${'\'\'\''}${pin}${'\'\'\''}.`,
         },
         details: {
             owner: 'ಮಾಲೀಕರು',
@@ -655,7 +655,7 @@ export const translations = {
         card: 'ಕ್ರೆಡಿಟ್/ಡೆಬಿಟ್ ಕಾರ್ಡ್‌ನೊಂದಿಗೆ ಪಾವತಿಸಿ',
         success: {
             title: 'ಪಾವತಿ ಯಶಸ್ವಿಯಾಗಿದೆ',
-            description: (method: string) => `${method} ಬಳಸಿ ಯಶಸ್ವಿಯಾಗಿ ಪಾವತಿಸಲಾಗಿದೆ.`,
+            description: (method: string) => `${'\'\'\''}${method}${'\'\'\''}-ಬಳಸಿ ಯಶಸ್ವಿಯಾಗಿ ಪಾವತಿಸಲಾಗಿದೆ.`,
         },
     },
     driver: {
@@ -702,7 +702,7 @@ export const translations = {
                 description: 'ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ.',
                 name: 'ಪೂರ್ಣ ಹೆಸರು',
                 phone: 'ಫೋನ್ ಸಂಖ್ಯೆ',
-                license: 'ಚಾಲನಾ ಪರವานಗಿ ಸಂಖ್ಯೆ',
+                license: 'ಚಾಲನಾ ಪರವಾನಗಿ ಸಂಖ್ಯೆ',
             },
             vehicle: {
                 title: 'ವಾಹನದ ವಿವರಗಳು',
