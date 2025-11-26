@@ -8,54 +8,55 @@ const getImage = (id: string): ImagePlaceholder | undefined => {
 
 export const vehicles: Vehicle[] = [
   {
-    id: '1',
+    id: 'v1',
+    name: 'Tractor',
+    kannadaName: 'ಟ್ರಾಕ್ಟರ್',
+    image: getImage('tractor-vehicle')!,
+    cost: '₹25 / km',
+    rating: 4.5,
+    lat: 12.9716,
+    lng: 77.5946,
+    ownerName: 'Sunil Kumar',
+    driverId: 'driver001'
+  },
+  {
+    id: 'v2',
     name: 'Mini-Truck',
     kannadaName: 'ಮಿನಿ ಟ್ರಕ್',
     image: getImage('minitruck-vehicle')!,
-    cost: '800 / trip',
+    cost: '₹18 / km',
     rating: 4.2,
-    lat: 12.55,
-    lng: 76.9,
+    lat: 12.98,
+    lng: 77.6,
     ownerName: 'Ravi Kumar',
-    driverId: 'sample-driver-id-1'
+    driverId: 'driver002'
   },
   {
-    id: '2',
-    name: 'Heavy Duty Truck',
-    kannadaName: 'ಹೆವಿ ಡ್ಯೂಟಿ ಟ್ರಕ್',
-    image: getImage('heavy-duty-truck-vehicle')!,
-    cost: '2500 / trip',
-    rating: 4.8,
-    lat: 12.52,
-    lng: 76.89,
-    ownerName: 'Anand Reddy',
-    driverId: 'sample-driver-id-2'
-  },
-  {
-    id: '3',
-    name: 'Lorry',
-    kannadaName: 'ಲಾರಿ',
-    image: getImage('lorry-vehicle')!,
-    cost: '2200 / trip',
+    id: 'v3',
+    name: 'Bolero Pickup',
+    kannadaName: 'ಬೊಲೆರೊ ಪಿಕಪ್',
+    image: getImage('bolero-pickup-vehicle')!,
+    cost: '₹20 / km',
     rating: 4.6,
-    lat: 12.5,
-    lng: 76.88,
+    lat: 12.96,
+    lng: 77.58,
     ownerName: 'Prakash Gowda',
-    driverId: 'sample-driver-id-3'
+    driverId: 'driver003'
   },
   {
-    id: '4',
-    name: 'Luggage Auto',
-    kannadaName: 'ಲಗೇಜ್ ಆಟೋ',
-    image: getImage('luggage-auto-vehicle')!,
-    cost: '500 / trip',
+    id: 'v4',
+    name: 'Tempo',
+    kannadaName: 'ಟೆಂಪೊ',
+    image: getImage('tempo-vehicle')!,
+    cost: '₹22 / km',
     rating: 4.3,
-    lat: 12.53,
-    lng: 76.91,
+    lat: 12.95,
+    lng: 77.62,
     ownerName: 'Santosh',
-    driverId: 'sample-driver-id-4'
+    driverId: 'driver004'
   },
 ];
+
 
 export const machines = [
   {

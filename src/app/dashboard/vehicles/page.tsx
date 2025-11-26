@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Star, ArrowRight, Loader2, LocateFixed } from 'lucide-react';
+import { Star, ArrowRight, LocateFixed } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import {
   Card,
@@ -29,7 +29,7 @@ function VehicleCard({
 }: {
   vehicle: Vehicle;
   isNearest: boolean;
-  cardRef: React.RefObject<HTMLDivElement>;
+  cardRef: React.RefObject<HTMLDivElement> | null;
 }) {
   const { language } = useLanguage();
   const t = translations[language].vehicleBooking;
@@ -154,15 +154,17 @@ export default function VehicleBookingPage() {
       let minDistance = Infinity;
 
       vehicles.forEach((vehicle) => {
-        const distance = haversineDistance(
-          userLocation.lat,
-          userLocation.lng,
-          vehicle.lat,
-          vehicle.lng
-        );
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestVehicle = vehicle;
+        if(vehicle.lat && vehicle.lng) {
+          const distance = haversineDistance(
+            userLocation.lat,
+            userLocation.lng,
+            vehicle.lat,
+            vehicle.lng
+          );
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestVehicle = vehicle;
+          }
         }
       });
 

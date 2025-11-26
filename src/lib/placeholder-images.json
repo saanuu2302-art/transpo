@@ -9,26 +9,26 @@
     {
       "id": "minitruck-vehicle",
       "description": "A small mini-truck for transporting goods.",
-      "imageUrl": "https://images.unsplash.com/photo-1649793395985-967862a3b73f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaWNrdXAlMjB0cnVja3xlbnwwfHx8fDE3NjQwOTA5NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1748835600553-40ebc0317d83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWluaSUyMHRydWNrfGVufDB8fHx8MTc2NDEyOTg4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mini truck"
+    },
+    {
+      "id": "tractor-vehicle",
+      "description": "A tractor for farm work and transport.",
+      "imageUrl": "https://images.unsplash.com/photo-1482941792858-55cfaf5afbe4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxmYXJtJTIwdHJhY3RvcnxlbnwwfHx8fDE3NjQwNjcxMTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "farm tractor"
+    },
+    {
+      "id": "bolero-pickup-vehicle",
+      "description": "A Bolero pickup truck.",
+      "imageUrl": "https://images.unsplash.com/photo-1559416523-140ddc3d238c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwaWNrdXAlMjB0cnVja3xlbnwwfHx8fDE3NjQwOTA5NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "pickup truck"
     },
     {
-      "id": "heavy-duty-truck-vehicle",
-      "description": "A heavy duty truck for large loads.",
-      "imageUrl": "https://images.unsplash.com/photo-1760181925370-21ecb4560bee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxoZWF2eSUyMHRydWNrfGVufDB8fHx8MTc2NDEyOTQzMXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "heavy truck"
-    },
-    {
-      "id": "lorry-vehicle",
-      "description": "A large lorry for transporting goods.",
-      "imageUrl": "https://images.unsplash.com/photo-1591419478162-a4dd21b7ec0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsb3JyeXxlbnwwfHx8fDE3NjQxMjk0MzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "lorry"
-    },
-    {
-      "id": "luggage-auto-vehicle",
-      "description": "A three-wheeled luggage auto rickshaw.",
-      "imageUrl": "https://images.unsplash.com/photo-1639919397870-cc2c183be021?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhdXRvJTIwcmlja3NoYXd8ZW58MHx8fHwxNzY0MDcyMzYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "auto rickshaw"
+      "id": "tempo-vehicle",
+      "description": "A tempo or light commercial vehicle.",
+      "imageUrl": "https://images.unsplash.com/photo-1725399076463-cf5cc1bc988d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsaWdodCUyMHRydWNrfGVufDB8fHx8MTc2NDA2MjU4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "light truck"
     },
     {
       "id": "tractor-machine",
