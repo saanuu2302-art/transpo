@@ -26,13 +26,6 @@ import { ArrowRight, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
-import { useAuth, useUser } from '@/firebase';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { useFirestore } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
 
 export default function LoginPage() {
@@ -44,8 +37,6 @@ export default function LoginPage() {
   const [userType, setUserType] = useState('farmer');
   const { language, toggleLanguage } = useLanguage();
   const t = translations[language].login;
-  const auth = useAuth();
-  const firestore = useFirestore();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,30 +44,17 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
 
-  const { user: existingUser, loading: userLoading } = useUser();
+  // Simulate login without actual user state management for now
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   useEffect(() => {
-    if (userLoading) {
-      return; // Wait until loading is complete
-    }
-    if (existingUser) {
-      // If user is logged in, fetch their role and redirect
-      const checkUserRoleAndRedirect = async () => {
-         if (!firestore) return;
-        const userDoc = await getDoc(doc(firestore, 'users', existingUser.uid));
-        if (userDoc.exists()) {
-          redirectUser(userDoc.data().role);
-        } else {
-          // Default redirect if doc not found, though this is unlikely
-          router.replace('/dashboard');
-        }
-      };
-      checkUserRoleAndRedirect();
-    }
-  }, [existingUser, userLoading, router, firestore]);
-  
+    // This simulates checking if a user is already logged in.
+    // In a real fake flow, you might use localStorage. For now, we'll just assume not logged in.
+    setIsCheckingAuth(false); 
+  }, []);
 
-  if (userLoading || existingUser) {
+  if (isCheckingAuth || isLoggedIn) {
     return (
       <div className="flex h-screen w-screen items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin" />
@@ -86,66 +64,36 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!auth || !firestore) {
-       toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: 'Firebase is not initialized correctly.',
-      });
-      return;
-    }
     setIsLoading(true);
+
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     try {
       if (isSignUp) {
-        // Sign Up
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        const user = userCredential.user;
-        // Create user profile in Firestore
-        await setDoc(doc(firestore, 'users', user.uid), {
-          uid: user.uid,
-          email: user.email,
-          displayName: name,
-          role: userType,
-        });
+        if (!name || !email || !password) {
+            toast({
+                variant: 'destructive',
+                title: 'Error',
+                description: 'Please fill all fields for sign up.',
+            });
+            setIsLoading(false);
+            return;
+        }
         toast({
           title: 'Sign Up Successful',
           description: "You're now being redirected.",
         });
-        redirectUser(userType);
-      } else {
-        // Sign In
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        const user = userCredential.user;
-        const userDoc = await getDoc(doc(firestore, 'users', user.uid));
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          redirectUser(userData.role);
-        } else {
-          // Fallback if user doc doesn't exist, can happen with manual deletion in console
-           await setDoc(doc(firestore, 'users', user.uid), {
-              uid: user.uid,
-              email: user.email,
-              displayName: user.email, // Fallback name
-              role: 'farmer', // Default role
-            });
-           redirectUser('farmer');
-        }
       }
+      
+      // On both sign-in and sign-up, just redirect
+      redirectUser(userType);
+
     } catch (error: any) {
-      console.error("Authentication Error Details:", error);
       toast({
         variant: 'destructive',
         title: 'Authentication Error',
-        description: error.message || 'An unknown error occurred.',
+        description: 'This is a fake error message.',
       });
     } finally {
       setIsLoading(false);
@@ -255,7 +203,6 @@ export default function LoginPage() {
               <Select
                 defaultValue="farmer"
                 onValueChange={setUserType}
-                disabled={!isSignUp}
               >
                 <SelectTrigger id="user-type">
                   <SelectValue placeholder={t.userType.placeholder} />

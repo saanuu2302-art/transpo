@@ -1,10 +1,6 @@
 'use client';
 
-import { createContext, useContext, ReactNode } from 'react';
-import { useUser as useAuthUser } from '@/firebase';
-import { useDoc } from '@/firebase';
-import { doc } from 'firebase/firestore';
-import { useFirestore } from '@/firebase';
+import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 
 interface UserProfile {
   uid: string;
@@ -12,6 +8,14 @@ interface UserProfile {
   displayName: string;
   role: 'farmer' | 'driver' | 'owner' | 'admin';
 }
+
+// Mock user data
+const mockUser: UserProfile = {
+    uid: 'fake-user-id',
+    email: 'farmer@example.com',
+    displayName: 'Sample Farmer',
+    role: 'farmer'
+};
 
 interface UserContextType {
   user: UserProfile | null;
@@ -22,17 +26,23 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const { user: authUser, loading: authLoading, error: authError } = useAuthUser();
-  const firestore = useFirestore();
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | undefined>(undefined);
 
-  const userDocRef = authUser && firestore ? doc(firestore, 'users', authUser.uid) : null;
-  const { data: userProfile, loading: profileLoading, error: profileError } = useDoc<UserProfile>(userDocRef);
+  useEffect(() => {
+    // Simulate fetching user data
+    setLoading(true);
+    const timer = setTimeout(() => {
+        setUser(mockUser);
+        setLoading(false);
+    }, 500);
 
-  const loading = authLoading || profileLoading;
-  const error = authError || profileError;
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <UserContext.Provider value={{ user: userProfile, loading, error }}>
+    <UserContext.Provider value={{ user, loading, error }}>
       {children}
     </UserContext.Provider>
   );

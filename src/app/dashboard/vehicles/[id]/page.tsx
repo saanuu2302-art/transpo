@@ -17,10 +17,8 @@ import { ArrowLeft, User, Tag, MapPin, Milestone, Leaf, Loader2 } from 'lucide-r
 import Image from 'next/image';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { useState } from 'react';
-import { useDoc, useFirestore, useUserContext } from '@/firebase';
-import { addDoc, collection, doc } from 'firebase/firestore';
-import type { Vehicle } from '@/lib/data';
+import { useState, useEffect } from 'react';
+import { vehicles, type Vehicle } from '@/lib/data';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function VehicleDetailPage() {
@@ -31,11 +29,13 @@ export default function VehicleDetailPage() {
   const { toast } = useToast();
   const t = translations[language];
 
-  const firestore = useFirestore();
-  const vehicleDocRef = firestore && id ? doc(firestore, 'vehicles', id as string) : null;
-  const { data: vehicle, loading: vehicleLoading, error: vehicleError } = useDoc<Vehicle>(vehicleDocRef);
+  const [vehicle, setVehicle] = useState<Vehicle | null | undefined>(undefined);
   
-  const { user, loading: userLoading } = useUserContext();
+  useEffect(() => {
+    // Simulate fetching data
+    const foundVehicle = vehicles.find(v => v.id === id);
+    setVehicle(foundVehicle);
+  }, [id]);
 
   const [pickup, setPickup] = useState('');
   const [destination, setDestination] = useState('');
@@ -43,7 +43,7 @@ export default function VehicleDetailPage() {
   const [isBooking, setIsBooking] = useState(false);
 
   const handleBookingConfirm = async () => {
-    if (!firestore || !user || !vehicle) return;
+    if (!vehicle) return;
     if (!pickup || !destination || !cropType) {
         toast({
             variant: 'destructive',
@@ -54,31 +54,19 @@ export default function VehicleDetailPage() {
     }
     
     setIsBooking(true);
+    await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
 
     try {
         const pin = Math.floor(1000 + Math.random() * 9000).toString();
-        const bookingData = {
-            userId: user.uid,
-            vehicleId: vehicle.id,
-            driverId: vehicle.driverId,
-            status: 'confirmed' as const,
-            pickup,
-            destination,
-            cropType,
-            pin,
-            createdAt: new Date(),
-            fare: vehicle.cost,
-        };
-
-        const bookingsCollection = collection(firestore, 'bookings');
-        const docRef = await addDoc(bookingsCollection, bookingData);
-
+        
         toast({
           title: t.confirmation.success.title,
           description: t.confirmation.success.pinDescription(pin),
         });
 
-        router.push(`/dashboard/vehicles/tracking?bookingId=${docRef.id}`);
+        // Use a fake booking ID for navigation
+        const fakeBookingId = `booking_${Date.now()}`;
+        router.push(`/dashboard/vehicles/tracking?bookingId=${fakeBookingId}&vehicleId=${vehicle.id}&pin=${pin}`);
 
     } catch (error) {
         console.error("Booking failed:", error);
@@ -92,7 +80,7 @@ export default function VehicleDetailPage() {
     }
   };
 
-  if (vehicleLoading || userLoading) {
+  if (vehicle === undefined) {
     return (
          <div className="max-w-4xl mx-auto">
             <Skeleton className="h-10 w-48 mb-4" />
@@ -119,10 +107,11 @@ export default function VehicleDetailPage() {
         </div>
     );
   }
-
-  if (vehicleError || !vehicle) {
-    return <div>Error loading vehicle details.</div>;
+  
+  if (vehicle === null) {
+    return <div>Error loading vehicle details. Vehicle not found.</div>;
   }
+
 
   const tConfirm = t.confirmation;
   const vehicleName = language === 'en' ? vehicle.name : vehicle.kannadaName;

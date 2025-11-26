@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
@@ -13,10 +13,8 @@ import {
   CardFooter
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, User, Star, Copy, Info } from 'lucide-react';
-import { useDoc, useFirestore } from '@/firebase';
-import { doc } from 'firebase/firestore';
-import type { Booking, Vehicle } from '@/lib/data';
+import { ArrowLeft, User, Star, Copy } from 'lucide-react';
+import { vehicles, type Vehicle } from '@/lib/data';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
@@ -26,22 +24,28 @@ import { useToast } from '@/hooks/use-toast';
 function TrackingPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const bookingId = searchParams.get('bookingId');
+  const vehicleId = searchParams.get('vehicleId');
+  const pin = searchParams.get('pin');
   const { language } = useLanguage();
   const { toast } = useToast();
   const t = translations[language].tracking;
 
-  const firestore = useFirestore();
-  
-  const bookingDocRef = firestore && bookingId ? doc(firestore, 'bookings', bookingId) : null;
-  const { data: booking, loading: bookingLoading, error: bookingError } = useDoc<Booking>(bookingDocRef);
+  const [vehicle, setVehicle] = useState<Vehicle | null | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
-  const vehicleDocRef = firestore && booking?.vehicleId ? doc(firestore, 'vehicles', booking.vehicleId) : null;
-  const { data: vehicle, loading: vehicleLoading, error: vehicleError } = useDoc<Vehicle>(vehicleDocRef);
+  useEffect(() => {
+    // Simulate fetching data
+    setLoading(true);
+    const foundVehicle = vehicles.find(v => v.id === vehicleId);
+    setVehicle(foundVehicle);
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, [vehicleId]);
+
 
   const handleCopyPin = () => {
-    if (booking?.pin) {
-        navigator.clipboard.writeText(booking.pin);
+    if (pin) {
+        navigator.clipboard.writeText(pin);
         toast({
             title: "PIN Copied!",
             description: "The verification PIN has been copied to your clipboard.",
@@ -49,7 +53,7 @@ function TrackingPageContent() {
     }
   }
 
-  if (bookingLoading || vehicleLoading) {
+  if (loading || vehicle === undefined) {
     return (
          <div className="space-y-6">
             <div className="flex items-center gap-4">
@@ -70,7 +74,7 @@ function TrackingPageContent() {
     );
   }
 
-  if (bookingError || vehicleError || !booking || !vehicle) {
+  if (!vehicle || !pin) {
     return <div>Error loading tracking details. Please try again.</div>;
   }
 
@@ -101,7 +105,7 @@ function TrackingPageContent() {
             </CardHeader>
             <CardContent>
                 <div className="flex items-center justify-center gap-2 p-4 border-2 border-dashed rounded-lg">
-                    <p className="text-4xl font-bold tracking-widest">{booking.pin}</p>
+                    <p className="text-4xl font-bold tracking-widest">{pin}</p>
                     <Button variant="ghost" size="icon" onClick={handleCopyPin}>
                         <Copy className="h-6 w-6" />
                     </Button>
@@ -140,7 +144,7 @@ function TrackingPageContent() {
                     </div>
                 </CardContent>
                  <CardFooter>
-                    <Button className="w-full" onClick={() => router.push('/dashboard/payment')}>
+                    <Button className="w-full" onClick={() => toast({ title: "Payment screen not implemented yet."})}>
                         {t.goToPayment}
                     </Button>
                 </CardFooter>

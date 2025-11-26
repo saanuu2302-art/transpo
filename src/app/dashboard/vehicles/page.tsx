@@ -12,13 +12,10 @@ import {
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
-import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Star } from 'lucide-react';
-import { useCollection } from '@/firebase';
-import { collection } from 'firebase/firestore';
-import { useFirestore } from '@/firebase';
-import type { Vehicle } from '@/lib/data';
+import { vehicles, type Vehicle } from '@/lib/data';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useState, useEffect } from 'react';
 
 function VehicleCard({
   vehicle
@@ -71,13 +68,15 @@ function VehicleCard({
 export default function VehicleBookingPage() {
   const { language } = useLanguage();
   const t = translations[language].vehicleBooking;
-  const firestore = useFirestore();
-  const vehiclesCollection = firestore ? collection(firestore, 'vehicles') : null;
-  const { data: vehicles, loading, error } = useCollection<Vehicle>(vehiclesCollection);
-  
-  if (error) {
-    return <div>Error: {error.message}</div>
-  }
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data fetching
+    const timer = setTimeout(() => {
+        setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="flex flex-col gap-6">
