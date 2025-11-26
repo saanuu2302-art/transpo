@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/select';
 import { Logo } from '@/components/icons';
 import { ArrowRight, Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 import { useAuth, useUser } from '@/firebase';
@@ -53,9 +53,30 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
 
-  const { user, loading: userLoading } = useUser();
+  const { user: existingUser, loading: userLoading } = useUser();
 
-  if (userLoading) {
+  useEffect(() => {
+    if (userLoading) {
+      return; // Wait until loading is complete
+    }
+    if (existingUser) {
+      // If user is logged in, fetch their role and redirect
+      const checkUserRoleAndRedirect = async () => {
+         if (!firestore) return;
+        const userDoc = await getDoc(doc(firestore, 'users', existingUser.uid));
+        if (userDoc.exists()) {
+          redirectUser(userDoc.data().role);
+        } else {
+          // Default redirect if doc not found, though this is unlikely
+          router.replace('/dashboard');
+        }
+      };
+      checkUserRoleAndRedirect();
+    }
+  }, [existingUser, userLoading, router, firestore]);
+  
+
+  if (userLoading || existingUser) {
     return (
       <div className="flex h-screen w-screen items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin" />
@@ -63,16 +84,16 @@ export default function LoginPage() {
     );
   }
 
-  if (user) {
-    // User is already logged in, redirect them.
-    // We will handle this in a more robust way later.
-    router.replace('/dashboard');
-    return null;
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!auth || !firestore) return;
+    if (!auth || !firestore) {
+       toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: 'Firebase is not initialized correctly.',
+      });
+      return;
+    }
     setIsLoading(true);
 
     try {
@@ -91,7 +112,10 @@ export default function LoginPage() {
           displayName: name,
           role: userType,
         });
-        // Redirect after sign up
+        toast({
+          title: 'Sign Up Successful',
+          description: "You're now being redirected.",
+        });
         redirectUser(userType);
       } else {
         // Sign In
@@ -106,20 +130,22 @@ export default function LoginPage() {
           const userData = userDoc.data();
           redirectUser(userData.role);
         } else {
-          // Fallback if user doc doesn't exist, though it should.
-          toast({
-            variant: 'destructive',
-            title: 'Error',
-            description: 'User profile not found.',
-          });
-          redirectUser('farmer');
+          // Fallback if user doc doesn't exist, can happen with manual deletion in console
+           await setDoc(doc(firestore, 'users', user.uid), {
+              uid: user.uid,
+              email: user.email,
+              displayName: user.email, // Fallback name
+              role: 'farmer', // Default role
+            });
+           redirectUser('farmer');
         }
       }
     } catch (error: any) {
+      console.error("Authentication Error Details:", error);
       toast({
         variant: 'destructive',
         title: 'Authentication Error',
-        description: error.message,
+        description: error.message || 'An unknown error occurred.',
       });
     } finally {
       setIsLoading(false);
