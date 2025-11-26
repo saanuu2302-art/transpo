@@ -35,7 +35,7 @@ export const translations = {
       dashboard: 'Dashboard',
       vehicleBooking: 'Vehicle Booking',
       machineBooking: 'Machine Booking',
-      aiExpert: 'AI Expert',
+      aiExpert: 'Gemini',
       profile: 'Profile',
       logout: 'Logout',
       driver: {
@@ -80,7 +80,7 @@ export const translations = {
           description: 'Rent the best farming equipment.',
         },
         aiExpert: {
-          title: 'AI Expert',
+          title: 'Ask Gemini',
           description: 'Get instant farming advice.',
         },
       },
@@ -124,10 +124,10 @@ export const translations = {
       liveUsagePlaceholder: 'Live usage tracking will be available here',
     },
     aiExpert: {
-      title: 'AI Expert',
+      title: 'Gemini Assistant',
       description: 'Ask any farming-related question in English or Kannada. The AI will respond in the language of your query.',
-      initialMessage: 'Hello! How can I help you with your farming today?',
-      placeholder: 'Type your question or use the voice input...',
+      initialMessage: 'Hello! I am Gemini. How can I help you with your farming needs today?',
+      placeholder: 'Ask Gemini about farming...',
       thinking: 'Thinking...',
       errorTitle: 'Error',
       speechError: {
@@ -488,7 +488,7 @@ export const translations = {
       dashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
       vehicleBooking: 'ವಾಹನ ಬುಕಿಂಗ್',
       machineBooking: 'ಯಂತ್ರ ಬುಕಿಂಗ್',
-      aiExpert: 'AI ತಜ್ಞ',
+      aiExpert: 'ಜೆಮಿನಿ',
       profile: 'ಪ್ರೊಫೈಲ್',
       logout: 'ಲಾಗೌಟ್',
       driver: {
@@ -533,7 +533,7 @@ export const translations = {
           description: 'ಅತ್ಯುತ್ತಮ ಕೃಷಿ ಉಪಕರಣಗಳನ್ನು ಬಾಡಿಗೆಗೆ ಪಡೆಯಿರಿ.',
         },
         aiExpert: {
-          title: 'AI ತಜ್ಞ',
+          title: 'ಜೆಮಿನಿಯನ್ನು ಕೇಳಿ',
           description: 'ತక్షణ ಕೃಷಿ ಸಲಹೆ ಪಡೆಯಿರಿ.',
         },
       },
@@ -577,10 +577,10 @@ export const translations = {
       liveUsagePlaceholder: 'ಲೈವ್ ಬಳಕೆಯ ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲಿ ಲಭ್ಯವಿರುತ್ತದೆ',
     },
     aiExpert: {
-      title: 'AI ತಜ್ಞ',
+      title: 'ಜೆಮಿನಿ ಸಹಾಯಕ',
       description: 'ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಪ್ರಶ್ನೆಯನ್ನು ಇಂಗ್ಲಿಷ್ ಅಥವಾ ಕನ್ನಡದಲ್ಲಿ ಕೇಳಿ. AI ನಿಮ್ಮ ಪ್ರಶ್ನೆಯ ಭಾಷೆಯಲ್ಲಿ ಉತ್ತರಿಸುತ್ತದೆ.',
-      initialMessage: 'ನಮಸ್ಕಾರ! ಇಂದು ನಿಮ್ಮ ಕೃಷಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
-      placeholder: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ ಅಥವಾ ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಬಳಸಿ...',
+      initialMessage: 'ನಮಸ್ಕಾರ! ನಾನು ಜೆಮಿನಿ. ಇಂದು ನಿಮ್ಮ ಕೃಷಿ ಅಗತ್ಯಗಳಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
+      placeholder: 'ಕೃಷಿಯ ಬಗ್ಗೆ ಜೆಮಿನಿಯನ್ನು ಕೇಳಿ...',
       thinking: 'ಯೋಚಿಸುತ್ತಿದೆ...',
       errorTitle: 'ದೋಷ',
       speechError: {
@@ -673,7 +673,7 @@ export const translations = {
         tasks: {
             title: 'ನನ್ನ ಕಾರ್ಯಗಳು',
             description: 'ಒಳಬರುವ ರೈಡ್ ವಿನಂತಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ ಮತ್ತು ನಿರ್ವಹಿಸಿ.',
-            noTasks: 'ಯಾವುದೇ ಹೊಸ ರೈಡ್ ವಿನಂತಿಗಳು ಲಭ್ಯವಿಲ್ಲ.',
+            noTasks: 'ಯಾವುದೇ ಹೊಸ ರೈಡ್ ವinಂತಿಗಳು ಲಭ್ಯವಿಲ್ಲ.',
             pickup: 'ಪಿಕ್ಅಪ್',
             destination: 'ಗಮ್ಯಸ್ಥಾನ',
             fare: 'ಶುಲ್ಕ',
@@ -702,7 +702,7 @@ export const translations = {
                 description: 'ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ.',
                 name: 'ಪೂರ್ಣ ಹೆಸರು',
                 phone: 'ಫೋನ್ ಸಂಖ್ಯೆ',
-                license: 'ಚಾಲನಾ ಪರವಾನಗಿ ಸಂಖ್ಯೆ',
+                license: 'ಚಾಲನಾ ಪರವานಗಿ ಸಂಖ್ಯೆ',
             },
             vehicle: {
                 title: 'ವಾಹನದ ವಿವರಗಳು',

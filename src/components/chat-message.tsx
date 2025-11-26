@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { Bot, PlayCircle, User } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
+import { GeminiIcon } from './icons';
 
 export type Message = {
   id: string;
@@ -36,7 +37,7 @@ export function ChatMessage({ message }: { message: Message }) {
       {isAi && (
         <Avatar className="h-8 w-8 border">
           <AvatarFallback>
-            <Bot className="h-5 w-5" />
+            <GeminiIcon className="h-5 w-5" />
           </AvatarFallback>
         </Avatar>
       )}

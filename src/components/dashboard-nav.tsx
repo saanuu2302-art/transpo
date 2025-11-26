@@ -17,6 +17,7 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import { Button } from './ui/button';
+import { GeminiIcon } from './icons';
 
 export function DashboardNav() {
   const pathname = usePathname();
@@ -42,7 +43,7 @@ export function DashboardNav() {
     {
       href: '/dashboard/ai-expert',
       label: t.aiExpert,
-      icon: Bot,
+      icon: GeminiIcon,
     },
     {
       href: '/dashboard/profile',

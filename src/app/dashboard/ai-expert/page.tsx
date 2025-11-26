@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useActionState, useTransition } from 'react';
-import { Send, Mic, Loader2, Bot } from 'lucide-react';
+import { Send, Mic, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -17,32 +17,22 @@ import {
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 import { cn } from '@/lib/utils';
+import { GeminiIcon } from '@/components/icons';
 
-type AiFarmingPayload = {
-  query: string;
-};
+type AiFarmingPayload = FormData;
 
 export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const { language } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
-
-  const [state, formAction, isPending] = useActionState(
-    async (_prevState: any, payload: AiFarmingPayload) => {
-      const userMessage: Message = { id: `user-${Date.now()}`, sender: 'user', text: payload.query };
-      setMessages((prev) => [...prev, userMessage]);
-
-      const result = await getAiFarmingResponse(payload);
-      return result;
-    },
-    null
-  );
-
+  
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const t = translations[language].aiExpert;
+
+  const [state, formAction, isPending] = useActionState(getAiFarmingResponse, null);
 
   const [isRecording, setIsRecording] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
@@ -114,11 +104,18 @@ export default function AiExpertPage() {
     }
   };
   
+  // Optimistically add user message to UI
   useEffect(() => {
     if (isPending) {
-        setInput('');
+      const query = formRef.current?.get('query') as string;
+      if (query) {
+        const userMessage: Message = { id: `user-${Date.now()}`, sender: 'user', text: query };
+        setMessages((prev) => [...prev, userMessage]);
+        setInput(''); // Clear input after sending
+      }
     }
   }, [isPending]);
+
 
   useEffect(() => {
     if (state) {
@@ -128,6 +125,9 @@ export default function AiExpertPage() {
           title: t.errorTitle,
           description: state.error,
         });
+        // Remove the optimistically added user message if AI fails
+        setMessages(prev => prev.slice(0, prev.length -1));
+
       } else if (state.textResponse) {
         setMessages((prev) => [
           ...prev,
@@ -150,14 +150,6 @@ export default function AiExpertPage() {
       });
     }
   }, [messages]);
-  
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!input.trim() || isPending) return;
-
-    const formData = new FormData(e.currentTarget);
-    formAction(formData);
-  };
 
   return (
     <div className="flex flex-col gap-6 h-[calc(100vh-10rem)]">
@@ -185,7 +177,7 @@ export default function AiExpertPage() {
               {isPending && (
                 <div className="flex items-start gap-4 justify-start">
                   <div className="h-8 w-8 border rounded-full flex items-center justify-center bg-card">
-                    <Bot className="h-5 w-5" />
+                    <GeminiIcon className="h-5 w-5" />
                   </div>
                   <div className="max-w-md rounded-lg p-3 rounded-tl-none bg-card flex items-center gap-2">
                     <Loader2 className="h-4 w-4 animate-spin" />
