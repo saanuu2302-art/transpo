@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect, useActionState, useTransition } from 'react';
@@ -106,8 +107,9 @@ export default function AiExpertPage() {
   
   // Optimistically add user message to UI
   useEffect(() => {
-    if (isPending) {
-      const query = formRef.current?.get('query') as string;
+    if (isPending && formRef.current) {
+      const formData = new FormData(formRef.current);
+      const query = formData.get('query') as string;
       if (query) {
         const userMessage: Message = { id: `user-${Date.now()}`, sender: 'user', text: query };
         setMessages((prev) => [...prev, userMessage]);
@@ -240,3 +242,5 @@ export default function AiExpertPage() {
     </div>
   );
 }
+
+    
