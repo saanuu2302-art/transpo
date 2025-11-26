@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="https://storage.googleapis.com/sourcegraph-api-sourcegraph-com/e2a44520-22c6-433a-b851-9e235889626f/transpo-logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
