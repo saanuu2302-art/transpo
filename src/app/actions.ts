@@ -2,12 +2,8 @@
 
 import { farmingAssistant } from '@/ai/flows/ai-farming-assistant';
 
-type AiFarmingPayload = {
-  query: string;
-}
-
-export async function getAiFarmingResponse(payload: AiFarmingPayload) {
-  const { query } = payload;
+export async function getAiFarmingResponse(formData: FormData) {
+  const query = formData.get('query') as string;
   try {
     if (!query) {
       return { error: 'Query is required.' };

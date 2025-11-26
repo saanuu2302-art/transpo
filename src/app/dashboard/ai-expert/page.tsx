@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useActionState } from 'react';
+import { useState, useRef, useEffect, useActionState, useTransition } from 'react';
 import { Send, Mic, Loader2, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -26,12 +26,17 @@ export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const { language } = useLanguage();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const [state, formAction, isPending] = useActionState(
     async (_prevState: any, payload: AiFarmingPayload) => {
-      return getAiFarmingResponse(payload);
+      const userMessage: Message = { id: `user-${Date.now()}`, sender: 'user', text: payload.query };
+      setMessages((prev) => [...prev, userMessage]);
+
+      const result = await getAiFarmingResponse(payload);
+      return result;
     },
-    undefined
+    null
   );
 
   const { toast } = useToast();
@@ -108,6 +113,12 @@ export default function AiExpertPage() {
       }
     }
   };
+  
+  useEffect(() => {
+    if (isPending) {
+        setInput('');
+    }
+  }, [isPending]);
 
   useEffect(() => {
     if (state) {
@@ -139,23 +150,13 @@ export default function AiExpertPage() {
       });
     }
   }, [messages]);
-
-  const handleSendMessage = () => {
-    if (!input.trim() || isPending) return;
-    const query = input.trim();
-
-    setMessages((prev) => [
-      ...prev,
-      { id: `user-${Date.now()}`, sender: 'user', text: query },
-    ]);
-
-    formAction({ query });
-    setInput('');
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleSendMessage();
+    if (!input.trim() || isPending) return;
+
+    const formData = new FormData(e.currentTarget);
+    formAction(formData);
   };
 
   return (
@@ -199,10 +200,12 @@ export default function AiExpertPage() {
         </CardContent>
         <CardFooter className="border-t pt-4">
           <form
-            onSubmit={handleSubmit}
+            ref={formRef}
+            action={formAction}
             className="flex w-full items-center gap-2"
           >
             <Textarea
+              name="query"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={t.placeholder}
@@ -211,7 +214,7 @@ export default function AiExpertPage() {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
-                  handleSendMessage();
+                  formRef.current?.requestSubmit();
                 }
               }}
               disabled={isPending}
