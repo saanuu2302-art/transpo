@@ -6,12 +6,12 @@ const getImage = (id: string): ImagePlaceholder | undefined => {
   return PlaceHolderImages.find((img) => img.id === id);
 };
 
-export const vehicles = [
+export const vehicles: Vehicle[] = [
   {
     id: '1',
     name: 'Mini-Truck',
     kannadaName: 'ಮಿನಿ ಟ್ರಕ್',
-    image: getImage('minitruck-vehicle'),
+    image: getImage('minitruck-vehicle')!,
     cost: '800 / trip',
     rating: 4.2,
     lat: 12.55,
@@ -23,7 +23,7 @@ export const vehicles = [
     id: '2',
     name: 'Heavy Duty Truck',
     kannadaName: 'ಹೆವಿ ಡ್ಯೂಟಿ ಟ್ರಕ್',
-    image: getImage('heavy-duty-truck-vehicle'),
+    image: getImage('heavy-duty-truck-vehicle')!,
     cost: '2500 / trip',
     rating: 4.8,
     lat: 12.52,
@@ -35,7 +35,7 @@ export const vehicles = [
     id: '3',
     name: 'Lorry',
     kannadaName: 'ಲಾರಿ',
-    image: getImage('lorry-vehicle'),
+    image: getImage('lorry-vehicle')!,
     cost: '2200 / trip',
     rating: 4.6,
     lat: 12.5,
@@ -47,7 +47,7 @@ export const vehicles = [
     id: '4',
     name: 'Luggage Auto',
     kannadaName: 'ಲಗೇಜ್ ಆಟೋ',
-    image: getImage('luggage-auto-vehicle'),
+    image: getImage('luggage-auto-vehicle')!,
     cost: '500 / trip',
     rating: 4.3,
     lat: 12.53,
