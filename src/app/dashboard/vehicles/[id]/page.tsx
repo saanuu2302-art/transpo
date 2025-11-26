@@ -18,8 +18,9 @@ import Image from 'next/image';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useState, useEffect } from 'react';
-import { vehicles, type Vehicle } from '@/lib/data';
+import { vehicles, type Vehicle, bookingHistory } from '@/lib/data';
 import { Skeleton } from '@/components/ui/skeleton';
+import { format } from 'date-fns';
 
 export default function VehicleDetailPage() {
   const params = useParams();
@@ -64,7 +65,6 @@ export default function VehicleDetailPage() {
           description: t.confirmation.success.pinDescription(pin),
         });
 
-        // Use a fake booking ID for navigation
         const fakeBookingId = `booking_${Date.now()}`;
         router.push(`/dashboard/vehicles/tracking?bookingId=${fakeBookingId}&vehicleId=${vehicle.id}&pin=${pin}`);
 
@@ -79,6 +79,29 @@ export default function VehicleDetailPage() {
         setIsBooking(false);
     }
   };
+
+  const handleCancelBooking = () => {
+    if (!vehicle) return;
+
+    const newBooking = {
+      id: `h${bookingHistory.length + 1}`,
+      item: vehicle.name,
+      kannadaItem: vehicle.kannadaName,
+      date: format(new Date(), 'yyyy-MM-dd'),
+      cost: vehicle.cost.split(' ')[0], 
+      status: 'Cancelled' as const,
+      kannadaStatus: 'ರದ್ದುಪಡಿಸಲಾಗಿದೆ' as const,
+    };
+    bookingHistory.unshift(newBooking);
+
+    toast({
+        variant: "destructive",
+        title: "Booking Cancelled",
+        description: `Your booking for the ${language === 'kn' ? vehicle.kannadaName : vehicle.name} has been cancelled.`
+    });
+
+    router.back();
+  }
 
   if (vehicle === undefined) {
     return (
@@ -196,7 +219,7 @@ export default function VehicleDetailPage() {
             {tConfirm.confirm}
           </Button>
           <Button
-            onClick={() => router.back()}
+            onClick={handleCancelBooking}
             variant="outline"
             className="w-full md:w-auto"
             disabled={isBooking}
