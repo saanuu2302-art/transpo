@@ -59,7 +59,7 @@ export default function MachineDetailPage() {
       status: 'Cancelled' as const,
       kannadaStatus: 'ರದ್ದುಪಡಿಸಲಾಗಿದೆ' as const,
     };
-    bookingHistory.push(newBooking);
+    bookingHistory.unshift(newBooking);
 
     toast({
       variant: 'destructive',
