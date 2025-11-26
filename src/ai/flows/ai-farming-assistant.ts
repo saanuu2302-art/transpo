@@ -21,7 +21,7 @@ const FarmingAssistantOutputSchema = z.object({
   textResponse: z.string().describe('The text response to the farming question.'),
   voiceResponse: z.string().describe('The voice response to the farming question as a data URI.'),
 });
-export type FarmingAssistantOutput = z-infer<typeof FarmingAssistantOutputSchema>;
+export type FarmingAssistantOutput = z.infer<typeof FarmingAssistantOutputSchema>;
 
 export async function farmingAssistant(input: FarmingAssistantInput): Promise<FarmingAssistantOutput> {
   return farmingAssistantFlow(input);
