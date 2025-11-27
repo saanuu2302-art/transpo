@@ -17,19 +17,30 @@ import {
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 import { cn } from '@/lib/utils';
+import { Input } from '@/components/ui/input';
 
 type AiFarmingPayload = {
-  query: string;
+  query: FormData;
 };
 
 export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const { language } = useLanguage();
+  const formRef = useRef<HTMLFormElement>(null);
   
   const [state, formAction, isPending] = useActionState(
     async (_prevState: any, payload: AiFarmingPayload) => {
-      return getAiFarmingResponse(payload);
+      const query = payload.get('query') as string;
+      if (!query) return { error: 'Query is required.' };
+      
+      setMessages((prev) => [
+        ...prev,
+        { id: `user-${Date.now()}`, sender: 'user', text: query },
+      ]);
+      setInput('');
+
+      return getAiFarmingResponse({ query });
     },
     undefined
   );
@@ -142,15 +153,7 @@ export default function AiExpertPage() {
 
   const handleSendMessage = () => {
     if (!input.trim() || isPending) return;
-    const query = input.trim();
-
-    setMessages((prev) => [
-      ...prev,
-      { id: `user-${Date.now()}`, sender: 'user', text: query },
-    ]);
-
-    formAction({ query });
-    setInput('');
+    formRef.current?.requestSubmit();
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -199,9 +202,11 @@ export default function AiExpertPage() {
         </CardContent>
         <CardFooter className="border-t pt-4">
           <form
-            onSubmit={handleSubmit}
+            ref={formRef}
+            action={formAction}
             className="flex w-full items-center gap-2"
           >
+             <Input type="hidden" name="query" value={input} />
             <Textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
