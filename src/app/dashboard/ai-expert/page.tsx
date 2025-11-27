@@ -17,15 +17,18 @@ import {
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 import { cn } from '@/lib/utils';
+import { useUser } from '@/firebase';
 
 type AiFarmingPayload = {
   query: string;
+  userId: string;
 };
 
 export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const { language } = useLanguage();
+  const { user } = useUser();
 
   const [state, formAction, isPending] = useActionState(
     async (_prevState: any, payload: AiFarmingPayload) => {
@@ -141,7 +144,7 @@ export default function AiExpertPage() {
   }, [messages]);
 
   const handleSendMessage = () => {
-    if (!input.trim() || isPending) return;
+    if (!input.trim() || isPending || !user) return;
     const query = input.trim();
 
     setMessages((prev) => [
@@ -149,7 +152,7 @@ export default function AiExpertPage() {
       { id: `user-${Date.now()}`, sender: 'user', text: query },
     ]);
 
-    formAction({ query });
+    formAction({ query, userId: user.uid });
     setInput('');
   };
 
@@ -234,7 +237,7 @@ export default function AiExpertPage() {
             <Button
               type="submit"
               size="icon"
-              disabled={!input.trim() || isPending}
+              disabled={!input.trim() || isPending || !user}
             >
               <Send className="h-5 w-5" />
               <span className="sr-only">Send</span>
