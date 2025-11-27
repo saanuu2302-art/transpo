@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -16,16 +16,6 @@ import {
 } from '@/components/ui/accordion';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
-import {
-  getFirestore,
-  collection,
-  query,
-  orderBy,
-  onSnapshot,
-  doc,
-  getDoc,
-} from 'firebase/firestore';
-import { initializeFirebase } from '@/firebase';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { User, Bot } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -38,57 +28,36 @@ type Log = {
   farmerName: string;
 };
 
+const fakeLogs: Log[] = [
+  {
+    id: '1',
+    query: 'What is the best time to plant sugarcane in Karnataka?',
+    response: 'The ideal time for planting sugarcane in Karnataka is from October to December for the Eksali crop, and from January to February for the Adsali crop.',
+    timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+    farmerName: 'Srinivas',
+  },
+  {
+    id: '2',
+    query: 'How to control aphids on my cotton plants?',
+    response: 'You can use a neem oil spray or insecticidal soap. For severe infestations, consider using a systemic insecticide like imidacloprid after consulting with a local agricultural expert.',
+    timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000), // 5 hours ago
+    farmerName: 'Lakshmi',
+  },
+  {
+    id: '3',
+    query: 'ಕನ್ನಡದಲ್ಲಿ ರಾಗಿ ಬೆಳೆಗೆ ನೀರಿನ ನಿರ್ವಹಣೆ ಬಗ್ಗೆ ತಿಳಿಸಿ.',
+    response: 'ರಾಗಿ ಬೆಳೆಗೆ ಕಡಿಮೆ ನೀರು ಸಾಕಾಗುತ್ತದೆ. ಸಾಮಾನ್ಯವಾಗಿ, ಹೂವಾಡುವ ಮತ್ತು ಕಾಳು ಕಟ್ಟುವ ಹಂತದಲ್ಲಿ ನೀರು ಒದಗಿಸುವುದು ಬಹಳ ಮುಖ್ಯ. ಮಣ್ಣಿನ ತೇವಾಂಶವನ್ನು ಆಧರಿಸಿ 10-15 ದಿನಗಳ ಅಂತರದಲ್ಲಿ ನೀರು ಹಾಯಿಸಬಹುದು.',
+    timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
+    farmerName: 'Gopal',
+  },
+];
+
+
 export default function Page() {
   const { language } = useLanguage();
   const t = translations[language].nav.admin;
-  const [logs, setLogs] = useState<Log[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const { firestore } = initializeFirebase();
-    const logsCollection = collection(firestore, 'ai_expert_logs');
-    const logsQuery = query(logsCollection, orderBy('timestamp', 'desc'));
-
-    const unsubscribe = onSnapshot(
-      logsQuery,
-      async (snapshot) => {
-        const fetchedLogs = await Promise.all(
-          snapshot.docs.map(async (logDoc) => {
-            const logData = logDoc.data();
-            let farmerName = 'Unknown Farmer';
-
-            if (logData.userId) {
-              try {
-                const userRef = doc(firestore, 'users', logData.userId);
-                const userSnap = await getDoc(userRef);
-                if (userSnap.exists()) {
-                  farmerName = userSnap.data().name || 'Unnamed Farmer';
-                }
-              } catch (error) {
-                console.error("Error fetching farmer's name: ", error);
-              }
-            }
-
-            return {
-              id: logDoc.id,
-              query: logData.query,
-              response: logData.response,
-              timestamp: logData.timestamp.toDate(),
-              farmerName,
-            };
-          })
-        );
-        setLogs(fetchedLogs);
-        setLoading(false);
-      },
-      (error) => {
-        console.error('Error fetching logs:', error);
-        setLoading(false);
-      }
-    );
-
-    return () => unsubscribe();
-  }, []);
+  const [logs] = useState<Log[]>(fakeLogs);
+  const [loading] = useState(false);
 
   return (
     <div className="flex flex-col gap-6">
