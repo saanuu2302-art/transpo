@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     'Tech Driven Transportation Bridging Farmers with On-Demand Logistics',
   icons: {
-    icon: 'https://storage.googleapis.com/sourcegraph-api-sourcegraph-com/e2a44520-22c6-433a-b851-9e235889626f/transpo-logo.png',
+    icon: 'https://cdn-icons-png.flaticon.com/512/3523/3523177.png',
   },
 };
 
