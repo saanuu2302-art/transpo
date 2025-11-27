@@ -22,6 +22,8 @@ import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
+import { Map as GoogleMap } from '@/components/map';
+
 
 export default function VehicleDetailPage() {
   const params = useParams();
@@ -118,6 +120,8 @@ export default function VehicleDetailPage() {
 
   const tConfirm = t.confirmation;
   const currentVehicle = nearestVehicle || vehicle;
+  const mapCenter = currentVehicle.lat && currentVehicle.lng ? { lat: currentVehicle.lat, lng: currentVehicle.lng } : undefined;
+
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -200,7 +204,7 @@ export default function VehicleDetailPage() {
                   <div className='w-full'>
                     <p className="font-semibold">{tConfirm.details.liveTracking}</p>
                     <div className="mt-2 h-64 w-full rounded-md bg-muted flex items-center justify-center">
-                      <p className="text-xs text-muted-foreground">{tConfirm.details.trackingPlaceholder}</p>
+                      <GoogleMap center={mapCenter} />
                     </div>
                   </div>
                 </div>

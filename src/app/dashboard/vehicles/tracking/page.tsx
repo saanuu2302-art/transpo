@@ -19,6 +19,7 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import { Map as GoogleMap } from '@/components/map';
 
 
 export default function VehicleTrackingPage() {
@@ -42,6 +43,11 @@ export default function VehicleTrackingPage() {
       </div>
     );
   }
+  
+  const mapCenter = vehicle.lat && vehicle.lng ? { lat: vehicle.lat, lng: vehicle.lng } : undefined;
+  // Mock destination
+  const destination = { lat: 12.55, lng: 76.95 };
+
 
   const handlePayment = () => {
     toast({
@@ -65,7 +71,7 @@ export default function VehicleTrackingPage() {
         <CardContent className="grid md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div className="aspect-video w-full rounded-md bg-muted flex items-center justify-center">
-                <p className="text-sm text-muted-foreground">{t.tracking.mapPlaceholder}</p>
+                 <GoogleMap center={mapCenter} destination={destination} showRoute={true} />
             </div>
             <Card>
                 <CardContent className="p-4 grid grid-cols-2 items-center justify-between gap-4">

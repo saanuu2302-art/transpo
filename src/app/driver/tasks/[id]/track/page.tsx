@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
@@ -16,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, User, MapPin, Milestone, Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
+import { Map as GoogleMap } from '@/components/map';
 
 export default function DriverTrackPage() {
   const params = useParams();
@@ -30,6 +32,11 @@ export default function DriverTrackPage() {
   if (!task) {
     return <div>Task not found</div>;
   }
+  
+  // Mock coordinates for pickup and destination
+  const pickupCoords = { lat: 12.52, lng: 76.89 };
+  const destinationCoords = { lat: 12.42, lng: 76.79 };
+
 
   const handleEndTrip = () => {
     toast({
@@ -58,7 +65,7 @@ export default function DriverTrackPage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           <div className="aspect-video w-full rounded-lg bg-muted flex items-center justify-center">
-            <p className="text-muted-foreground">Map will be shown here</p>
+            <GoogleMap center={pickupCoords} destination={destinationCoords} showRoute={true} />
           </div>
         </div>
         <div className="space-y-6 lg:col-span-1">
