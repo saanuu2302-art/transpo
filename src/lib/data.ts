@@ -211,6 +211,16 @@ export const ownerRequests = [
     }
 ];
 
+export const ownerTransactions = {
+    total: 15400,
+    kannadaTotal: '೧೫೪೦೦',
+    transactions: [
+        { id: 'otx1', date: '2023-11-20', amount: 4800, description: 'Payment from Gopal for Tractor', kannadaDescription: 'ಗೋಪಾಲ್ ಅವರಿಂದ ಟ್ರ್ಯಾಕ್ಟರ್‌ಗೆ ಪಾವತಿ' },
+        { id: 'otx2', date: '2023-11-18', amount: 1000, description: 'Payment from Lakshmi for Tiller', kannadaDescription: 'ಲಕ್ಷ್ಮಿ ಅವರಿಂದ ಟಿಲ್ಲರ್‌ಗೆ ಪಾವತಿ' },
+        { id: 'otx3', date: '2023-11-15', amount: 9600, description: 'Payment from Srinivas for Harvester', kannadaDescription: 'ಶ್ರೀನಿವಾಸ್ ಅವರಿಂದ ಹಾರ್ವೆಸ್ಟರ್‌ಗೆ ಪಾವತಿ' },
+    ]
+};
+
 export const adminVehicleBookings = [
   {
     id: 'VB001',
@@ -381,6 +391,7 @@ export type DriverTask = typeof driverTasks[0];
 export type DriverEarnings = typeof driverEarnings;
 export type OwnerMachine = typeof ownerMachines[0];
 export type OwnerRequest = typeof ownerRequests[0];
+export type OwnerTransaction = typeof ownerTransactions.transactions[0];
 export type VehicleBooking = typeof vehicleBookings[0];
 export type MachineryBooking = typeof machineryBookings[0];
 export type AdminVehicleBooking = typeof adminVehicleBookings[0];
