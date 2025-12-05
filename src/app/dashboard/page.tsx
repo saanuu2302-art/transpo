@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Bot, Car, CheckCircle, Tractor, XCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Tractor, XCircle, Car } from 'lucide-react';
 import Link from 'next/link';
 import {
   Card,
@@ -14,13 +14,14 @@ import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 import { bookingHistory, type Booking } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
+import { GeminiIcon } from '@/components/icons';
 
 export default function DashboardPage() {
   const { language } = useLanguage();
   const t = translations[language].dashboard;
 
   const featureCards = [
-    {
+     {
       title: t.features.vehicleBooking.title,
       description: t.features.vehicleBooking.description,
       href: '/dashboard/vehicles',
@@ -36,7 +37,7 @@ export default function DashboardPage() {
       title: t.features.aiExpert.title,
       description: t.features.aiExpert.description,
       href: '/dashboard/ai-expert',
-      icon: Bot,
+      icon: GeminiIcon,
     },
   ];
 

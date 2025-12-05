@@ -1,7 +1,8 @@
+
 'use client';
 
-import { useState, useRef, useEffect, useActionState } from 'react';
-import { Send, Mic, Loader2, Bot } from 'lucide-react';
+import { useState, useRef, useEffect, useActionState, useTransition } from 'react';
+import { Send, Mic, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -17,11 +18,17 @@ import {
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 import { cn } from '@/lib/utils';
+<<<<<<< HEAD
 import { Input } from '@/components/ui/input';
 
 type AiFarmingPayload = {
   query: FormData;
 };
+=======
+import { GeminiIcon } from '@/components/icons';
+
+type AiFarmingPayload = FormData;
+>>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
 
 export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -29,6 +36,7 @@ export default function AiExpertPage() {
   const { language } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
   
+<<<<<<< HEAD
   const [state, formAction, isPending] = useActionState(
     async (_prevState: any, payload: AiFarmingPayload) => {
       const query = payload.get('query') as string;
@@ -45,10 +53,14 @@ export default function AiExpertPage() {
     undefined
   );
 
+=======
+>>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const t = translations[language].aiExpert;
+
+  const [state, formAction, isPending] = useActionState(getAiFarmingResponse, null);
 
   const [isRecording, setIsRecording] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
@@ -119,6 +131,20 @@ export default function AiExpertPage() {
       }
     }
   };
+  
+  // Optimistically add user message to UI
+  useEffect(() => {
+    if (isPending && formRef.current) {
+      const formData = new FormData(formRef.current);
+      const query = formData.get('query') as string;
+      if (query) {
+        const userMessage: Message = { id: `user-${Date.now()}`, sender: 'user', text: query };
+        setMessages((prev) => [...prev, userMessage]);
+        setInput(''); // Clear input after sending
+      }
+    }
+  }, [isPending]);
+
 
   useEffect(() => {
     if (state) {
@@ -128,6 +154,9 @@ export default function AiExpertPage() {
           title: t.errorTitle,
           description: state.error,
         });
+        // Remove the optimistically added user message if AI fails
+        setMessages(prev => prev.slice(0, prev.length -1));
+
       } else if (state.textResponse) {
         setMessages((prev) => [
           ...prev,
@@ -151,6 +180,7 @@ export default function AiExpertPage() {
     }
   }, [messages]);
 
+<<<<<<< HEAD
   const handleSendMessage = () => {
     if (!input.trim() || isPending) return;
     formRef.current?.requestSubmit();
@@ -161,6 +191,8 @@ export default function AiExpertPage() {
     handleSendMessage();
   };
 
+=======
+>>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
   return (
     <div className="flex flex-col gap-6 h-[calc(100vh-10rem)]">
       <div>
@@ -187,7 +219,7 @@ export default function AiExpertPage() {
               {isPending && (
                 <div className="flex items-start gap-4 justify-start">
                   <div className="h-8 w-8 border rounded-full flex items-center justify-center bg-card">
-                    <Bot className="h-5 w-5" />
+                    <GeminiIcon className="h-5 w-5" />
                   </div>
                   <div className="max-w-md rounded-lg p-3 rounded-tl-none bg-card flex items-center gap-2">
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -208,6 +240,7 @@ export default function AiExpertPage() {
           >
              <Input type="hidden" name="query" value={input} />
             <Textarea
+              name="query"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={t.placeholder}
@@ -216,7 +249,7 @@ export default function AiExpertPage() {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
-                  handleSendMessage();
+                  formRef.current?.requestSubmit();
                 }
               }}
               disabled={isPending}
@@ -250,3 +283,5 @@ export default function AiExpertPage() {
     </div>
   );
 }
+
+    

@@ -4,7 +4,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
-import { vehicles } from '@/lib/data';
+import { vehicles, bookingHistory } from '@/lib/data';
 import {
   Card,
   CardContent,
@@ -16,8 +16,9 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { CreditCard, Landmark, Wallet } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { format } from 'date-fns';
 
-export default function PaymentPage() {
+export default function VehiclePaymentPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const vehicleId = searchParams.get('vehicleId');
@@ -28,6 +29,19 @@ export default function PaymentPage() {
   const t = translations[language].payment;
 
   const handlePayment = (method: string) => {
+    if (!vehicle) return;
+
+    const newBooking = {
+      id: `h${bookingHistory.length + 1}`,
+      item: vehicle.name,
+      kannadaItem: vehicle.kannadaName,
+      date: format(new Date(), 'yyyy-MM-dd'),
+      cost: vehicle.cost.split(' ')[0], // Extracts amount from cost string
+      status: 'Completed' as const,
+      kannadaStatus: 'ಪೂರ್ಣಗೊಂಡಿದೆ' as const,
+    };
+    bookingHistory.unshift(newBooking);
+
     toast({
       title: t.success.title,
       description: t.success.description(method),
@@ -36,13 +50,10 @@ export default function PaymentPage() {
   };
 
   if (!vehicle) {
-    // Handle case where vehicle is not found, though ideally we always have it
     router.push('/dashboard/vehicles');
     return null;
   }
   
-  const vehicleName = language === 'en' ? vehicle.name : vehicle.kannadaName;
-
   return (
     <div className="max-w-md mx-auto flex items-center h-[calc(100vh-10rem)]">
       <Card className="w-full">
@@ -62,7 +73,7 @@ export default function PaymentPage() {
              <Button
               variant="outline"
               className="w-full justify-start h-14 text-base"
-              onClick={() => handlePayment('Cash')}
+              onClick={() => handlePayment(language === 'en' ? 'Cash' : 'ನಗದು')}
             >
               <Wallet className="mr-4 h-6 w-6" />
               {t.cash}
@@ -78,7 +89,7 @@ export default function PaymentPage() {
             <Button
               variant="outline"
               className="w-full justify-start h-14 text-base"
-              onClick={() => handlePayment('Card')}
+              onClick={() => handlePayment(language === 'en' ? 'Card' : 'ಕಾರ್ಡ್')}
             >
               <CreditCard className="mr-4 h-6 w-6" />
               {t.card}

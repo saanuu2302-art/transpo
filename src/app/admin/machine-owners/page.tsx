@@ -18,8 +18,10 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useRouter } from 'next/navigation';
 
 export default function AdminMachineOwnersPage() {
+  const router = useRouter();
   const { language } = useLanguage();
   const t = translations[language].admin.machineOwners;
 
@@ -75,7 +77,7 @@ export default function AdminMachineOwnersPage() {
                       <Badge variant={owner.status === 'Approved' ? 'secondary' : 'destructive'}>{owner.status}</Badge>
                     </TableCell>
                     <TableCell>
-                      <Button variant="outline" size="sm">{t.viewDetails}</Button>
+                      <Button variant="outline" size="sm" onClick={() => router.push(`/admin/machine-owners/${owner.id}`)}>{t.viewDetails}</Button>
                     </TableCell>
                   </TableRow>
                 )

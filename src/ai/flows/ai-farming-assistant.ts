@@ -57,7 +57,7 @@ async function toWav(
 const farmingAssistantPrompt = ai.definePrompt({
   name: 'farmingAssistantPrompt',
   input: {schema: FarmingAssistantInputSchema},
-  prompt: `You are an expert AI farming assistant. A farmer will ask a question in either English or Kannada, and you will provide a helpful answer.
+  prompt: `You are a helpful, creative, and knowledgeable AI farming assistant, powered by Gemini. A farmer will ask a question in either English or Kannada, and you will provide a helpful answer based on agriculture. You may use fake data.
 You must detect the language of the user's question and respond in that same language.
 
 Question: {{{query}}}`,

@@ -9,37 +9,37 @@
     {
       "id": "minitruck-vehicle",
       "description": "A small mini-truck for transporting goods.",
-      "imageUrl": "https://images.unsplash.com/photo-1610647929723-a8922852cd44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwaWNrdXAlMjB0cnVja3xlbnwwfHx8fDE3NjQwOTA5NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "pickup truck"
+      "imageUrl": "https://images.unsplash.com/photo-1748835600553-40ebc0317d83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWluaSUyMHRydWNrfGVufDB8fHx8MTc2NDEyOTg4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mini truck"
     },
     {
       "id": "heavy-duty-truck-vehicle",
       "description": "A heavy duty truck for large loads.",
-      "imageUrl": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoZWF2eSUyMHRydWNrfGVufDB8fHx8MTc2NDA5Mjk0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1590862384597-3d3a1c1d89c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoZWF2eSUyMGR1dHklMjB0cnVja3xlbnwwfHx8fDE3MjI5NTIyNTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "heavy truck"
-    },
-    {
-      "id": "lorry-vehicle",
-      "description": "A large lorry for transporting goods.",
-      "imageUrl": "https://images.unsplash.com/photo-1508920158-95e283c74828?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsb3JyeXxlbnwwfHx8fDE3NjQwOTI5NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "lorry"
     },
     {
       "id": "luggage-auto-vehicle",
       "description": "A three-wheeled luggage auto rickshaw.",
-      "imageUrl": "https://images.unsplash.com/photo-1605699399435-5a7a7d451291?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsb3JyeXxlbnwwfHx8fDE3NjQwOTI5NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1623351187421-340156d11248?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsb2FkZSUyMGF1dG98ZW58MHx8fHwxNzIyOTUyMzE2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "auto rickshaw"
+    },
+    {
+      "id": "lorry-vehicle",
+      "description": "A large lorry for transporting goods.",
+      "imageUrl": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsb3JyeXxlbnwwfHx8fDE3MjI5NTIzNDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lorry"
     },
     {
       "id": "tractor-machine",
       "description": "A tractor as a farm machine.",
-      "imageUrl": "https://images.unsplash.com/photo-1526664781949-af414dc24053?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmYXJtJTIwdHJhY3RvcnxlbnwwfHx8fDE3NjQwNjcxMTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1708878280909-24cca4c080df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxmYXJtJTIwdHJhY3RvcnxlbnwwfHx8fDE3NjQwNjcxMTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "farm tractor"
     },
     {
       "id": "tiller-machine",
       "description": "A power tiller or rototiller machine.",
-      "imageUrl": "https://images.unsplash.com/photo-1760527072562-6ab5bd3054dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxnYXJkZW5pbmclMjBlcXVpcG1lbnR8ZW58MHx8fHwxNzY0MDkyODU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1732616925499-a3aa65ad8384?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnYXJkZW5pbmclMjBlcXVpcG1lbnR8ZW58MHx8fHwxNzY0MDkyODU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "gardening equipment"
     },
     {
@@ -57,7 +57,7 @@
     {
       "id": "farmer-avatar",
       "description": "An avatar image for a farmer user.",
-      "imageUrl": "https://images.unsplash.com/photo-1666452165223-a369d541ff0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmYXJtZXIlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjQwNTM2NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1665281873319-cc26f358a7a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxmYXJtZXIlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjQwNTM2NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "farmer portrait"
     }
   ]

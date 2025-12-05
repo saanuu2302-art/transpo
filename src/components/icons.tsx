@@ -36,3 +36,16 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function GeminiIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 15.5V15H8v-2.5h2.5V10H14v2.5h2.5V15H14v2.5h-3.5zm7-5.5H16V9.5h1.5v-3h-3V8H16v1.5h-1.5v3h3V12zm-9.5-3H8v-3h3V8H9.5v1.5z" />
+    </svg>
+  );
+}

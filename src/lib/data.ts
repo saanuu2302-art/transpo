@@ -6,52 +6,57 @@ const getImage = (id: string): ImagePlaceholder | undefined => {
   return PlaceHolderImages.find((img) => img.id === id);
 };
 
-export const vehicles = [
+export const vehicles: Vehicle[] = [
   {
-    id: '1',
-    name: 'Mini-Truck',
+    id: 'v1',
+    name: 'Mini Truck',
     kannadaName: 'ಮಿನಿ ಟ್ರಕ್',
-    image: getImage('minitruck-vehicle'),
-    cost: '800 / trip',
+    image: getImage('minitruck-vehicle')!,
+    cost: '₹18 / km',
     rating: 4.2,
-    lat: 12.55,
-    lng: 76.9,
-    owner: 'Ravi Kumar',
+    lat: 12.98,
+    lng: 77.6,
+    ownerName: 'Ravi Kumar',
+    driverId: 'driver001'
   },
   {
-    id: '2',
+    id: 'v2',
     name: 'Heavy Duty Truck',
     kannadaName: 'ಹೆವಿ ಡ್ಯೂಟಿ ಟ್ರಕ್',
-    image: getImage('heavy-duty-truck-vehicle'),
-    cost: '2500 / trip',
+    image: getImage('heavy-duty-truck-vehicle')!,
+    cost: '₹35 / km',
     rating: 4.8,
-    lat: 12.52,
-    lng: 76.89,
-    owner: 'Anand Reddy',
+    lat: 12.9716,
+    lng: 77.5946,
+    ownerName: 'Anand Reddy',
+    driverId: 'driver002'
   },
   {
-    id: '3',
-    name: 'Lorry',
-    kannadaName: 'ಲಾರಿ',
-    image: getImage('lorry-vehicle'),
-    cost: '2200 / trip',
-    rating: 4.6,
-    lat: 12.5,
-    lng: 76.88,
-    owner: 'Prakash Gowda',
-  },
-  {
-    id: '4',
+    id: 'v3',
     name: 'Luggage Auto',
     kannadaName: 'ಲಗೇಜ್ ಆಟೋ',
-    image: getImage('luggage-auto-vehicle'),
-    cost: '500 / trip',
-    rating: 4.3,
-    lat: 12.53,
-    lng: 76.91,
-    owner: 'Santosh',
+    image: getImage('luggage-auto-vehicle')!,
+    cost: '₹15 / km',
+    rating: 4.4,
+    lat: 12.96,
+    lng: 77.58,
+    ownerName: 'Santosh',
+    driverId: 'driver003'
+  },
+  {
+    id: 'v4',
+    name: 'Lorry',
+    kannadaName: 'ಲಾರಿ',
+    image: getImage('lorry-vehicle')!,
+    cost: '₹40 / km',
+    rating: 4.7,
+    lat: 12.95,
+    lng: 77.62,
+    ownerName: 'Prakash Gowda',
+    driverId: 'driver004'
   },
 ];
+
 
 export const machines = [
   {
@@ -92,7 +97,7 @@ export const machines = [
   },
 ];
 
-export const bookingHistory: Booking[] = [
+export const bookingHistory: BookingHistoryItem[] = [
   {
     id: 'h1',
     item: 'Tractor',
@@ -207,6 +212,7 @@ export const ownerRequests = [
     }
 ];
 
+<<<<<<< HEAD
 export const vehicleBookings = [
   { id: 'VB001', farmerName: 'Srinivas', driverName: 'Ravi Kumar', vehicle: 'Mini-Truck', date: '2023-11-10', fare: '₹800', status: 'Completed' },
   { id: 'VB002', farmerName: 'Lakshmi', driverName: 'Anand Reddy', vehicle: 'Heavy Duty Truck', date: '2023-11-11', fare: '₹2500', status: 'Completed' },
@@ -222,7 +228,154 @@ export const machineryBookings = [
 
 export type Vehicle = typeof vehicles[0];
 export type Machine = typeof machines[0];
+=======
+export const adminVehicleBookings = [
+  {
+    id: 'VB001',
+    farmer: 'Srinivas',
+    driver: 'Ravi Kumar',
+    pickup: 'Mandya Farm',
+    dropoff: 'Mysuru Market',
+    fare: '₹1500',
+    status: 'Completed',
+    kannadaStatus: 'ಪೂರ್ಣಗೊಂಡಿದೆ'
+  },
+  {
+    id: 'VB002',
+    farmer: 'Lakshmi',
+    driver: 'Anand Reddy',
+    pickup: 'Channapatna',
+    dropoff: 'Bengaluru KR Market',
+    fare: '₹2500',
+    status: 'Pending',
+    kannadaStatus: 'ಬಾಕಿಯಿದೆ'
+  },
+  {
+    id: 'VB003',
+    farmer: 'Gopal',
+    driver: 'Santosh',
+    pickup: 'Nanjangud',
+    dropoff: 'Ooty Market',
+    fare: '₹3000',
+    status: 'Cancelled',
+    kannadaStatus: 'ರದ್ದುಪಡಿಸಲಾಗಿದೆ'
+  },
+];
+
+export const adminMachineryBookings = [
+    {
+        id: 'MB001',
+        farmer: 'Srinivas',
+        owner: 'Ramesh',
+        machine: 'Tractor',
+        duration: '4 hours',
+        cost: '₹4800',
+        status: 'Completed',
+        kannadaStatus: 'ಪೂರ್ಣಗೊಂಡಿದೆ'
+    },
+    {
+        id: 'MB002',
+        farmer: 'Lakshmi',
+        owner: 'Suresh',
+        machine: 'Tiller',
+        duration: '2 hours',
+        cost: '₹1000',
+        status: 'Pending',
+        kannadaStatus: 'ಬಾಕಿಯಿದೆ'
+    },
+    {
+        id: 'MB003',
+        farmer: 'Gopal',
+        owner: 'Ganesh',
+        machine: 'Sprayer',
+        duration: '3 hours',
+        cost: '₹900',
+        status: 'Pending',
+        kannadaStatus: 'ಬಾಕಿಯಿದೆ'
+    }
+]
+
+export const adminMarketplaceProducts = [
+  {
+    id: 'P001',
+    productName: 'Organic Mangoes',
+    kannadaProductName: 'ಸಾವಯವ ಮಾವುಗಳು',
+    sellerName: 'Srinivas',
+    kannadaSellerName: 'ಶ್ರೀನಿವಾಸ್',
+    price: '₹200 / kg',
+    kannadaPrice: '₹೨೦೦ / ಕೆಜಿ',
+    stockStatus: 'In Stock',
+    kannadaStockStatus: 'ಸ್ಟಾಕ್‌ನಲ್ಲಿದೆ',
+    approvalStatus: 'Approved',
+    kannadaApprovalStatus: 'ಅನುಮೋದಿಸಲಾಗಿದೆ',
+    imageUrl: 'https://picsum.photos/seed/mango/200'
+  },
+  {
+    id: 'P002',
+    productName: 'Fresh Sugarcane',
+    kannadaProductName: 'ತಾಜಾ ಕಬ್ಬು',
+    sellerName: 'Gopal',
+    kannadaSellerName: 'ಗೋಪಾಲ್',
+    price: '₹500 / quintal',
+    kannadaPrice: '₹೫೦೦ / ಕ್ವಿಂಟಲ್',
+    stockStatus: 'Low Stock',
+    kannadaStockStatus: 'ಕಡಿಮೆ ಸ್ಟಾಕ್',
+    approvalStatus: 'Pending',
+    kannadaApprovalStatus: 'ಬಾಕಿಯಿದೆ',
+    imageUrl: 'https://picsum.photos/seed/sugarcane/200'
+  },
+   {
+    id: 'P003',
+    productName: 'Brown Rice',
+    kannadaProductName: 'ಕಂದು ಅಕ್ಕಿ',
+    sellerName: 'Lakshmi',
+    kannadaSellerName: 'ಲಕ್ಷ್ಮಿ',
+    price: '₹80 / kg',
+    kannadaPrice: '₹೮೦ / ಕೆಜಿ',
+    stockStatus: 'In Stock',
+    kannadaStockStatus: 'ಸ್ಟಾಕ್‌ನಲ್ಲಿದೆ',
+    approvalStatus: 'Approved',
+    kannadaApprovalStatus: 'ಅನುಮೋದಿಸಲಾಗಿದೆ',
+    imageUrl: 'https://picsum.photos/seed/rice/200'
+  }
+];
+
+// Firestore Document Types
+export type Vehicle = {
+    id: string;
+    name: string;
+    kannadaName: string;
+    cost: string;
+    rating: number;
+    ownerName: string;
+    driverId: string;
+    lat: number;
+    lng: number;
+    image: {
+        imageUrl: string;
+        description: string;
+        imageHint: string;
+    }
+};
+
+>>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
 export type Booking = {
+    id: string;
+    userId: string;
+    vehicleId: string;
+    driverId: string;
+    status: 'confirmed' | 'in-progress' | 'completed' | 'cancelled';
+    pickup: string;
+    destination: string;
+    cropType: string;
+    pin: string;
+    createdAt: Date;
+    fare: string;
+};
+
+
+export type Machine = typeof machines[0];
+export type BookingHistoryItem = {
     id: string;
     item: string;
     kannadaItem: string;
@@ -235,5 +388,11 @@ export type DriverTask = typeof driverTasks[0];
 export type DriverEarnings = typeof driverEarnings;
 export type OwnerMachine = typeof ownerMachines[0];
 export type OwnerRequest = typeof ownerRequests[0];
+<<<<<<< HEAD
 export type VehicleBooking = typeof vehicleBookings[0];
 export type MachineryBooking = typeof machineryBookings[0];
+=======
+export type AdminVehicleBooking = typeof adminVehicleBookings[0];
+export type AdminMachineryBooking = typeof adminMachineryBookings[0];
+export type AdminMarketplaceProduct = typeof adminMarketplaceProducts[0];
+>>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469

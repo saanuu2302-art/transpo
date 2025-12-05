@@ -22,10 +22,11 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Logo } from '@/components/icons';
-import { ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
+import { useToast } from '@/hooks/use-toast';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -36,17 +37,84 @@ export default function LoginPage() {
   const [userType, setUserType] = useState('farmer');
   const { language, toggleLanguage } = useLanguage();
   const t = translations[language].login;
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
+  // Simulate login without actual user state management for now
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  useEffect(() => {
+    // This simulates checking if a user is already logged in.
+    // In a real fake flow, you might use localStorage. For now, we'll just assume not logged in.
+    setIsCheckingAuth(false); 
+  }, []);
+
+  if (isCheckingAuth || isLoggedIn) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    );
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (userType === 'driver') {
-      router.push('/driver/dashboard');
-    } else if (userType === 'owner') {
-      router.push('/owner/dashboard');
-    } else if (userType === 'admin') {
-      router.push('/admin/dashboard');
-    } else {
-      router.push('/dashboard');
+    setIsLoading(true);
+
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    try {
+      if (isSignUp) {
+        if (!name || !email || !password) {
+            toast({
+                variant: 'destructive',
+                title: 'Error',
+                description: 'Please fill all fields for sign up.',
+            });
+            setIsLoading(false);
+            return;
+        }
+        toast({
+          title: 'Sign Up Successful',
+          description: "You're now being redirected.",
+        });
+      }
+      
+      // On both sign-in and sign-up, just redirect
+      redirectUser(userType);
+
+    } catch (error: any) {
+      toast({
+        variant: 'destructive',
+        title: 'Authentication Error',
+        description: 'This is a fake error message.',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const redirectUser = (role: string) => {
+    switch (role) {
+      case 'driver':
+        router.push('/driver/dashboard');
+        break;
+      case 'owner':
+        router.push('/owner/dashboard');
+        break;
+      case 'admin':
+        router.push('/admin/dashboard');
+        break;
+      case 'farmer':
+      default:
+        router.push('/dashboard');
+        break;
     }
   };
 
@@ -68,9 +136,11 @@ export default function LoginPage() {
         />
       )}
       <div className="absolute inset-0 bg-background/50" />
-       <div className="absolute top-4 right-4 z-20">
-          <Button variant="outline" size="sm" onClick={toggleLanguage}>{translations[language].language.switchLanguage}</Button>
-        </div>
+      <div className="absolute top-4 right-4 z-20">
+        <Button variant="outline" size="sm" onClick={toggleLanguage}>
+          {translations[language].language.switchLanguage}
+        </Button>
+      </div>
       <Card className="relative z-10 w-full max-w-sm border-2 bg-card/80 backdrop-blur-sm">
         <form onSubmit={handleSubmit}>
           <CardHeader className="text-center">
@@ -78,27 +148,23 @@ export default function LoginPage() {
               <Logo className="h-10 w-auto" />
             </div>
             {isSignUp ? (
-                <>
-                    <CardTitle className="font-headline text-2xl">
-                        {t.signUp.title}
-                    </CardTitle>
-                    <CardDescription>
-                        {t.signUp.description}
-                    </CardDescription>
-                </>
+              <>
+                <CardTitle className="font-headline text-2xl">
+                  {t.signUp.title}
+                </CardTitle>
+                <CardDescription>{t.signUp.description}</CardDescription>
+              </>
             ) : (
-                <>
-                    <CardTitle className="font-headline text-2xl">
-                        {t.signIn.title}
-                    </CardTitle>
-                    <CardDescription>
-                        {t.signIn.description}
-                    </CardDescription>
-                </>
+              <>
+                <CardTitle className="font-headline text-2xl">
+                  {t.signIn.title}
+                </CardTitle>
+                <CardDescription>{t.signIn.description}</CardDescription>
+              </>
             )}
           </CardHeader>
           <CardContent className="space-y-4">
-             {isSignUp && (
+            {isSignUp && (
               <div className="space-y-2">
                 <Label htmlFor="name">{t.fullName}</Label>
                 <Input
@@ -106,6 +172,8 @@ export default function LoginPage() {
                   type="text"
                   placeholder={t.yourNamePlaceholder}
                   required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
             )}
@@ -116,21 +184,34 @@ export default function LoginPage() {
                 type="email"
                 placeholder="farmer@example.com"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">{t.password}</Label>
-              <Input id="password" type="password" required />
+              <Input
+                id="password"
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="user-type">{t.userType.label}</Label>
-              <Select defaultValue="farmer" onValueChange={setUserType}>
+              <Select
+                defaultValue="farmer"
+                onValueChange={setUserType}
+              >
                 <SelectTrigger id="user-type">
                   <SelectValue placeholder={t.userType.placeholder} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="farmer">{t.userType.farmer}</SelectItem>
-                  <SelectItem value="owner">{t.userType.machineOwner}</SelectItem>
+                  <SelectItem value="owner">
+                    {t.userType.machineOwner}
+                  </SelectItem>
                   <SelectItem value="driver">{t.userType.driver}</SelectItem>
                   <SelectItem value="admin">{t.userType.admin}</SelectItem>
                 </SelectContent>
@@ -138,14 +219,19 @@ export default function LoginPage() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
-            <Button type="submit" className="w-full">
-              {isSignUp ? t.signUp.button : t.signIn.button} <ArrowRight />
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {isSignUp ? t.signUp.button : t.signIn.button}{' '}
+              <ArrowRight />
             </Button>
             <p className="text-xs text-muted-foreground">
-              {isSignUp ? t.signUp.prompt : t.signIn.prompt}
-              {' '}
-              <a href="#" onClick={handleToggleMode} className="text-primary hover:underline">
-                 {isSignUp ? t.signUp.switch : t.signIn.switch}
+              {isSignUp ? t.signUp.prompt : t.signIn.prompt}{' '}
+              <a
+                href="#"
+                onClick={handleToggleMode}
+                className="text-primary hover:underline"
+              >
+                {isSignUp ? t.signUp.switch : t.signIn.switch}
               </a>
             </p>
           </CardFooter>

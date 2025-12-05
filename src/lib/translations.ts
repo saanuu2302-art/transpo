@@ -35,7 +35,7 @@ export const translations = {
       dashboard: 'Dashboard',
       vehicleBooking: 'Vehicle Booking',
       machineBooking: 'Machine Booking',
-      aiExpert: 'AI Expert',
+      aiExpert: 'Gemini',
       profile: 'Profile',
       logout: 'Logout',
       driver: {
@@ -79,7 +79,7 @@ export const translations = {
           description: 'Rent the best farming equipment.',
         },
         aiExpert: {
-          title: 'AI Expert',
+          title: 'Ask Gemini',
           description: 'Get instant farming advice.',
         },
       },
@@ -123,10 +123,10 @@ export const translations = {
       liveUsagePlaceholder: 'Live usage tracking will be available here',
     },
     aiExpert: {
-      title: 'AI Expert',
+      title: 'Gemini Assistant',
       description: 'Ask any farming-related question in English or Kannada. The AI will respond in the language of your query.',
-      initialMessage: 'Hello! How can I help you with your farming today?',
-      placeholder: 'Type your question or use the voice input...',
+      initialMessage: 'Hello! I am Gemini. How can I help you with your farming needs today?',
+      placeholder: 'Ask Gemini about farming...',
       thinking: 'Thinking...',
       errorTitle: 'Error',
       speechError: {
@@ -156,13 +156,13 @@ export const translations = {
     },
     confirmation: {
       title: 'Confirm Booking',
-      description: (item: string) => `Are you sure you want to book the ${item}?`,
+      description: (item: string) => `Are you sure you want to book the ${'\'\'\''}${item}${'\'\'\''}?`,
       cancel: 'Cancel',
       confirm: 'Confirm',
       success: {
           title: 'Booking Successful!',
           description: 'has been booked.',
-          pinDescription: (pin: string) => `Your booking is confirmed! Your verification PIN is ${pin}.`,
+          pinDescription: (pin: string) => `Your booking is confirmed! Your verification PIN is ${'\'\'\''}${pin}${'\'\'\''}.`,
       },
       details: {
         owner: 'Owner',
@@ -201,7 +201,7 @@ export const translations = {
         card: 'Pay with Credit/Debit Card',
         success: {
             title: 'Payment Successful',
-            description: (method: string) => `Paid successfully using ${method}.`,
+            description: (method: string) => `Paid successfully using ${'\'\'\''}${method}${'\'\'\''}.`,
         },
     },
     driver: {
@@ -357,6 +357,97 @@ export const translations = {
         price: 'Rental Price',
         approvalStatus: 'Approval Status',
         viewDetails: 'View Details'
+      },
+      vehicleBookings: {
+        title: 'Vehicle Bookings',
+        bookingId: 'Booking ID',
+        farmer: 'Farmer',
+        driver: 'Driver',
+        pickup: 'Pickup',
+        dropoff: 'Dropoff',
+        fare: 'Fare',
+        status: 'Status'
+      },
+      machineryBookings: {
+        title: 'Machinery Bookings',
+        bookingId: 'Booking ID',
+        farmer: 'Farmer',
+        owner: 'Owner',
+        machine: 'Machine',
+        duration: 'Duration',
+        cost: 'Cost',
+        status: 'Status',
+        actions: 'Actions',
+        approve: 'Approve',
+        reject: 'Reject'
+      },
+      marketplace: {
+        title: 'Marketplace Management',
+        description: 'Monitor all product listings and activities.',
+        product: 'Product',
+        seller: 'Seller',
+        price: 'Price',
+        stockStatus: 'Stock Status',
+        approvalStatus: 'Approval Status',
+        actions: 'Actions',
+        approve: 'Approve',
+        reject: 'Reject'
+      },
+      aiExpertLogs: {
+        title: 'AI Expert Logs',
+        description: 'Review interactions with the AI assistant.',
+        logId: 'Log ID',
+        query: 'Query',
+        language: 'Language',
+        timestamp: 'Timestamp'
+      },
+      reports: {
+        title: 'Reports & Analytics',
+        description: 'Generate and view reports on system activity.',
+        generate: {
+          title: 'Generate Report',
+          description: 'Select report type and date range.',
+          reportType: 'Report Type',
+          userActivity: 'User Activity',
+          bookingRevenue: 'Booking Revenue',
+          transportDemand: 'Transport Demand',
+          dateRange: 'Date Range',
+          generateButton: 'Generate Report'
+        },
+        charts: {
+            placeholder: 'Chart will be displayed here.',
+            bookings: {
+                title: 'Bookings Overview'
+            },
+            revenue: {
+                title: 'Revenue by Category'
+            },
+            userGrowth: {
+                title: 'User Growth'
+            }
+        }
+      },
+      systemSettings: {
+          title: 'System Settings',
+          description: 'Configure system-wide settings and feature flags.',
+          featureFlags: {
+              title: 'Feature Flags',
+              description: 'Enable or disable features across the platform.',
+              marketplace: 'Marketplace',
+              aiExpert: 'AI Expert'
+          },
+          financial: {
+              title: 'Financial Settings',
+              description: 'Manage commission rates and payment gateways.',
+              commissionRate: 'Commission Rate (%)',
+              paymentGateway: 'Payment Gateway',
+              cashOnly: 'Cash Only'
+          },
+          save: {
+              saveButton: 'Save Changes',
+              successTitle: 'Settings Saved',
+              successDescription: 'System settings have been updated.'
+          }
       }
     }
   },
@@ -396,7 +487,7 @@ export const translations = {
       dashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
       vehicleBooking: 'ವಾಹನ ಬುಕಿಂಗ್',
       machineBooking: 'ಯಂತ್ರ ಬುಕಿಂಗ್',
-      aiExpert: 'AI ತಜ್ಞ',
+      aiExpert: 'ಜೆಮಿನಿ',
       profile: 'ಪ್ರೊಫೈಲ್',
       logout: 'ಲಾಗೌಟ್',
       driver: {
@@ -440,7 +531,7 @@ export const translations = {
           description: 'ಅತ್ಯುತ್ತಮ ಕೃಷಿ ಉಪಕರಣಗಳನ್ನು ಬಾಡಿಗೆಗೆ ಪಡೆಯಿರಿ.',
         },
         aiExpert: {
-          title: 'AI ತಜ್ಞ',
+          title: 'ಜೆಮಿನಿಯನ್ನು ಕೇಳಿ',
           description: 'ತక్షణ ಕೃಷಿ ಸಲಹೆ ಪಡೆಯಿರಿ.',
         },
       },
@@ -484,10 +575,10 @@ export const translations = {
       liveUsagePlaceholder: 'ಲೈವ್ ಬಳಕೆಯ ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲಿ ಲಭ್ಯವಿರುತ್ತದೆ',
     },
     aiExpert: {
-      title: 'AI ತಜ್ಞ',
+      title: 'ಜೆಮಿನಿ ಸಹಾಯಕ',
       description: 'ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಪ್ರಶ್ನೆಯನ್ನು ಇಂಗ್ಲಿಷ್ ಅಥವಾ ಕನ್ನಡದಲ್ಲಿ ಕೇಳಿ. AI ನಿಮ್ಮ ಪ್ರಶ್ನೆಯ ಭಾಷೆಯಲ್ಲಿ ಉತ್ತರಿಸುತ್ತದೆ.',
-      initialMessage: 'ನಮಸ್ಕಾರ! ಇಂದು ನಿಮ್ಮ ಕೃಷಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
-      placeholder: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ ಅಥವಾ ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಬಳಸಿ...',
+      initialMessage: 'ನಮಸ್ಕಾರ! ನಾನು ಜೆಮಿನಿ. ಇಂದು ನಿಮ್ಮ ಕೃಷಿ ಅಗತ್ಯಗಳಿಗೆ ನಾನು ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?',
+      placeholder: 'ಕೃಷಿಯ ಬಗ್ಗೆ ಜೆಮಿನಿಯನ್ನು ಕೇಳಿ...',
       thinking: 'ಯೋಚಿಸುತ್ತಿದೆ...',
       errorTitle: 'ದೋಷ',
       speechError: {
@@ -517,13 +608,13 @@ export const translations = {
     },
     confirmation: {
         title: 'ಬುಕಿಂಗ್ ಖಚಿತಪಡಿಸಿ',
-        description: (item: string) => `ನೀವು ಖಚಿತವಾಗಿ ${item} ಅನ್ನು ಬುಕ್ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?`,
+        description: (item: string) => `ನೀವು ಖಚಿತವಾಗಿ ${'\'\'\''}${item}${'\'\'\''}-ಅನ್ನು ಬುಕ್ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?`,
         cancel: 'ರದ್ದುಮಾಡಿ',
         confirm: 'ಖಚಿತಪಡಿಸಿ',
         success: {
             title: 'ಬುಕಿಂಗ್ ಯಶಸ್ವಿಯಾಗಿದೆ!',
-            description: 'ಅನ್ನು ಬುಕ್ ಮಾಡಲಾಗಿದೆ.',
-            pinDescription: (pin: string) => `ನಿಮ್ಮ ಬುಕಿಂಗ್ ಖಚಿತವಾಗಿದೆ! ನಿಮ್ಮ ಪರಿಶೀಲನಾ ಪಿನ್ ${pin} ಆಗಿದೆ.`,
+            description: '-ಅನ್ನು ಬುಕ್ ಮಾಡಲಾಗಿದೆ.',
+            pinDescription: (pin: string) => `ನಿಮ್ಮ ಬುಕಿಂಗ್ ಖಚಿತವಾಗಿದೆ! ನಿಮ್ಮ ಪರಿಶೀಲನಾ ಪಿನ್ ${'\'\'\''}${pin}${'\'\'\''}.`,
         },
         details: {
             owner: 'ಮಾಲೀಕರು',
@@ -562,7 +653,7 @@ export const translations = {
         card: 'ಕ್ರೆಡಿಟ್/ಡೆಬಿಟ್ ಕಾರ್ಡ್‌ನೊಂದಿಗೆ ಪಾವತಿಸಿ',
         success: {
             title: 'ಪಾವತಿ ಯಶಸ್ವಿಯಾಗಿದೆ',
-            description: (method: string) => `${method} ಬಳಸಿ ಯಶಸ್ವಿಯಾಗಿ ಪಾವತಿಸಲಾಗಿದೆ.`,
+            description: (method: string) => `${'\'\'\''}${method}${'\'\'\''}-ಬಳಸಿ ಯಶಸ್ವಿಯಾಗಿ ಪಾವತಿಸಲಾಗಿದೆ.`,
         },
     },
     driver: {
@@ -580,7 +671,7 @@ export const translations = {
         tasks: {
             title: 'ನನ್ನ ಕಾರ್ಯಗಳು',
             description: 'ಒಳಬರುವ ರೈಡ್ ವಿನಂತಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ ಮತ್ತು ನಿರ್ವಹಿಸಿ.',
-            noTasks: 'ಯಾವುದೇ ಹೊಸ ರೈಡ್ ವಿನಂತಿಗಳು ಲಭ್ಯವಿಲ್ಲ.',
+            noTasks: 'ಯಾವುದೇ ಹೊಸ ರೈಡ್ ವinಂತಿಗಳು ಲಭ್ಯವಿಲ್ಲ.',
             pickup: 'ಪಿಕ್ಅಪ್',
             destination: 'ಗಮ್ಯಸ್ಥಾನ',
             fare: 'ಶುಲ್ಕ',
@@ -623,101 +714,192 @@ export const translations = {
     },
     owner: {
         dashboard: {
-            title: 'ಯಂತ್ರ ಮಾಲೀಕರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
-            description: 'ನಿಮ್ಮ ಯಂತ್ರಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ಬುಕಿಂಗ್ ವಿನಂತಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ.',
-            machinesStatus: 'ಯಂತ್ರಗಳ ಸ್ಥಿತಿ',
-            totalMachines: 'ಒಟ್ಟು ಯಂತ್ರಗಳು',
-            available: 'ಲಭ್ಯವಿದೆ',
-            busy: 'ಕಾರ್ಯನಿರತವಾಗಿದೆ',
-            recentRequests: 'ಇತ್ತೀಚಿನ ಬುಕಿಂಗ್ ವಿನಂತಿಗಳು',
-            noRequests: 'ಯಾವುದೇ ಹೊಸ ಬುಕಿಂಗ್ ವಿನಂತಿಗಳಿಲ್ಲ.',
-            viewAll: 'ಎಲ್ಲವನ್ನು ವೀಕ್ಷಿಸಿ',
+            title: 'Machine Owner Dashboard',
+            description: 'Manage your machines and view booking requests.',
+            machinesStatus: 'Machines Status',
+            totalMachines: 'Total Machines',
+            available: 'Available',
+            busy: 'Busy',
+            recentRequests: 'Recent Booking Requests',
+            noRequests: 'No new booking requests.',
+            viewAll: 'View All',
         },
         machines: {
-            title: 'ನನ್ನ ಯಂತ್ರಗಳು',
-            description: 'ಹೊಸ ಯಂತ್ರಗಳನ್ನು ಸೇರಿಸಿ ಮತ್ತು ಅವುಗಳ ಲಭ್ಯತೆಯನ್ನು ನಿರ್ವಹಿಸಿ.',
-            addMachine: 'ಹೊಸ ಯಂತ್ರವನ್ನು ಸೇರಿಸಿ',
-            availability: 'ಲಭ್ಯತೆ',
-            available: 'ಲಭ್ಯವಿದೆ',
-            busy: 'ಕಾರ್ಯನಿರತವಾಗಿದೆ',
+            title: 'My Machines',
+            description: 'Add new machines and manage their availability.',
+            addMachine: 'Add New Machine',
+            availability: 'Availability',
+            available: 'Available',
+            busy: 'Busy',
         },
         requests: {
-            title: 'ಬುಕಿಂಗ್ ವಿನಂತಿಗಳು',
-            description: 'ರೈತರಿಂದ ಬಂದ ಬಾಡಿಗೆ ವಿನಂತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪ್ರತಿಕ್ರಿಯಿಸಿ.',
-            noRequests: 'ಯಾವುದೇ ಬಾಕಿ ಉಳಿದಿರುವ ಬುಕಿಂಗ್ ವಿನಂತಿಗಳಿಲ್ಲ.',
-            farmer: 'ರೈತ',
-            date: 'ದಿನಾಂಕ',
-            approve: 'ಅನುಮೋದಿಸಿ',
-            reject: 'ತಿರಸ್ಕರಿಸಿ',
+            title: 'Booking Requests',
+            description: 'Review and respond to rental requests from farmers.',
+            noRequests: 'No pending booking requests.',
+            farmer: 'Farmer',
+            date: 'Date',
+            approve: 'Approve',
+            reject: 'Reject',
         },
         transactions: {
-            title: 'ವಹಿವಾಟುಗಳು',
-            description: 'ನಿಮ್ಮ ವಹಿವಾಟು ಇತಿಹಾಸವನ್ನು ವೀಕ್ಷಿಸಿ.',
-            noTransactions: 'ಇನ್ನೂ ಯಾವುದೇ ವಹಿವಾಟುಗಳಿಲ್ಲ.',
+            title: 'Transactions',
+            description: 'View your transaction history.',
+            noTransactions: 'No transactions yet.',
         },
         profile: {
-            title: 'ಮಾಲೀಕರ ಪ್ರೊಫೈಲ್',
-            description: 'ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮತ್ತು ವ್ಯವಹಾರ ಮಾಹಿತಿಯನ್ನು ನವೀಕರಿಸಿ.',
-            editProfile: 'ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ',
-            totalMachines: 'ಒಟ್ಟು ಯಂತ್ರಗಳು',
-            machinesRegistered: 'ನೋಂದಾಯಿತ ಯಂತ್ರಗಳು',
-            totalEarnings: 'ಒಟ್ಟು ಗಳಿಕೆಗಳು',
-            lifetimeEarnings: 'ಜೀವಮಾನದ ಗಳಿಕೆಗಳು',
-            backToProfile: 'ಪ್ರೊಫೈಲ್‌ಗೆ ಹಿಂತಿರುಗಿ',
-            editDescription: 'ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಖಾತೆ ವಿವರಗಳನ್ನು ನವೀಕರಿಸಿ.',
-            changePhoto: 'ಫೋಟೋ ಬದಲಾಯಿಸಿ',
-            ownerName: 'ಮಾಲೀಕರ ಹೆಸರು',
-            emailAddress: 'ಇಮೇಲ್ ವಿಳಾಸ',
-            saveChanges: 'ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ'
+            title: 'Owner Profile',
+            description: 'Update your personal and business information.',
+            editProfile: 'Edit Profile',
+            totalMachines: 'Total Machines',
+            machinesRegistered: 'Machines registered',
+            totalEarnings: 'Total Earnings',
+            lifetimeEarnings: 'Lifetime earnings',
+            backToProfile: 'Back to Profile',
+            editDescription: 'Update your name and account details.',
+            changePhoto: 'Change Photo',
+            ownerName: 'Owner Name',
+            emailAddress: 'Email Address',
+            saveChanges: 'Save Changes'
         }
     },
     admin: {
       dashboard: {
-        title: 'ನಿರ್ವಾಹಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
-        description: 'ಟ್ರಾನ್ಸ್‌ಪೋ ವ್ಯವಸ್ಥೆಯ ಮೇಲೆ ಸಂಪೂರ್ಣ ನಿಯಂತ್ರಣ ಮತ್ತು ಗೋಚರತೆ.',
-        totalFarmers: 'ಒಟ್ಟು ರೈತರು',
-        totalDrivers: 'ಒಟ್ಟು ಚಾಲಕರು',
-        totalMachineOwners: 'ಒಟ್ಟು ಯಂತ್ರ ಮಾಲೀಕರು',
-        totalVehicleBookings: 'ಒಟ್ಟು ವಾಹನ ಬುಕಿಂಗ್‌ಗಳು',
-        totalMachineryBookings: 'ಒಟ್ಟು ಯಂತ್ರೋಪಕರಣ ಬುಕಿಂಗ್‌ಗಳು',
-        aiExpertMessages: 'AI ತಜ್ಞರ ಸಂದೇಶಗಳು',
-        activeUsersToday: 'ಇಂದು ಸಕ್ರಿಯ ಬಳಕೆದಾರರು',
-        totalRevenue: 'ಒಟ್ಟು ಆದಾಯ'
+        title: 'Admin Dashboard',
+        description: 'Full control and visibility over the Transpo system.',
+        totalFarmers: 'Total Farmers',
+        totalDrivers: 'Total Drivers',
+        totalMachineOwners: 'Total Machine Owners',
+        totalVehicleBookings: 'Total Vehicle Bookings',
+        totalMachineryBookings: 'Total Machinery Bookings',
+        aiExpertMessages: 'AI Expert Messages',
+        activeUsersToday: 'Active Users Today',
+        totalRevenue: 'Total Revenue'
       },
-      farmers: {
-        title: 'ರೈತರ ಡೇಟಾ',
-        description: 'ಎಲ್ಲಾ ರೈತರ ಮಾಹಿತಿಯನ್ನು ನಿರ್ವಹಿಸಿ.',
-        id: 'ರೈತ ID',
-        name: 'ಹೆಸರು',
-        phone: 'ಫೋನ್ ಸಂಖ್ಯೆ',
-        location: 'ಸ್ಥಳ',
-        totalBookings: 'ಒಟ್ಟು ಬುಕಿಂಗ್‌ಗಳು',
-        lastActive: 'ಕೊನೆಯದಾಗಿ ಸಕ್ರಿಯ',
-        viewDetails: 'ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ',
+       farmers: {
+        title: 'Farmer Data',
+        description: 'Manage all farmer information.',
+        id: 'Farmer ID',
+        name: 'Name',
+        phone: 'Phone Number',
+        location: 'Location',
+        totalBookings: 'Total Bookings',
+        lastActive: 'Last Active',
+        viewDetails: 'View Details',
       },
       drivers: {
-        title: 'ಚಾಲಕ ಡೇಟಾ',
-        description: 'ಎಲ್ಲಾ ಚಾಲಕ ಮಾಹಿತಿಯನ್ನು ನಿರ್ವಹಿಸಿ.',
-        id: 'ಚಾಲಕ ID',
-        name: 'ಹೆಸರು',
-        vehicleType: 'ವಾಹನ ಪ್ರಕಾರ',
-        phone: 'ಫೋನ್',
-        rating: 'ರೇಟಿಂಗ್',
-        status: 'ಸ್ಥಿತಿ',
-        completedTrips: 'ಪೂರ್ಣಗೊಂಡ ಟ್ರಿಪ್‌ಗಳು',
-        viewEdit: 'ವೀಕ್ಷಿಸಿ / ಸಂಪಾದಿಸಿ'
+        title: 'Driver Data',
+        description: 'Manage all driver information.',
+        id: 'Driver ID',
+        name: 'Name',
+        vehicleType: 'Vehicle Type',
+        phone: 'Phone',
+        rating: 'Rating',
+        status: 'Status',
+        completedTrips: 'Completed Trips',
+        viewEdit: 'View / Edit'
       },
       machineOwners: {
-        title: 'ಯಂತ್ರ ಮಾಲೀಕರ ಡೇಟಾ',
-        description: 'ಎಲ್ಲಾ ಯಂತ್ರ ಮಾಲೀಕರ ಮಾಹಿತಿಯನ್ನು ನಿರ್ವಹಿಸಿ.',
-        id: 'ಮಾಲೀಕ ID',
-        name: 'ಮಾಲೀಕರ ಹೆಸರು',
-        machineType: 'ಯಂತ್ರ ಪ್ರಕಾರ',
-        machineImage: 'ಯಂತ್ರ ಚಿತ್ರ',
-        availability: 'ಲಭ್ಯತೆ',
-        price: 'ಬಾಡಿಗೆ ಬೆಲೆ',
-        approvalStatus: 'ಅನುಮೋದನೆ ಸ್ಥಿತಿ',
-        viewDetails: 'ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ'
+        title: 'Machine Owner Data',
+        description: 'Manage all machine owner information.',
+        id: 'Owner ID',
+        name: 'Owner Name',
+        machineType: 'Machine Type',
+        machineImage: 'Machine Image',
+        availability: 'Availability',
+        price: 'Rental Price',
+        approvalStatus: 'Approval Status',
+        viewDetails: 'View Details'
+      },
+      vehicleBookings: {
+        title: 'Vehicle Bookings',
+        bookingId: 'Booking ID',
+        farmer: 'Farmer',
+        driver: 'Driver',
+        pickup: 'Pickup',
+        dropoff: 'Dropoff',
+        fare: 'Fare',
+        status: 'Status'
+      },
+      machineryBookings: {
+        title: 'Machinery Bookings',
+        bookingId: 'Booking ID',
+        farmer: 'Farmer',
+        owner: 'Owner',
+        machine: 'Machine',
+        duration: 'Duration',
+        cost: 'Cost',
+        status: 'Status',
+        actions: 'Actions',
+        approve: 'Approve',
+        reject: 'Reject'
+      },
+      marketplace: {
+        title: 'Marketplace Management',
+        description: 'Monitor all product listings and activities.',
+        product: 'Product',
+        seller: 'Seller',
+        price: 'Price',
+        stockStatus: 'Stock Status',
+        approvalStatus: 'Approval Status',
+        actions: 'Actions',
+        approve: 'Approve',
+        reject: 'Reject'
+      },
+      aiExpertLogs: {
+        title: 'AI ತಜ್ಞರ ದಾಖಲೆಗಳು',
+        description: 'AI ಸಹಾಯಕನೊಂದಿಗಿನ ಸಂವಾದಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.',
+        logId: 'ದಾಖಲೆ ID',
+        query: 'ಪ್ರಶ್ನೆ',
+        language: 'ಭಾಷೆ',
+        timestamp: 'ಸಮಯ'
+      },
+      reports: {
+        title: 'ವರದಿಗಳು ಮತ್ತು ವಿಶ್ಲೇಷಣೆ',
+        description: 'ಸಿಸ್ಟಮ್ ಚಟುವಟಿಕೆಯ ಮೇಲೆ ವರದಿಗಳನ್ನು ರಚಿಸಿ ಮತ್ತು ವೀಕ್ಷಿಸಿ.',
+        generate: {
+          title: 'ವರದಿ ರಚಿಸಿ',
+          description: 'ವರದಿ ಪ್ರಕಾರ ಮತ್ತು ದಿನಾಂಕ ಶ್ರೇಣಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ.',
+          reportType: 'ವರದಿ ಪ್ರಕಾರ',
+          userActivity: 'ಬಳಕೆದಾರರ ಚಟುವಟಿಕೆ',
+          bookingRevenue: 'ಬುಕಿಂಗ್ ಆದಾಯ',
+          transportDemand: 'ಸಾರಿಗೆ ಬೇಡಿಕೆ',
+          dateRange: 'ದಿನಾಂಕ ಶ್ರೇಣಿ',
+          generateButton: 'ವರದಿ ರಚಿಸಿ'
+        },
+        charts: {
+            placeholder: 'ಚಾರ್ಟ್ ಇಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ.',
+            bookings: {
+                title: 'ಬುಕಿಂಗ್‌ಗಳ ಅವಲೋಕನ'
+            },
+            revenue: {
+                title: 'ವರ್ಗದ ಪ್ರಕಾರ ಆದಾಯ'
+            },
+            userGrowth: {
+                title: 'ಬಳಕೆದಾರರ ಬೆಳವಣಿಗೆ'
+            }
+        }
+      },
+      systemSettings: {
+          title: 'ಸಿಸ್ಟಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು',
+          description: 'ಸಿಸ್ಟಮ್-ವ್ಯಾಪಕ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಫೀಚರ್ ಫ್ಲ್ಯಾಗ್‌ಗಳನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಿ.',
+          featureFlags: {
+              title: 'ಫೀಚರ್ ಫ್ಲ್ಯಾಗ್‌ಗಳು',
+              description: 'ವೇದಿಕೆಯಾದ್ಯಂತ ಫೀಚರ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ ಅಥವಾ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ.',
+              marketplace: 'ಮಾರುಕಟ್ಟೆ',
+              aiExpert: 'AI ತಜ್ಞ'
+          },
+          financial: {
+              title: 'ಹಣಕಾಸು ಸೆಟ್ಟಿಂಗ್‌ಗಳು',
+              description: 'ಕಮಿಷನ್ ದರಗಳು ಮತ್ತು ಪಾವತಿ ಗೇಟ್‌ವೇಗಳನ್ನು ನಿರ್ವಹಿಸಿ.',
+              commissionRate: 'ಕಮಿಷನ್ ದರ (%)',
+              paymentGateway: 'ಪಾವತಿ ಗೇಟ್‌ವೇ',
+              cashOnly: 'ನಗದು ಮಾತ್ರ'
+          },
+          save: {
+              saveButton: 'ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ',
+              successTitle: 'ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಉಳಿಸಲಾಗಿದೆ',
+              successDescription: 'ಸಿಸ್ಟಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ.'
+          }
       }
     }
   },
