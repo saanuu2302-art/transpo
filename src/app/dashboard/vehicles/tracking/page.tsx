@@ -75,34 +75,18 @@ function TrackingPageContent() {
     );
   }
   
+  if (!vehicle || !pin) {
+    return <div>Error loading tracking details. Please try again.</div>;
+  }
+
   const mapCenter = vehicle.lat && vehicle.lng ? { lat: vehicle.lat, lng: vehicle.lng } : undefined;
   // Mock destination
   const destination = { lat: 12.55, lng: 76.95 };
 
 
-  if (!vehicle || !pin) {
-    return <div>Error loading tracking details. Please try again.</div>;
-  }
-
   const eta = Math.floor(Math.random() * 25) + 5; // Placeholder ETA
 
   return (
-<<<<<<< HEAD
-    <div className="max-w-4xl mx-auto">
-      <Button variant="ghost" onClick={() => router.push('/dashboard/vehicles')} className="mb-4">
-        <ArrowLeft className="mr-2 h-4 w-4" />
-        {language === 'en' ? 'Back to Vehicles' : 'ವಾಹನಗಳಿಗೆ ಹಿಂತಿರುಗಿ'}
-      </Button>
-      <Card>
-        <CardHeader>
-          <CardTitle className="font-headline text-3xl">{t.tracking.title}</CardTitle>
-          <CardDescription>{t.tracking.description}</CardDescription>
-        </CardHeader>
-        <CardContent className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div className="aspect-video w-full rounded-md bg-muted flex items-center justify-center">
-                 <GoogleMap center={mapCenter} destination={destination} showRoute={true} />
-=======
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-4">
         <Button variant="outline" size="icon" onClick={() => router.push('/dashboard')}>
@@ -116,8 +100,7 @@ function TrackingPageContent() {
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-6">
              <div className="aspect-video w-full rounded-lg bg-muted flex items-center justify-center">
-                <p className="text-muted-foreground">{t.mapPlaceholder}</p>
->>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
+                 <GoogleMap center={mapCenter} destination={destination} showRoute={true} />
             </div>
         </div>
         <div className="lg:col-span-1 space-y-6">

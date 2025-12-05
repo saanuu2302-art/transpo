@@ -18,17 +18,10 @@ import {
 import { useLanguage } from '@/context/language-context';
 import { translations } from '@/lib/translations';
 import { cn } from '@/lib/utils';
-<<<<<<< HEAD
 import { Input } from '@/components/ui/input';
-
-type AiFarmingPayload = {
-  query: FormData;
-};
-=======
 import { GeminiIcon } from '@/components/icons';
 
 type AiFarmingPayload = FormData;
->>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
 
 export default function AiExpertPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -36,25 +29,6 @@ export default function AiExpertPage() {
   const { language } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
   
-<<<<<<< HEAD
-  const [state, formAction, isPending] = useActionState(
-    async (_prevState: any, payload: AiFarmingPayload) => {
-      const query = payload.get('query') as string;
-      if (!query) return { error: 'Query is required.' };
-      
-      setMessages((prev) => [
-        ...prev,
-        { id: `user-${Date.now()}`, sender: 'user', text: query },
-      ]);
-      setInput('');
-
-      return getAiFarmingResponse({ query });
-    },
-    undefined
-  );
-
-=======
->>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
@@ -180,19 +154,6 @@ export default function AiExpertPage() {
     }
   }, [messages]);
 
-<<<<<<< HEAD
-  const handleSendMessage = () => {
-    if (!input.trim() || isPending) return;
-    formRef.current?.requestSubmit();
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    handleSendMessage();
-  };
-
-=======
->>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
   return (
     <div className="flex flex-col gap-6 h-[calc(100vh-10rem)]">
       <div>
@@ -283,5 +244,3 @@ export default function AiExpertPage() {
     </div>
   );
 }
-
-    

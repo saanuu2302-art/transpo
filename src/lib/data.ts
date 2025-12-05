@@ -212,23 +212,6 @@ export const ownerRequests = [
     }
 ];
 
-<<<<<<< HEAD
-export const vehicleBookings = [
-  { id: 'VB001', farmerName: 'Srinivas', driverName: 'Ravi Kumar', vehicle: 'Mini-Truck', date: '2023-11-10', fare: '₹800', status: 'Completed' },
-  { id: 'VB002', farmerName: 'Lakshmi', driverName: 'Anand Reddy', vehicle: 'Heavy Duty Truck', date: '2023-11-11', fare: '₹2500', status: 'Completed' },
-  { id: 'VB003', farmerName: 'Gopal', driverName: 'Santosh', vehicle: 'Luggage Auto', date: '2023-11-12', fare: '₹500', status: 'Cancelled' },
-];
-
-export const machineryBookings = [
-  { id: 'MB001', farmerName: 'Srinivas', ownerName: 'Ramesh', machine: 'Tractor', date: '2023-11-15', cost: '₹2400', status: 'Completed' },
-  { id: 'MB002', farmerName: 'Gopal', ownerName: 'Suresh', machine: 'Tiller', date: '2023-11-16', cost: '₹1000', status: 'Completed' },
-  { id: 'MB003', farmerName: 'Lakshmi', ownerName: 'Ganesh', machine: 'Sprayer', date: '2023-11-18', cost: '₹600', status: 'Cancelled' },
-];
-
-
-export type Vehicle = typeof vehicles[0];
-export type Machine = typeof machines[0];
-=======
 export const adminVehicleBookings = [
   {
     id: 'VB001',
@@ -340,6 +323,18 @@ export const adminMarketplaceProducts = [
   }
 ];
 
+export const vehicleBookings = [
+  { id: 'VB001', farmerName: 'Srinivas', driverName: 'Ravi Kumar', vehicle: 'Mini-Truck', date: '2023-11-10', fare: '₹800', status: 'Completed' },
+  { id: 'VB002', farmerName: 'Lakshmi', driverName: 'Anand Reddy', vehicle: 'Heavy Duty Truck', date: '2023-11-11', fare: '₹2500', status: 'Completed' },
+  { id: 'VB003', farmerName: 'Gopal', driverName: 'Santosh', vehicle: 'Luggage Auto', date: '2023-11-12', fare: '₹500', status: 'Cancelled' },
+];
+
+export const machineryBookings = [
+  { id: 'MB001', farmerName: 'Srinivas', ownerName: 'Ramesh', machine: 'Tractor', date: '2023-11-15', cost: '₹2400', status: 'Completed' },
+  { id: 'MB002', farmerName: 'Gopal', ownerName: 'Suresh', machine: 'Tiller', date: '2023-11-16', cost: '₹1000', status: 'Completed' },
+  { id: 'MB003', farmerName: 'Lakshmi', ownerName: 'Ganesh', machine: 'Sprayer', date: '2023-11-18', cost: '₹600', status: 'Cancelled' },
+];
+
 // Firestore Document Types
 export type Vehicle = {
     id: string;
@@ -358,7 +353,6 @@ export type Vehicle = {
     }
 };
 
->>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
 export type Booking = {
     id: string;
     userId: string;
@@ -388,11 +382,8 @@ export type DriverTask = typeof driverTasks[0];
 export type DriverEarnings = typeof driverEarnings;
 export type OwnerMachine = typeof ownerMachines[0];
 export type OwnerRequest = typeof ownerRequests[0];
-<<<<<<< HEAD
 export type VehicleBooking = typeof vehicleBookings[0];
 export type MachineryBooking = typeof machineryBookings[0];
-=======
 export type AdminVehicleBooking = typeof adminVehicleBookings[0];
 export type AdminMachineryBooking = typeof adminMachineryBookings[0];
 export type AdminMarketplaceProduct = typeof adminMarketplaceProducts[0];
->>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469

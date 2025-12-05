@@ -17,15 +17,10 @@ import { ArrowLeft, User, Tag, MapPin, Milestone, Leaf, Loader2 } from 'lucide-r
 import Image from 'next/image';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-<<<<<<< HEAD
-import { Map as GoogleMap } from '@/components/map';
-
-=======
 import { useState, useEffect } from 'react';
 import { vehicles, type Vehicle, bookingHistory } from '@/lib/data';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
->>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
 
 export default function VehicleDetailPage() {
   const params = useParams();
@@ -142,13 +137,7 @@ export default function VehicleDetailPage() {
 
 
   const tConfirm = t.confirmation;
-<<<<<<< HEAD
-  const currentVehicle = nearestVehicle || vehicle;
-  const mapCenter = currentVehicle.lat && currentVehicle.lng ? { lat: currentVehicle.lat, lng: currentVehicle.lng } : undefined;
-
-=======
   const vehicleName = language === 'en' ? vehicle.name : vehicle.kannadaName;
->>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -174,17 +163,6 @@ export default function VehicleDetailPage() {
                 data-ai-hint={vehicle.image.imageHint}
               />
             </div>
-<<<<<<< HEAD
-             <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <Map className="h-5 w-5 text-muted-foreground mt-1" />
-                  <div className='w-full'>
-                    <p className="font-semibold">{tConfirm.details.liveTracking}</p>
-                    <div className="mt-2 h-64 w-full rounded-md bg-muted flex items-center justify-center">
-                      <GoogleMap center={mapCenter} />
-                    </div>
-                  </div>
-=======
 
             <div className="grid grid-cols-2 gap-4 rounded-lg border p-4">
               <div className="flex items-center gap-2">
@@ -192,7 +170,6 @@ export default function VehicleDetailPage() {
                 <div>
                   <p className="font-semibold">{t.machineBooking.owner}</p>
                   <p className="text-sm text-muted-foreground">{vehicle.ownerName}</p>
->>>>>>> 3c83eb72c4fed165f0eb00a08511a386cc6f2469
                 </div>
               </div>
 
